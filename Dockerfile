@@ -1,5 +1,6 @@
 FROM node:10.16.3-jessie-slim AS builder
 
+
 WORKDIR /app
 COPY . .
 
@@ -12,10 +13,10 @@ RUN sed -i "s/build_timestamp/${BUILD_TIMESTAMP}/g" src/app/config.json
 #RUN npm install 
 #    npm run build || true
 
-RUN npm install
-RUN npm run build 
+#RUN npm install
+#RUN npm run build 
 
-#RUN npm install npm run build || true
+RUN npm install npm run build || true
 
 FROM nginx:1.17.4-alpine
 
