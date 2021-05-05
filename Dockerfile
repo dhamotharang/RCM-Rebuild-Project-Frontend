@@ -23,7 +23,7 @@ RUN npm install npm run build --prod || true
 FROM nginx:1.17.4-alpine
 
 
-COPY --from=builder /app/disk/angular-app /usr/share/nginx/html/
+COPY --from=builder /app/disk/ /usr/share/nginx/html/
 COPY prod.conf /etc/nginx/conf.d/default.conf
 
 
