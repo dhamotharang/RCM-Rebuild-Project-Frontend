@@ -1,4 +1,4 @@
-const baseUrl = '120.28.14.11';
+const baseUrl = '128.199.175.240';
 
 export const environment = {
   production: false,
@@ -23,5 +23,5 @@ export const environment = {
   offlineApi: `http://${baseUrl}/v1/rcmffr/offline`,
   varietyApi: `http://${baseUrl}/v1/rcmffr/variety`,
   //refactored
-  apiBaseUrl: 'http://120.28.14.11'
+  apiBaseUrl: 'http://128.199.175.240'
 };
