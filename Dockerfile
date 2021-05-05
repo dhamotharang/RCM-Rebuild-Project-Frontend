@@ -20,6 +20,10 @@ RUN npm install npm run build || true
 
 FROM nginx:1.17.4-alpine
 
-#COPY --from=builder /app/www/ /usr/share/nginx/html/
+
 COPY --from=builder /app/www/ /usr/share/nginx/html/
 COPY prod.conf /etc/nginx/conf.d/default.conf
+
+
+
+
