@@ -1,4 +1,4 @@
-FROM node:12.7-alpine AS builder
+FROM node:10.16.3-jessie-slim AS builder
 
 
 WORKDIR /app
@@ -16,7 +16,7 @@ RUN sed -i "s/build_timestamp/${BUILD_TIMESTAMP}/g" src/app/config.json
 #RUN npm install
 #RUN npm run build 
 
-RUN npm install npm run build --prod || true
+RUN npm install npm run build || true
 
 #RUN npm install || true
 
