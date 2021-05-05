@@ -1,4 +1,4 @@
-FROM node:10-alpine AS builder
+FROM node:12.7-alpine AS builder
 
 
 WORKDIR /app
@@ -16,14 +16,14 @@ RUN sed -i "s/build_timestamp/${BUILD_TIMESTAMP}/g" src/app/config.json
 #RUN npm install
 #RUN npm run build 
 
-RUN npm install npm run build || true
+RUN npm install npm run build --prod || true
 
 #RUN npm install || true
 
 FROM nginx:1.17.4-alpine
 
 
-COPY --from=builder /app/www/ /usr/share/nginx/html/
+COPY --from=builder /app/disk/ /usr/share/nginx/html/
 COPY prod.conf /etc/nginx/conf.d/default.conf
 
 
