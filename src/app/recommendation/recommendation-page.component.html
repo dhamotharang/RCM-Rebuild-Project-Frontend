@@ -1,0 +1,209 @@
+<div
+  [hidden]="!isLoading"
+  style="
+    background-color: rgba(0, 0, 0, 0.5);
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    z-index: 2000;
+  "
+></div>
+<ion-header>
+  <ion-toolbar color="default">
+    <ion-buttons slot="start">
+      <ion-button (click)="backClicked()">
+        <ion-icon name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <div
+      class="item item-divider item-assertive ion-padding bgheader ion-text-center"
+      style="white-space: normal;"
+    >
+      FARMER FARM LOT RECOMMENDATION 
+      <br /><b>{{isRecommendationForUpdate ? "Update Reference ID: " + referenceId : ""}}</b>
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-row class="ion-text-right">
+    <ion-col size-lg="12">
+      <ion-item>
+        <ion-label>{{ 'COMMON.LANGUAGE' | translate }}:</ion-label>
+        <ion-select 
+          [value]="referenceId ? previousSelectedLanguage : defaultSelectedLanguage" 
+          (ionChange)="onLanguageChange($event)" 
+          [disabled]="!isRecommendationForUpdate && referenceId"
+        >
+          <ion-select-option [value]="ENGLISH">English</ion-select-option>
+          <ion-select-option [value]="FILIPINO">Filipino</ion-select-option>
+        </ion-select>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col size="10" offset="1">
+      <mat-vertical-stepper
+        [linear]="!recommendation"
+        #stepper
+        [selectedIndex]="stepperSelectedIndex"
+        (selectionChange)="selectionChange($event)"
+      >
+        <mat-step
+          label="Additional Farm Lot Info"
+          [stepControl]="fieldInfoRecommendationForm"
+        >
+          <app-farm-lot-recommendation-form
+            [recommendation]="recommendation"
+            [fieldInfoRecommendationForm]="fieldInfoRecommendationForm"
+            [fieldInfo]="field"
+            [viewMode]="viewMode"
+            (formValid)="fieldInfoRecommendation = $event"
+            (formSubmit)="stepper.next()"
+            (formUpdate)="resetQuestions($event, farmLot)"
+            [wasTheRecommendationSaved]="isTheRecommendationSaved"
+            #farmLot
+          >
+          </app-farm-lot-recommendation-form>
+        </mat-step>
+
+        <mat-step label="Set Target Yield" [stepControl]="setTargetYieldForm">
+          <app-target-yield
+            [varieties]="filteredVarieties"
+            [recommendation]="recommendation"
+            [fieldInfo]="field"
+            [targetYieldForm]="setTargetYieldForm"
+            [fieldInfoRecommendationFormValue]="fieldInfoRecommendation"
+            [targetYieldModel]="targetYieldModel"
+            [estimatedHarvestMonth]="estimatedHarvestMonth"
+            [seedRate]="seedRate"
+            [season]="season"
+            [farmerYield]="farmerYield"
+            (formValid)="onSetTargetYieldFormValid($event)"
+            (formSubmit)="onFormSubmitTargetYield(stepper)"
+            (formEdit)="editForm($event, targetYield)"
+            (cropEstablishmentSelected)="onCropEstablishmentSelected($event)"
+            (sowingDateSelected)="onSowingDateSelected($event)"
+            (varietyTypeChanged)="onVarietyTypeChanged(allVarieties, $event)"
+            (varietyNameSelected)="onVarietyNameSelected($event)"
+            (growthDurationSelected)="onGrowthDurationSelected($event)"
+            (noOfSacksAndWeightOfSackChanged)="onNoOfSacksAndWeightChanged()"
+            (seedRateKgChanged)="onSeedRateKgChanged($event)"
+            [wasTheRecommendationSaved]="isTheRecommendationSaved"
+            [defaultSelectedLanguage]="dialectEquivalent"
+            #targetYield
+          ></app-target-yield>
+        </mat-step>
+
+        <mat-step
+          label="Determine Fertilizer Rates"
+          [stepControl]="fertlizerRatesForm"
+        >
+          <app-fertlizer-rates-recommendation-form
+            [fertilizerRatesForm]="fertlizerRatesForm"
+            [recommendationModel]="recommendation"
+            [fieldFormValue]="fieldInfoRecommendation"
+            [targetYield]="targetYieldModel"
+            [previousFreshWeight]="previousFreshWeight"
+            (numberAndWeightOfSacksAnswerChange)="
+              numberAndWeightOfSacksAnswerChange($event)
+            "
+            [previousDryWeight]="previousDryWeight"
+            [soilFertility]="soilFertility"
+            [npkRateOutput]="npkRateOutputModel"
+            [organicFertilizer]="organicFertilizer"
+            [dialectSelected]="dialectEquivalent"
+            (formValid)="onFertilizerRatesFormValid($event)"
+            (formSubmit)="stepper.next()"
+            (formEdit)="editForm($event, fertilizerRates)"
+            [wasTheRecommendationSaved]="isTheRecommendationSaved"
+            #fertilizerRates
+          >
+          </app-fertlizer-rates-recommendation-form>
+        </mat-step>
+
+        <mat-step
+          label="Determine timing, splitting and fertilizer sources"
+          [stepControl]="nFertilizerSourceForm"
+        >
+          <app-splitting-fertilizer-resources
+            [nFertilizerSourceForm]="nFertilizerSourceForm"
+            [farmLotInfo]="fieldInfoRecommendation"
+            [targetYield]="targetYieldModel"
+            [recommendationModel]="recommendation"
+            [timingSplittingModel]="timingSplittingModel"
+            [defaultSelectedLanguage]="dialectEquivalent"
+            (calculateFertilizerInput)="calculateFertilizerInput($event)"
+            (formValid)="timingSplittingModel = $event"
+            (formSubmit)="stepper.next()"
+            (formEdit)="editForm($event, splittingFertilizer)"
+            [wasTheRecommendationSaved]="isTheRecommendationSaved"
+            #splittingFertilizer
+          ></app-splitting-fertilizer-resources>
+        </mat-step>
+
+        <mat-step
+          label="Other crop management practices"
+          [stepControl]="otherCropManagementForm"
+        >
+          <app-other-crop-management
+            [farmerNameDisplay]="farmerNameDisplay"
+            [recommendationModel]="recommendation"
+            [otherCropManagementForm]="otherCropManagementForm"
+            [targetYield]="targetYieldModel"
+            [fertilizerRates]="fertlizerRatesModel"
+            [fieldInfoRecommendation]="fieldInfoRecommendation"
+            [fertilizerRates]="fertlizerRatesModel"
+            [fertilizerRecommendationModel]="timingSplittingModel"
+            (formValid)="onOtherCropManagementFormValid($event)"
+            (formSubmit)="stepper.next()"
+            (formEdit)="editForm($event, otherCropManagement)"
+            [wasTheRecommendationSaved]="isTheRecommendationSaved"
+            #otherCropManagement
+          >
+          </app-other-crop-management>
+        </mat-step>
+
+        <mat-step
+          label="SMS Notification"
+          [stepControl]="smsNotificationForm"
+        >
+          <app-sms-notification
+            (formSubmit)="stepper.next()"
+            [farmerNameDisplay]="farmerNameDisplay"
+            [farmerMobileNumber]="farmerMobileNumber"
+            [phoneOwner]="phoneOwner"
+            [recommendationModel]="recommendation"
+            [targetYield]="targetYieldModel"
+            [fieldInfoRecommendation]="fieldInfoRecommendation"
+            [wasTheRecommendationSaved]="isTheRecommendationSaved"
+            [smsNotificationForm]="smsNotificationForm"
+            (formValid)="onSmsAndDialectFormValid($event)"
+          >
+          </app-sms-notification>
+        </mat-step>
+
+        <mat-step label="Recommendation Summary">
+          <app-recommendation-summary
+            [recommendationModel]="recommendation"
+            [otherCropManagement]="otherCropManagementModel"
+            [targetYield]="targetYieldModel"
+            [fieldInfoRecommendation]="fieldInfoRecommendation"
+            [fertilizerRates]="fertlizerRatesModel"
+            [fertilizerRecommendationModel]="timingSplittingModel"
+            [farmerNameDisplay]="farmerNameDisplay"
+            [recommendationReferenceId]="recommendationReferenceId"
+            [farmingPractices]="farmingPracticesModel"
+            [smsAndDialect]="smsDialectModel"
+            (saveRecommendation)="saveRecommendation($event)"
+            [wasTheRecommendationSaved]="isTheRecommendationSaved"
+            [recommendationReferenceId]="referenceId"
+            [pdfFile]="pdfFile"
+            [temporaryReferenceId]="temporaryReferenceId"
+          >
+          </app-recommendation-summary>
+        </mat-step>
+      </mat-vertical-stepper>
+    </ion-col>
+  </ion-row>
+</ion-content>

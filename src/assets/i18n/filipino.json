@@ -1,0 +1,478 @@
+{
+    "COMMON": {
+        "NAME": "Pangalan",
+        "ANSWER": {
+          "YES": "Oo",
+          "NO": "Hindi"
+        },
+        "OTHERS_PLEASE_SPECIFY": "Iba pa, pakitukoy",
+        "UNIT": {
+            "HECTARES": "ektarya",
+            "HA": "ektarya",
+            "SQUARE_METER": "metro kwadrado",
+            "KG_PER_HECTARE": "kilo kada ektarya",
+            "TON_PER_HECTARE":"tonelada kada ektarya",
+            "KG_PER_SACK": "kilo kada sako",
+            "BAGS_PER_HECTARE": "sako kada ektarya",
+            "HECTARE": "ektarya",
+            "BAG": "sako",
+            "BAGS": "sako",
+            "KG": "kilo"
+        },
+        "AND": "at",
+        "NEXT":"Kasunod",
+        "EDIT": "Baguhin",
+        "EDIT_FORM": {
+            "HEADING": "Baguhin ang pormularyo",
+            "BODY": "Mabubura ang mga susunod na katanungan kapag binago ang pormularyo. Paki-kumpirma",
+            "CANCEL_BUTTON": "Ikansela"
+        },
+        "VALIDATION": {
+            "REQUIRED": "Pumili ng sagot",
+            "REQUIRED_SECONDARY": "Ilagay ang sagot"
+        },
+        "LANGUAGE": "Wika",
+        "MONTH": {
+            "JANUARY": "Enero",
+            "FEBRUARY": "Pebrero",
+            "MARCH": "Marso",
+            "APRIL": "Abril",
+            "MAY": "Mayo",
+            "JUNE": "Hunyo",
+            "JULY": "Hulyo",
+            "AUGUST": "Agosto",
+            "SEPTEMBER": "Setyembre",
+            "OCTOBER": "Oktubre",
+            "NOVEMBER": "Nobyembre",
+            "DECEMBER": "Disyembre"
+        },
+        "WATER_SOURCE": {
+            "LABEL":"Kondisyon ng bukid",
+            "IRRIGATED": "May patubig",
+            "RAINFED": "Sahod-ulan"
+        },
+        "SEED_SOURCE_ANSWER": {
+            "PURCHASE_CERTIFIED_SEED": "Binili na sertipikadong binhi na may tag o mula sa DA",
+            "QUALITY_SEED": "Binili o ipinagpalit mula sa ibang magsasaka na gumagamit ng mataas na kalidad na binhi o mula sa bukid na may maayos na paglilinis o pag-alis ng palay na naiiba sa karamihan",
+            "FIRST_HARVEST_SEED": "Binhi mula sa naunang ani ng sertipikadong binhi na may tag",
+            "HOME_SAVED_SEED": "Binhi na itinabi mula sa mga nakaraang ani o inani mula sa binhi na ilang ulit ng itinanim"
+        },
+        "VARIETY_TYPE": {
+            "INBRED": "Inbred",
+            "HYBRID": "Haybrid"
+        },
+        "SEEDLING_AGE": {
+            "EARLY_SEEDLING_AGE": "10-14 araw",
+            "MIDDLE_SEEDLING_AGE": "15-22 araw",
+            "LATE_SEEDLING_AGE": "23 araw o higit pa"
+        },
+        "SEEDLING": "punla",
+        "NUMBER_OF_SACKS": "Bilang ng sako",
+        "WEIGHT_OF_SACK": "Timbang ng isang sako (kg)",
+        "FRESH_WEIGHT": "sariwang timbang ng palay",
+        "DRY_WEIGHT": "tuyong timbang ng palay",
+        "OF": "ng",
+        "SACKS_AT":"sako,",
+        "CROP_ESTABLISHMENT": {
+            "MANUAL": "Manwal na paglilipat-tanim",
+            "MECHANICAL": "Mekanikal na paglilipat-tanim",
+            "WET": "Wet Seeding",
+            "DRY": "Dry Seeding"
+        },
+        "TARGET_YIELD": "Target na ani",
+        "CROP_ESTABLISHMENT_SHORT_LABEL": {
+            "TRANSPLANTING":"araw pagkalipat-tanim",
+            "SOWING":"araw pagkasabog-tanim",
+            "EMERGENCE":"araw pagkasibol"
+        },
+        "CROP_ESTABLISHMENT_ACRONYM": {
+            "TRANSPLANTING":"APL",
+            "SOWING":"APS",
+            "EMERGENCE":"APS"
+        },
+        "PRACTICE_SAFE_AWD": "Gumamit ng Safe AWD",
+        "SEED_BED": "Punlaan"
+    },
+    "FARM_LOT": {
+        "FARM_LOT_SIZE": "Laki ng bukid",
+        "FARM_LOT_DETAILS": "Mga detalye ng bukid",
+        "USE_WHOLE_FARM_LOT_SIZE": "Gamitin ang buong bukid",
+        "SELECT_FARM_LOT_SIZE": "Pumili ng sukat ng bukid",
+        "DA_PROGRAM_QUESTION": "Pumili ng DA program/project kung saan nabibilang ang panayam sa magsasaka?",
+        "FARM_DESCRIPTION_IN_UPCOMING_SEASON_QUESTION": "Alin ang maglalarawan sa <span class=\"text-highlight\">{FARM_LOT_NAME}</span> bukid sa taniman?",
+        "PLEASE_SPECIFY_PROGRAM_OR_PROJECT": "Pakitukoy ang programa o proyekto",
+        "DO_YOU_USE_PUMP_QUESTION": "Gumagamit kaba ng bomba  patubigan na ginagamitan ng gasolina, kurodo o elektrisidad?",
+        "DO_YOU_HAVE_ACCESS_TO_PUMP_QUESTION": "May magagamit ka bang bomba patubigan na makakapagbibigay ng patubig sa panahon ng tag-tuyot para mabawasan ang pagbaba ng ani?",
+        "INPUT_SIZE": "Ilagay ang sukat"
+    },
+    "TARGET_YIELD": {
+        "CROPS_PER_YEAR": {
+            "QUESTION": "Ilang beses ka nagtatanim ng palay sa <span class=\"text-highlight\">{{ getFarmLotName }}</span> bukid sa loob ng isang taon? <font color='red'>*</font>",
+            "ANSWER": {
+                "ONE": "Isa",
+                "TWO": "Dalawa",
+                "THREE": "Tatlo"
+            }
+        },
+        "CROP_ESTABLISHMENT": {
+            "QUESTION": "Anong paraan ng pagtatanim ang iyong gagamitin sa nalalapit na taniman ng palay?"
+        },
+        "SOWING_DATE": {
+            "QUESTION": {
+                "TRANSPLANTING": "Kailan ka magpupunla?",
+                "SEEDING": "Kailan ka magsasabog-tanim sa bukid?"
+            },
+            "VALIDATION": {
+                "REQUIRED": {
+                    "TRANSPLANTING": "Pumili ng petsa ng pagpupunla",
+                    "SEEDING": "Pumili ng petsa ng pagsasabog-tanim sa bukid"
+                },
+                "INTERVIEW_NOT_MORE_THAN_EIGHT_DAYS_AFTER_SOWING_DATE": "Babala: Para makatangap ng rekomendasyon, ang pakikipanayam ay hindi dapat maging higit sa walong araw pagkatapos ng pagtatanim sa bukid."
+            }
+        },
+        "SEEDLING_AGE": {
+            "QUESTION": "  Ano ang tinatayang gulang ng punla sa paglilipat-tanim?",
+            "VALIDATION": {
+                "ONE": "Babala: Para makatanggap ng rekomendasyon, ang araw ng pakikipanayam ay hindi dapat tumapat o lumagpas sa ika-5 araw pagkalipat-tanim sa palayan."
+            }
+        },
+        "SEED_RATE": {
+            "QUESTION": "Gaano karaming binhi ang gagamitin sa iyong <span class=\"text-highlight\">{{ getFieldSizeHectare }}</span> ektaryang <span class=\"text-highlight\">{{ getFarmLotName }}</span> palayan para sa nalalapit na taniman ng palay sa <span class=\"text-highlight\">{{ sowingMonth }}</span>? <font color='red'>*</font> {{ seedRate }}",
+            "VALIDATION": {
+                "REQUIRED": "Ilagay ang sagot",
+                "MIN": "Maglagay ng mas mababang sagot.",
+                "MAX": "Maglagay ng mas mataas na sagot."
+            },
+            "PLACEHOLDER": "Ilagay ang kilo"
+        },
+        "VARIETY_TYPE": {
+            "QUESTION": "Anong barayti ang iyong gagamitin sa parating na panahon ng taniman sa <span class=\"text-highlight\">{{ sowingMonth }}</span>? <font color='red'>*</font>",
+            "VALIDATION": {
+                "REQUIRED": "Pumili ng barayti sa parating na taniman"
+            }
+        },
+        "VARIETY_NAME": {
+            "QUESTION": "Pangalan ng Barayti",
+            "VALIDATION": {
+                "REQUIRED": "Pumili ng pangalan ng barayti"
+            },
+            "SEARCH": "Hanapin",
+            "NO_VARIETY_FOUND": "Walang barayti na nakita"
+        },
+        "SPECIFIED_VARIETY_NAME": {
+            "QUESTION": "Ilagay ang pangalan ng barayti",
+            "VALIDATION": {
+                "REQUIRED": "Ilagay ang sagot"
+            }
+        },
+        "GROWTH_DURATION": {
+            "QUESTION": "Ilan ang kabuuang bilang ng araw ng barayti mula binhi hanggang anihan?",
+            "ANSWER": {
+                "TRANSPLANTING": {
+                    "EARLY_GROWTH_DURATION": "101-110 araw",
+                    "MIDDLE_GROWTH_DURATION": "111-120 araw",
+                    "LATE_GROWTH_DURATION": "121-130 araw"
+                },
+                "SEEDING": {
+                    "EARLY_GROWTH_DURATION": "91-100 araw",
+                    "MIDDLE_GROWTH_DURATION": "101-110 araw",
+                    "LATE_GROWTH_DURATION": "111-120 araw"
+                }
+            },
+            "VALIDATION": {
+                "REQUIRED": "Pumili ng kabuuang bilang ng araw ng barayti mula binhi hanggang anihan"
+            }
+        },
+        "NUMBER_AND_WEIGHT_OF_SACK": {
+            "QUESTION": "Ilang sako ng sariwang palay ang karaniwang inaani mula sa iyong <span class=\"text-highlight\">{{ getFieldSizeHectare }}</span> ektaryang <span class=\"text-highlight\">{{ getFarmLotName }}</span> palayan kapag aani nang <span class=\"text-highlight\">{{ estimatedHarvestMonth }}</span> gamit ang <span class=\"text-highlight\">{{ getVarietyType }}</span> barayti? Ibigay ang kabuuang bilang ng inani.",
+            "NOTE": "Ang karaniwang ani ay mula sa mga panahon na walang baha, pagkalubog ng palay, tagtuyot, o pagkakaroon ng peste na nakapagdulot ng pagbaba ng ani.",
+            "VALIDATION": {
+                "MIN": "Ang karaniwang ani ay hindi dapat bumaba ng 1 tonelada bawat ektarya.",
+                "MAX": "Ang karaniwang ani ay hindi dapat tumaas ng {{ maxReportedYield }} tonelada bawat ektarya."
+            },
+            "WARNING": "Ang iyong palayan ay mayroon ng magandang ani. Ang pagtaas ng ani sa pamamagitan ng pag gamit ng RCM ay kakaunti na lamang"
+        },
+        "NUMBER_OF_SACKS": {
+            "VALIDATION": {
+                "REQUIRED": "Ilagay ang sagot",
+                "MIN": "Ibigay ang bilang ng sako mula 1 pataas."
+            }
+        },
+        "WEIGHT_OF_SACK": {
+            "VALIDATION": {
+                "REQUIRED": "Ilagay ang sagot",
+                "MIN": "Babala: Ibigay ang timbang ng sako mula 25 kilo.",
+                "MAX": "Babala: Ibigay ang timbang ng sako hanggang 85 kilo."
+            }
+        },
+        "PREVIOUS_VARIETY_TYPE": {
+            "QUESTION": "Ano ang uri ng barayti na iyong ginamit noong nakaraang taniman sa kaparehong buwan <span class=\"text-highlight\">{{ sowingMonth }}</span> na magtatanim sa ngayon? <font color='red'>*</font>",
+            "VALIDATION": {
+                "REQUIRED": "Pumili ng uri ng barayti"
+            }
+        },
+        "UPCOMING_SEED_SOURCE": {
+            "QUESTION": "Saan galing ang iyong binhi na gagamitin sa parating na panahon ng taniman sa <span class=\"text-highlight\">{{ sowingMonth }}</span>? <font color='red'>*</font>"
+        },
+        "PREVIOUS_SEED_SOURCE": {
+            "QUESTION": "Saan nanggaling ang iyong inbred na barayti na nakaaani ng <span class=\"text-highlight\">{{ noOfSacks }}</span> sako tuwing anihan sa buwan ng <span class=\"text-highlight\">{{ estimatedHarvestMonth }}</span>? <font color='red'>*</font>"
+        },
+        "WATER": {
+            "QUESTION": "Paano maisasalarawan ang dami ng tubig sa iyong bukid noong mga nakalipas na taon na nagtanim nang <span class=\"text-highlight\">{{ sowingMonth }}</span>? <font color='red'>*</font>",
+            "ANSWER": {
+                "ADEQUATE_WATER": "Sapat ang dami ng patubig sa panahon ng paglaki ng palay na hindi naging sanhi ng pagbaba ng ani mula sa tagtuyot o pagkalubog ng palay sa baha",
+                "SUBMERGENCE_STRESS": "Nagkaroon ng paglubog ng palay sa baha sa panahon ng paglaki ng palay na naging sanhi ng pagbaba ng ani",
+                "SHORTAGE_OF_WATER": "Nagkaroon ng kakulangan sa patubig na naging sanhi ng pagbaba ng ani"
+            }
+        },
+        "INTRO": "Nalalaman ng RCM ang kinakailangang pataba base sa nakatakdang dami ng ani. Ang nakatakdang dami ng ani ay depende sa lokasyon ng palayan, petsa ng pagpupunla o sabog-tanim, barayti, tipikal na ani ng magsasaka, patubig o sahod-ulan at estado, at pinanggagalingan ng binhi.",
+        "OUTPUT": {
+            "THE_TARGET_YIELD_FOR_YOUR": "Ang target na ani para sa iyong",
+            "FARM_LOT_IS": "palayan ay",
+            "MOISTURE_CONTENT_14": "na may 14% moisture kontent"
+        }
+        
+    },
+    "FERTILIZER_RATES": {
+        "RICE_CROP": {
+            "QUESTION": "Anong halaman ang iyong itinanim sa nakaraang tatlong buwan bago ang pagtataniman ng palay sa <span class=\"text-highlight\">{{ sowingMonth }}</span>? <font color='red'>*</font>",
+            "ANSWER": {
+                "RICE": "Palay",
+                "CORN": "Mais",
+                "LEGUME": "Legume (tuload ng munggo, paayap)",
+                "VEGETABLE_OR_MELON": "Gulay o melon",
+                "BELL_PEPPER_OR_EGGPLANT": "Bell pepper o talong",
+                "TOMATO": "Kamatis",
+                "TOBACCO": "Tabako",
+                "NO_CROP": "Walang tanim"
+            }
+        },
+        "HARVEST_TYPE": {
+            "QUESTION": "Paano inani ang palay noong nakalipas na panahon ng taniman?",
+            "ANSWER": {
+                "MANUAL_HARVEST": "Manwal na pag-aani",
+                "REAPER": "Gamit ang reaper",
+                "COMBINE_HARVEST": "Combine harvest"
+            }
+        },
+        "NUMBER_AND_WEIGHT_OF_SACKS_GROUP": {
+            "QUESTION": "Ilang sako ng sariwang palay ang karaniwang naaani mula sa iyong <span class=\"text-highlight\">{{ selectedFarmSize }}</span> ektaryang <span class=\"text-highlight\">{{ farmLotName }}</span> palayan sa nakaraang ani? Ibigay ang kabuuang ani. <font color='red'>*</font>",
+            "VALIDATION": {
+                "MIN": "Babala: Ang karaniwang ani ay hindi dapat bumaba ng 1 tonelada bawat ektarya.",
+                "MAX": "Babala: Ang karaniwang ani ay hindi dapat tumaas ng 11 tonelada bawat ektarya."
+            }
+        },
+        "NUMBER_OF_SACKS": {
+            "QUESTION": "Bilang ng sako",
+            "VALIDATION": {
+                "MIN": "Ibigay ang bilang ng sako mula 1 pataas.."
+            }
+        },
+        "WEIGHT_OF_SACK": {
+            "VALIDATION": {
+                "MIN_AND_MAX": "Ibigay ang timbang ng sako mula 25 kilo o hanggang 85 kilo"
+            }
+        },
+        "WILL_APPLY_ORGANIC_FERTILIZER": {
+            "QUESTION": "Ngayong parating na panahon ng taniman, gagamit ka ba ng organikong pataba?",
+            "ANSWER": {
+                "YES": "Oo",
+                "NO": "Hindi"
+            }
+        },
+        "ORGANIC_FERTILIZER_BAG_COUNT": {
+            "QUESTION": "Gaano karaming organikong pataba ang iyong gagamitin para sa iyong <span class=\"text-highlight\">{{ selectedFarmSize }}</span> ektaryang bukid? <font color='red'>*</font>",
+            "VALIDATION": {
+                "MIN_AND_MAX": "Babala: Ang kabuuang bilang ng sako ay hindi dapat lalagpas ng 50 kada ektarya at ang timbang kada sako ay mula 10 hanggang 70 kilo lamang."
+            }
+        },
+        "TOTAL_NUMBER_OF_BAGS": {
+            "QUESTION": "Kabuuang bilang ng sako"
+        },
+        "TYPICAL_WEIGHT_OF_BAG": {
+            "QUESTION": "Karaniwang timbang ng isang sako (kg)"
+        },
+        "INTRO": "Nalalaman ng RCM ang kinakailangang pataba base sa pangangailangan ng pananim at nababago ito sa pamamagitan ng iba pang pinagkukunan nito ng nutrisyon tulad ng klase ng patubig, natirang nutrisyon sa pananim, at iba pa.",
+        "OUTPUT_SUMMARY_INTRO": {
+            "TARGET_YIELD_FRESH_WEIGHT":"Nakatakdang sariwang ani",
+            "TARGET_YIELD_AT_14_MOISTURE":"Nakatakdang ani na may 14% moisture kontent:",
+            "RICE_CROP_PER_YEAR": "Bilang ng palay na itinanim sa iyong palayan sa loob ng isang taon:"
+        },
+        "OUTPUT_SUMMARY": "Dami ng kinakailangang NPK para sa nakatakdang ani:"
+    },
+    "TIMING_AND_SPLITTING": {
+        "INTRO": "Tamang panahon at paghahati ng abono sa kritikal na yugto ng paglaki ng palay upang magkaroon ng magandang bilang ng suwi at uhay. Pinapabuti nito ang kahusayan ng paggamit ng pataba",
+        "OUTPUT_SUMMARY_INTRO": {
+            "CROP_ESTABLISHMENT_METHOD": "Paraan ng pagtatanim",
+            "SOWING_DATE_IN_SEEDBED": "Pesta ng pagpupunla sa kamahan",
+            "SOWING_DATE_IN_FARM_LOT": "Pesta ng pagtatanim sa palayan",
+            "APPROXIMATE_SEEDLING_AGE": "Tinatayang gulang ng punla",
+            "VARIETY_TYPE": "Uri ng barayti"
+        },
+        "NSOURCE": {
+            "QUESTION": "Piliin ang abonong naglalaman ng Nitrogen lang na nais mong gamitin pang topdress."
+        },
+        "GROWTH_STAGES": {
+            "LABEL": "Yugto ng paglaki ng palay",
+            "EARLY": "Kasibulan",
+            "ACTIVE_TILLERING": "Pagsusuwi",
+            "PANICLE_INITIATION": "Paglilihi",
+            "HEADING": "Pamumulaklak",
+            "HARVEST": "Anihan"
+        },
+        "SEEDLING_AGE_OUTPUT_TABLE_LABEL": "",
+        "FERTILIZER_AMOUNT_FOR_SELECTED_FARM_SIZE": "Dami ng abono para sa",
+        "TABLE_HEADING": "Tamang panahon at paghahati ng abono na i-aapply para sa iyong palayan"
+  },
+  "OTHER_CROP_MANAGEMENT": {
+    "INSECTICIDE_APPLICATION": {
+      "QUESTION": "Ikaw ba ay naglalagay ng insecticide sa loob ng 30"
+    },
+    "SYNCRONIZATION": {
+      "QUESTION": "Ikaw ba ay {{ synchronizingQuestionLabel }} na halos kasabay ng mga katabing bukid sa loob ng 2 linggo bago at makatapos nilang makapagtamin?"
+    },
+    "WEED_CONTROL": {
+      "QUESTION": "Paano mo pupuksain ang damo sa parating na panahon ng taniman? (Piliin lahat ng akmang sagot.)",
+      "ANSWER": {
+        "PRE_EMERGENCE": "Pamuksang damo bago ang kasibulan",
+        "POST_EMERGENCE": "Pamuksang damo makalipas ang kasibulan",
+        "HAND_WEEDING": "Manwal na pagdadamo",
+        "WATER_MANAGEMENT": "Paggamit ng tubig para makontrol ang pagtubo ng damo"
+      }
+    },
+    "OBSERVATION": {
+      "QUESTION": "Alin sa mga sumusunod ang iyong naobserbahan sa iyong bukid?",
+      "ANSWER": {
+        "PROFUSE_GROWTH": "Napakaraming damo na kiapo (water lettuce) sa bukid sa mga panahon na nagtanim ng palay sa mga buwan ng {{ oneMonthBeforeSowing }} {{ sowingYear }} hanggang {{ oneMonthAfterSowing }} {{ sowingYear }}.",
+        "AN_OILY_FILM": "Malangis-langis na tubig sa palayan sa mga panahon na nagtanim ng palay sa mga buwan ng {{ oneMonthBeforeSowing }} {{ sowingYear }} hanggang {{ oneMonthAfterSowing }} {{ sowingYear }}.",
+        "STANDING_WATER": "Nakatigil na tubig sa bukid sa loob ng 3 linggo o higit pa bago mag-araro para sa pagtatanim ng palay sa {{ sowingMonth }} {{ sowingYear }}.",
+        "DUSTY_BROWN_SPOTS": "Pamumula o pagkukulay-kalawang ng mga nasa itaas na dahon ng palay sa loob ng 2 hanggang 4 na linggo pagkalipat-tanim sa mga panahon na nagtanim ng palay sa mga buwan ng {{ oneMonthBeforeSowing }} {{ sowingYear }} hanggang {{ oneMonthAfterSowing }} {{ sowingYear }}.",
+        "NONE": "Walang naobserbahan sa bukid."
+      }
+    }
+  },
+  "SMS_AND_DIALECT": {
+        "RECEIVE_SMS": {
+          "QUESTION": "Gusto mo bang makatanggap si <span class=\"text-highlight\">{{ farmerNameDisplay }}</span> ng mga mensahe sa <span class=\"text-highlight\">{{ farmerMobileNumber }}</span>? <font color='red'>*</font>"
+        },
+        "DIALECT": {
+          "QUESTION": "Mamili ng dialect na gusto mo para sa rekomendasyon."
+        },
+        "WILL_TRANSPLANTING_OCCUR": {
+            "QUESTION": "Ang paglilipat-tanim ba ay gagawin sa <span class=\"text-highlight\">{{ transPlantingLowerMonth }} {{ transplantingLowerDate }}</span> hanggang <span class=\"text-highlight\">{{ transPlantingUpperMonth }} {{ transplantingUpperDate }}</span>? <font color='red'>*</font>"
+        }
+  },
+  "RECOMMENDATION_SUMMARY": {
+    "FARM_LOT_NAME": "Pangalan ng bukid",
+    "FARM_LOT_LOCATION": "Lokasyon ng bukid",
+    "FARMER_NAME": "Pangalan ng magsasaka",
+    "DATE_GENERATED": "Petsa ng paglikha",
+    "WATER_REGIME": "Kondisyon ng bukid",
+    "CROP_ESTABLISHMENT": "Paraan ng pagtatanim",
+    "VARIETY": "Barayti",
+    "SOWING_DATE": "Petsa ng pagtatanim",
+    "NOTE": "*Tandaan: Gamitin itong rekomendasyon para sa",
+    "WITH_PUMP": "gumagamit ng bomba patubigan",
+    "NO_PUMP": "hindi gumagamit ng bomba patubigan"
+  },
+  "RECOMMENDATION_ALERT_MESSAGES": {
+    "SAVE_SUCCESS_MESSAGE": "Ang rekomendasyon ay nai-save na.",
+    "SAVE_FAIL_MESSAGE": "Nagkaproblema sa pag-save ng rekomendasyon. Subukan muli.",
+    "UPDATE_SUCCESS_MESSAGE": "Ang rekomendasyon ay nai-update na.",
+    "UPDATE_FAIL_MESSAGE": "Nagkaproblema sa pag-update ng rekomendasyon. Subukan muli."
+  },
+  "BUTTON": {
+    "GENERATE_RECOMMENDATION": "Lumikha ng Rekomendasyon",
+    "VIEW_RECOMMENDATION": "Tignan ang Rekomendasyon",
+    "DOWNLOAD_AS_PDF": "I-download ang PDF",
+    "SAVE": "I-save",
+    "UPDATE": "I-update",
+    "RECOMMENDATION_IS_SAVED_TOOLTIP":"Nai-save na ang rekomendasyon",
+    "SAVE_RECOMMENDATION_FIRST_TOOLTIP": "Paki-save muna ang rekomendasyon",
+    "UPDATE_RECOMMENDATION_FIRST_TOOLTIP": "Paki-update muna ang rekomendasyon"
+  },
+  "NUMBER_AND_WEIGHT_OF_SACK": {
+    "QUESTION": "Ilang sako ng sariwang palay ang karaniwang inaani mula sa iyong <span class=\"text-highlight\">{{ getFieldSizeHectare }}</span> ektaryang <span class=\"text-highlight\">{{ getFarmLotName }}</span> palayan kapag aani nang <span class=\"text-highlight\">{{ estimatedHarvestMonth }}</span> gamit ang <span class=\"text-highlight\">{{ getVarietyType }}</span> barayti? Ibigay ang kabuuang bilang ng inani.",
+    "NOTE": "Ang karaniwang ani ay mula sa mga panahon na walang baha, pagkalubog ng palay, tagtuyot, o pagkakaroon ng peste na nakapagdulot ng pagbaba ng ani.",
+    "VALIDATION": {
+      "MIN": "Ang karaniwang ani ay hindi dapat bumaba ng 1 tonelada bawat ektarya.",
+      "MAX": "Ang karaniwang ani ay hindi dapat tumaas ng {{ maxReportedYield }} tonelada bawat ektarya."
+    },
+    "WARNING": "Ang iyong palayan ay mayroon ng magandang ani. Ang pagtaas ng ani sa pamamagitan ng pag gamit ng RCM ay kakaunti na lamang"
+  },
+  "NUMBER_OF_SACKS": {
+    "VALIDATION": {
+      "REQUIRED": "Ilagay ang sagot",
+      "MIN": "Ibigay ang bilang ng sako mula 1 pataas."
+    }
+  },
+  "WEIGHT_OF_SACK": {
+    "VALIDATION": {
+      "REQUIRED": "Ilagay ang sagot",
+      "MIN": "Babala: Ibigay ang timbang ng sako mula 25 kilo.",
+      "MAX": "Babala: Ibigay ang timbang ng sako hanggang 85 kilo."
+    }
+  },
+  "PREVIOUS_VARIETY_TYPE": {
+    "QUESTION": "Ano ang uri ng barayti na iyong ginamit noong nakaraang taniman sa kaparehong buwan <span class=\"text-highlight\">{{ sowingMonth }}</span> na magtatanim sa ngayon? <font color='red'>*</font>",
+    "VALIDATION": {
+      "REQUIRED": "Pumili ng uri ng barayti"
+    }
+  },
+  "UPCOMING_SEED_SOURCE": {
+    "QUESTION": "Saan galing ang iyong binhi na gagamitin sa parating na panahon ng taniman sa <span class=\"text-highlight\">{{ sowingMonth }}</span>? <font color='red'>*</font>"
+  },
+  "PREVIOUS_SEED_SOURCE": {
+    "QUESTION": "Saan nanggaling ang iyong inbred na barayti na nakaaani ng <span class=\"text-highlight\">{{ noOfSacks }}</span> sako tuwing anihan sa buwan ng <span class=\"text-highlight\">{{ estimatedHarvestMonth }}</span>? <font color='red'>*</font>"
+  },
+  "WATER": {
+    "QUESTION": "Paano maisasalarawan ang dami ng tubig sa iyong bukid noong mga nakalipas na taon na nagtanim nang <span class=\"text-highlight\">{{ sowingMonth }}</span>? <font color='red'>*</font>",
+    "ANSWER": {
+      "ADEQUATE_WATER": "Sapat ang dami ng patubig sa panahon ng paglaki ng palay na hindi naging sanhi ng pagbaba ng ani mula sa tagtuyot o pagkalubog ng palay sa baha",
+      "SUBMERGENCE_STRESS": "Nagkaroon ng paglubog ng palay sa baha sa panahon ng paglaki ng palay na naging sanhi ng pagbaba ng ani",
+      "SHORTAGE_OF_WATER": "Nagkaroon ng kakulangan sa patubig na naging sanhi ng pagbaba ng ani"
+    }
+  },
+  "INTRO": "Nalalaman ng RCM ang kinakailangang pataba base sa nakatakdang dami ng ani. Ang nakatakdang dami ng ani ay depende sa lokasyon ng palayan, petsa ng pagpupunla o sabog-tanim, barayti, tipikal na ani ng magsasaka, patubig o sahod-ulan at estado, at pinanggagalingan ng binhi.",
+  "OUTPUT": {
+    "THE_TARGET_YIELD_FOR_YOUR": "Ang target na ani para sa iyong",
+    "HECTARE": "ektarya",
+    "FARM_LOT_IS": "palayan ay",
+    "SACKS_AT": "sako,",
+    "TON_PER_HA_FRESH_WEIGHT": "tonelada sa bawat ektarya (fresh weight)",
+    "TON_PER_HA_DRY_WEIGHT": "tonelada sa bawat ektarya na may 14% moisture kontent (dry weight)"
+  },
+  "FARMING_PRACTICES": {
+    "HECTARE_FARM_LOT": "ektaryang bukid.",
+    "PEST_MANAGEMENT_HEADER": "Huwag maglagay ng insecticide sa loob ng 30",
+    "PEST_MANAGEMENT_BODY": "Ang palay ay may kakayahang makabawi sa maagang pinsala ng maninira ng dahon. Napananatili din nang hindi pag-spray ang mga benepisyal na organismo.",
+    "WEED_MANAGEMENT": "Magbunot ng damo bago maglagay ng abono.",
+    "ALTERNATE_IRRIGATION_HEADER": "Gumamit ng kontroladong pagpapatubig.",
+    "ALTERNATE_IRRIGATION_BODY": "Gumamit ng safe alternate wetting and drying (safe AWD). Tuwing magpapatubig maglagay ng 3-5 cm taas ng tubig; i-monitor ang lebel ng tubig gamit ang observation well; hayaang bumaba ang lebel ng tubig hanggang 15 cm mula ibabaw ng lupa bago muling magpatubig. Siguraduhing may maayos na pangangasiwa ng damo kapag ang lebel ng tubig ay mababa. Panatilihing may tubig sa ibabaw ng lupa sa panahon ng pagsapaw ng palay hanggang matapos ang pamumulaklak.",
+    "QUALITY_MANAGEMENT": {
+        "USE_SEED_OLDER_THAN_39_DAYS_1": "Gumamit ng",
+        "USE_SEED_OLDER_THAN_39_DAYS_2": "hanggang",
+        "USE_SEED_OLDER_THAN_39_DAYS_3": "kg ng kalidad na binhi na may kasamang mabuting pamamahala sa kuhol para sa",
+        "USE_QUALITY_SEEDS_GOOD_SNAIL_CONTROL": "Gumamit ng sertipikado o kalidad na binhi na may kasamang mabuting pamamahala sa kuhol pagkasabog-tanim para sa",
+        "USE_QUALITY_SEEDS": "Gumamit ng sertipikado o mataas na kalidad na binhi para sa"
+    },
+    "SEEDLING_DAYS_HEADER": "Gumamit ng 21 na araw na punla na may kasamang mabuting pamamahala sa kuhol.",
+    "SEEDLING_DAYS_BODY": "",
+    "WATER_MANAGEMENT": "Panatilihing mababa sa 5 cm ang baha.",
+    "ZINC_MANAGEMENT_HEADER": "Maglagay ng zinc sa punlaan.",
+    "ZINC_MANAGEMENT_BODY": "Magsabog ng 1 kg zinc sulfate kada sako ng binhi sa punlaan sa loob ng 10 araw pagkatanim.",
+    "IRRIGATION_MANAGEMENT": "Siguraduhin na may patubig ang palayan sa panahon ng pamumulaklak ng palay.",
+    "DELAY_FERTILIZER_HEADER": "Kapag ang bukid ay nakararanas ng pag-apaw ng tubig o pagkatuyo ng lupa sa panahon ng pagsusuwi:",
+    "DELAY_FERTILIZER": {
+        "COMBINE_ALL_1": "Kapag ang pag-apaw ng tubig o pagkatuyo ng lupa ay matapos na sa ika-",
+        "COMBINE_ALL_2": "pagsamahin ang abono na nakalaan para sa pagsusuwi at paglilihi sa isang pag-aaplay kapag wala na ang pag-apaw ng tubig o pagkatuyo ng lupa.",
+        "FOR_ACTIVE_AND_PANICLE_1": "Kapag ang pag-apaw ng tubig o pagkatuyo ng lupa ay matapos na sa ika-",
+        "FOR_ACTIVE_AND_PANICLE_2": ", i-aplay ang abono na para sa pagsusuwi pagkatapos ng pag-apaw ng tubig o pagkatuyo ng lupa. I-aplay ang abono na para sa paglilihi sa loob ng", 
+        "FOR_ACTIVE_AND_PANICLE_3": "hanggang",
+        "FOR_ACTIVE_TILLERING_1": "Kapag ang pag-apaw ng tubig o pagkatuyo ng lupa ay matapos na sa ika-",
+        "FOR_ACTIVE_TILLERING_2": ", i-aplay ang abono na para sa pagsusuwi pagkatapos ng pag-apaw ng tubig o pagkatuyo ng lupa.",
+        "APPLY_FERTILIZER_FOR_PANICLE_INITIATION_1": "Kapag ang pag-apaw ng tubig o pagkatuyo ng lupa ay matapos na sa ika-",
+        "APPLY_FERTILIZER_FOR_PANICLE_INITIATION_2": ", huwag nang ilagay ang abono na nakalaan para sa pagsusuwi. I-aplay na lamang ang abono na nakalaan para sa paglilihi."
+    }
+}
+}

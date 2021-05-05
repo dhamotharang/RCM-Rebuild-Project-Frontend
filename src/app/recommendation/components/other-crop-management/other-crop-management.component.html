@@ -1,0 +1,316 @@
+<ion-row class="ion-justify-content-center">
+  <ion-col size-sm="12">
+    <form [formGroup]="otherCropManagementForm" (ngSubmit)="onOtherCropManagementSubmit()">
+      <ion-row class="ion-padding-top" *ngIf="
+        showQuestionApplyInsecticide || 
+        recommendationModel?.otherCropManagement?.applyInsecticide != null">
+        <ion-col>
+          <ion-radio-group formControlName="applyInsecticide"
+            (ionChange)="onApplyInsecticideChange($event)">
+            <ion-list-header>
+              <ion-label>
+                {{ 'OTHER_CROP_MANAGEMENT.INSECTICIDE_APPLICATION.QUESTION' | translate }}
+                <ion-text *ngIf="isCropEstablishmentTransplanting">
+                    {{ 'COMMON.CROP_ESTABLISHMENT_SHORT_LABEL.TRANSPLANTING' | translate }}
+                </ion-text>
+                <ion-text *ngIf="isCropEstablishmentSowing">
+                    {{ 'COMMON.CROP_ESTABLISHMENT_SHORT_LABEL.SOWING' | translate }}
+                </ion-text>
+                <ion-text *ngIf="isCropEstablishmentEmergence">
+                    {{ 'COMMON.CROP_ESTABLISHMENT_SHORT_LABEL.EMERGENCE' | translate }}
+                </ion-text>
+
+                <ion-text color="danger"> *</ion-text>
+              </ion-label>
+            </ion-list-header>
+
+            <ion-item>
+              <ion-label>{{
+              'COMMON.ANSWER.YES'
+                | translate
+            }}</ion-label>
+              <ion-radio slot="start" [value]="yesNoValue.YES" [disabled]="isFormDisabled"></ion-radio>
+            </ion-item>
+
+            <ion-item>
+              <ion-label>{{
+              'COMMON.ANSWER.NO'
+                | translate
+            }}</ion-label>
+              <ion-radio slot="start" [value]="yesNoValue.NO" [disabled]="isFormDisabled"></ion-radio>
+            </ion-item>
+          </ion-radio-group>
+          <ion-item
+            lines="none"
+            *ngIf="
+            otherCropManagementForm.get('applyInsecticide').invalid &&
+            otherCropManagementForm.get('applyInsecticide').touched
+          ">
+            <mat-error class="form-error">
+              {{ 'COMMON.VALIDATION.REQUIRED' | translate }}
+            </mat-error>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row class="ion-padding-top" *ngIf="
+          otherCropManagementForm.get('applyInsecticide').value ==
+          yesNoValue.YES">
+        <ion-col>
+          <ion-radio-group formControlName="synchronizing" (ionChange)="emitFormModel()">
+            <ion-list-header>
+              <ion-label [innerHTML]="
+                  'OTHER_CROP_MANAGEMENT.SYNCRONIZATION.QUESTION'
+                    | translate: { synchronizingQuestionLabel: synchronizingQuestionLabel }">
+                <ion-text color="danger"> *</ion-text>
+              </ion-label>
+            </ion-list-header>
+
+            <ion-item>
+              <ion-label>{{
+              'COMMON.ANSWER.YES'
+                | translate
+            }}</ion-label>
+              <ion-radio slot="start" [value]="yesNoValue.YES" [disabled]="isFormDisabled"></ion-radio>
+            </ion-item>
+
+            <ion-item>
+              <ion-label>{{
+              'COMMON.ANSWER.NO'
+                | translate
+            }}</ion-label>
+              <ion-radio slot="start" [value]="yesNoValue.NO" [disabled]="isFormDisabled"></ion-radio>
+            </ion-item>
+          </ion-radio-group>
+          <ion-item
+            lines="none"
+            *ngIf="
+            otherCropManagementForm.get('synchronizing').invalid &&
+            otherCropManagementForm.get('synchronizing').touched
+          ">
+            <mat-error class="form-error">
+              {{ 'COMMON.VALIDATION.REQUIRED' | translate }}
+            </mat-error>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row class="ion-padding-top" *ngIf="showQuestionWeedControl" formGroupName="weedControlGroup">
+        <ion-list-header>
+          <ion-label>
+            {{ 'OTHER_CROP_MANAGEMENT.WEED_CONTROL.QUESTION' | translate }}
+            <ion-text color="danger"> *</ion-text>
+          </ion-label>
+        </ion-list-header>
+        <ion-col size="12">
+          <ion-item>
+            <ion-checkbox 
+              formControlName="preEmergence" 
+              (ionChange)="emitFormModel()"
+              [disabled]="isFormDisabled"
+            ></ion-checkbox>
+            <ion-label class="ion-padding-start">{{ 'OTHER_CROP_MANAGEMENT.WEED_CONTROL.ANSWER.PRE_EMERGENCE' | translate }}</ion-label>
+          </ion-item>
+        </ion-col>
+        <ion-col size="12">
+          <ion-item>
+            <ion-checkbox 
+              formControlName="postEmergence" 
+              (ionChange)="emitFormModel()"
+              [disabled]="isFormDisabled"
+            ></ion-checkbox>
+            <ion-label class="ion-padding-start">{{ 'OTHER_CROP_MANAGEMENT.WEED_CONTROL.ANSWER.POST_EMERGENCE' | translate }}</ion-label>
+          </ion-item>
+        </ion-col>
+        <ion-col size="12">
+          <ion-item>
+            <ion-checkbox 
+              formControlName="handWeeding" 
+              (ionChange)="emitFormModel()"
+              [disabled]="isFormDisabled"
+            ></ion-checkbox>
+            <ion-label class="ion-padding-start">{{ 'OTHER_CROP_MANAGEMENT.WEED_CONTROL.ANSWER.HAND_WEEDING' | translate }}</ion-label>
+          </ion-item>
+        </ion-col>
+        <ion-col size="12">
+          <ion-item>
+            <ion-checkbox 
+              formControlName="waterManagement" 
+              (ionChange)="emitFormModel()"
+              [disabled]="isFormDisabled"
+            ></ion-checkbox>
+            <ion-label class="ion-padding-start">{{ 'OTHER_CROP_MANAGEMENT.WEED_CONTROL.ANSWER.WATER_MANAGEMENT' | translate }}</ion-label>
+          </ion-item>
+        </ion-col>
+        <ion-item
+          lines="none"
+          *ngIf="
+          otherCropManagementForm.get('weedControlGroup').invalid &&
+          otherCropManagementForm.get('weedControlGroup').touched
+        ">
+          <mat-error class="form-error">
+            {{ 'COMMON.VALIDATION.REQUIRED' | translate }}
+          </mat-error>
+        </ion-item>
+      </ion-row>
+
+      <ion-row class="ion-padding-top" *ngIf="
+        showQuestionFieldObservation || 
+        recommendationModel?.otherCropManagement?.zincObservation.length > 0" 
+        formGroupName="fieldObservationGroup">
+        <ion-list-header>
+          <ion-label>
+            {{ 'OTHER_CROP_MANAGEMENT.OBSERVATION.QUESTION' | translate }}
+            <ion-text color="danger"> *</ion-text>
+          </ion-label>
+        </ion-list-header>
+        <ion-col size="12">
+          <ion-row> 
+            <ion-col size="10">
+              <ion-item>
+                <ion-checkbox 
+                  formControlName="profuseGrowth" 
+                  (ionChange)="onFieldObservationChange($event)"
+                  [disabled]="isFormDisabled"
+                ></ion-checkbox>
+                <ion-label #profuseGrowth class="ion-padding-start ion-text-wrap" [innerHTML]="
+                'OTHER_CROP_MANAGEMENT.OBSERVATION.ANSWER.PROFUSE_GROWTH'
+                  | translate
+                    : {
+                        oneMonthBeforeSowing: 'COMMON.MONTH.' + (oneMonthBeforeSowing | uppercase) | translate,
+                        oneMonthAfterSowing: 'COMMON.MONTH.' + (oneMonthAfterSowing | uppercase) | translate,
+                        sowingYear: (targetYield?.sowingDate | date: 'yyyy')
+                      }">
+                </ion-label>
+              </ion-item>
+            </ion-col>
+            <ion-col size="2" (click)="showImageInModal(otherCropManagementImages.lettuce, profuseGrowth)">
+                <ion-thumbnail title="View Image">
+                  <img [src]="otherCropManagementImages.lettuce">
+                </ion-thumbnail>
+            </ion-col>
+          </ion-row>
+        </ion-col>
+        <ion-col size="12">
+         <ion-row>
+           <ion-col size="10">
+            <ion-item>
+              <ion-checkbox 
+                formControlName="oilyFilm" 
+                (ionChange)="onFieldObservationChange($event)"
+                [disabled]="isFormDisabled"
+              ></ion-checkbox>
+              <ion-label #oilyFilm class="ion-padding-start ion-text-wrap" [innerHTML]="
+              'OTHER_CROP_MANAGEMENT.OBSERVATION.ANSWER.AN_OILY_FILM'
+                | translate
+                  : {
+                      oneMonthBeforeSowing: 'COMMON.MONTH.' + (oneMonthBeforeSowing | uppercase) | translate,
+                      oneMonthAfterSowing: 'COMMON.MONTH.' + (oneMonthAfterSowing | uppercase) | translate,
+                      sowingYear: (targetYield?.sowingDate | date: 'yyyy')
+                    }">
+              </ion-label>
+            </ion-item>
+           </ion-col>
+           <ion-col size="2" (click)="showImageInModal(otherCropManagementImages.oilyFilm, oilyFilm)">
+              <ion-thumbnail title="View Image">
+                <img [src]="otherCropManagementImages.oilyFilm">
+              </ion-thumbnail>
+           </ion-col>
+         </ion-row>
+        </ion-col>
+        <ion-col size="12">
+          <ion-row>
+            <ion-col size="10">
+              <ion-item>
+                <ion-checkbox 
+                  formControlName="standingWater" 
+                  (ionChange)="onFieldObservationChange($event)"
+                  [disabled]="isFormDisabled"
+                ></ion-checkbox>
+                <ion-label class="ion-padding-start ion-text-wrap" [innerHTML]="
+                  'OTHER_CROP_MANAGEMENT.OBSERVATION.ANSWER.STANDING_WATER'
+                    | translate
+                      : {
+                          sowingMonth: 'COMMON.MONTH.' + (sowingMonth | uppercase) | translate,
+                          sowingYear: (targetYield?.sowingDate | date: 'yyyy')
+                        }">
+                </ion-label>
+              </ion-item>
+            </ion-col>
+            <ion-col offset="2"></ion-col>
+          </ion-row>
+        </ion-col>
+        <ion-col size="12">
+          <ion-row>
+            <ion-col size="10">
+              <ion-item>
+                <ion-checkbox 
+                  formControlName="dustyBrownSpots" 
+                  (ionChange)="onFieldObservationChange($event)"
+                  [disabled]="isFormDisabled"
+                ></ion-checkbox>
+                <ion-label #dustyBrownSpots class="ion-padding-start ion-text-wrap" [innerHTML]="
+                'OTHER_CROP_MANAGEMENT.OBSERVATION.ANSWER.DUSTY_BROWN_SPOTS'
+                  | translate
+                    : {
+                        oneMonthBeforeSowing: 'COMMON.MONTH.' + (oneMonthBeforeSowing | uppercase) | translate,
+                        oneMonthAfterSowing: 'COMMON.MONTH.' + (oneMonthAfterSowing | uppercase) | translate,
+                        sowingYear: (targetYield?.sowingDate | date: 'yyyy')
+                      }"></ion-label>
+              </ion-item>
+            </ion-col>
+            <ion-col size="2" (click)="showImageInModal(otherCropManagementImages.zincDeficiency, dustyBrownSpots)">
+                <ion-thumbnail title="View Image">
+                  <img [src]="otherCropManagementImages.zincDeficiency">
+                </ion-thumbnail>
+            </ion-col>
+          </ion-row>
+        </ion-col>
+        <ion-col size="12">
+          <ion-row>
+            <ion-col size="10">
+              <ion-item>
+                <ion-checkbox 
+                  formControlName="noFieldObservation" 
+                  (ionChange)="onNoFieldObservationChange($event)"
+                  [disabled]="isFormDisabled"
+                ></ion-checkbox>
+                <ion-label class="ion-padding-start ion-text-wrap">{{ 'OTHER_CROP_MANAGEMENT.OBSERVATION.ANSWER.NONE' | translate }}</ion-label>
+              </ion-item>
+            </ion-col>
+            <ion-col offset="2"></ion-col>
+          </ion-row>
+        </ion-col>
+        <ion-item
+          lines="none"
+          *ngIf="
+          otherCropManagementForm.get('fieldObservationGroup').invalid &&
+          otherCropManagementForm.get('fieldObservationGroup').touched
+        ">
+          <mat-error class="form-error">
+            {{ 'COMMON.VALIDATION.REQUIRED' | translate }}
+          </mat-error>
+        </ion-item>
+
+      </ion-row>
+    </form>
+    <ion-button (click)="onOtherCropManagementSubmit()">
+      <ion-text>{{ 'COMMON.NEXT' | translate }}</ion-text>
+    </ion-button>
+
+    <ion-button 
+      color="primary" 
+      type="button" 
+      (click)="editForm()" 
+      [hidden]="!isFormDisabled || recommendationModel"
+       *ngIf="wasTheRecommendationSaved === false"
+      >
+          {{ 'COMMON.EDIT' | translate }}
+      </ion-button
+    >
+    <ion-button color="medium" type="button"  *ngIf="wasTheRecommendationSaved === true" [matTooltip]="'BUTTON.RECOMMENDATION_IS_SAVED_TOOLTIP' | translate">
+          {{ 'COMMON.EDIT' | translate }}
+    </ion-button>
+
+  </ion-col>
+</ion-row>

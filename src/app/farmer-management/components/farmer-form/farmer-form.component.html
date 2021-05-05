@@ -1,0 +1,507 @@
+<div [formGroup]="farmerForm" class="farmerForm">
+  <ion-row
+    [class]="
+      dataPrivacyBase64String
+        ? 'photo-upload-container bg-white'
+        : 'photo-upload-container'
+    ">
+    <ion-col [size]="addFarmerInfo ? 12:8">
+      <img 
+      *ngIf="dataPrivacyBase64String" 
+      [src]="dataPrivacyBase64String" 
+      class="data-privacy-upload-photo"
+    	/>
+    <div class="main-section">
+      <div class="photo-section">
+        <ion-img
+          class="photo-upload-display-size farmer-dp"
+          [src]="farmerPhotoBase64String"
+          *ngIf="farmerPhotoBase64String"
+        ></ion-img>
+        <ion-icon
+          class="photo-upload-logo-size"
+          *ngIf="!farmerPhotoBase64String"
+          name="person-circle"
+        ></ion-icon>
+      </div>
+      <div class="button-section" *ngIf="editFarmerInfo || addFarmerInfo">
+        <ion-button
+          class="ion-text-capitalize ion-text-wrap ion-text-start"
+          fill="clear"
+          color="primary"
+          (click)="farmerPhotoFileUpload.click()"
+          ><strong>{{
+            farmerPhotoBase64String ? 'Change' : 'Add'
+          }}
+          Photo
+          </strong></ion-button
+        >
+        <input
+          #farmerPhotoFileUpload
+          type="file"
+          class="ion-hide"
+          (change)="onFarmerPhotoFileSelected($event)"
+          formControlName="farmerPhoto"
+          accept="image/*"
+        />
+        <ion-button
+          class="ion-text-capitalize ion-text-wrap ion-text-start"
+          fill="clear"
+          color="primary"
+          (click)="dataPrivacyFileUpload.click()"
+          ><strong>
+            {{ dataPrivacyBase64String ? 'Change' : 'Upload' }} Data
+          Privacy
+          </strong></ion-button
+        >
+        <ion-text class="note">
+          <small><strong>(accepts image files only: jpeg, jpg, png)</strong></small>
+        </ion-text>
+        <input
+          #dataPrivacyFileUpload
+          type="file"
+          class="ion-hide"
+          (change)="onDataPrivacyFileSelected($event)"
+          formControlName="dataPrivacyFile"
+          accept="image/*"
+        />
+      </div>
+
+      <div class="button-section" *ngIf="!editFarmerInfo && !addFarmerInfo">
+        <ion-button
+          class="ion-text-capitalize ion-text-wrap ion-text-start"
+          fill="clear"
+          color="primary"
+          (click)="viewDataPrivacy()"
+          ><strong>
+            View Data Privacy
+          </strong></ion-button
+        >
+      
+        <ion-button
+          class="ion-text-capitalize ion-text-wrap ion-text-start"
+          fill="clear"
+          color="primary"
+          (click)="onPrintId()"
+          ><strong>
+            Generate ID Card
+          </strong></ion-button
+        >
+        
+      </div>
+    </div>
+    </ion-col>
+    <ion-col *ngIf="!addFarmerInfo" class="farmLotsCounterContainer">
+      <div>
+        <ion-row>
+          <ion-col class="ion-text-center">
+            <ion-label color="light">No. of Farm Lots</ion-label>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col class="ion-text-center">
+            <ion-text color="dark"><h1>{{ fieldList ? fieldList.length : 0}}</h1></ion-text>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col class="ion-text-center" *ngIf="!addFarmerInfo">
+            <ion-button class="ion-text-capitalize ion-text-wrap ion-text-start" fill="clear" color="primary"
+            (click)="viewFarmLotList.emit()">
+              <ion-text color="light"><strong>View</strong></ion-text>
+            </ion-button>
+          </ion-col>
+          <ion-col class="ion-text-center" *ngIf="!editFarmerInfo && !addFarmerInfo">
+              <ion-button class="ion-text-capitalize ion-text-wrap ion-text-start" fill="clear" color="primary"
+              (click)="addFarmLot.emit()">
+              <ion-text color="light"><strong>Add</strong></ion-text>
+            </ion-button>
+          </ion-col>
+        </ion-row>
+      </div>
+    </ion-col>
+
+  </ion-row>
+  <ion-row *ngIf="
+      farmerPhotoControl.touched &&
+      farmerPhotoControl.errors &&
+      farmerPhotoControl.errors.required
+    " class="ion-justify-content-center">
+    <ion-text class="ion-padding-top" color="danger">
+      please add farmer photo
+    </ion-text>
+  </ion-row>
+  <ion-row *ngIf="
+      dataPrivacyControl.touched &&
+      dataPrivacyControl.errors &&
+      dataPrivacyControl.errors.required
+    " class="ion-justify-content-center">
+    <ion-text class="ion-padding" color="danger">
+      Please upload farmer's data privacy photo
+    </ion-text>
+  </ion-row>
+  <ion-item>
+    <ion-label style="color: #dedede">PERSONAL</ion-label>
+  </ion-item>
+  <ion-item>
+    <app-item-form-label
+      label="First Name"
+      [required]="true"
+      [errorMessage]="getDefaultValidationError('firstName', 'first name')"
+    ></app-item-form-label>
+    <ion-input formControlName="firstName" ></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <app-item-form-label
+      label="Middle Name"
+      [required]="(this.editFarmerInfo || this.addFarmerInfo) ? !isMiddleNameUnknown.checked : !!this.farmerForm.controls.middleName.value"
+      [errorMessage]="getDefaultValidationError('middleName', 'middle name')"
+    ></app-item-form-label>
+
+    <ion-input formControlName="middleName"></ion-input>
+    <ion-checkbox #isMiddleNameUnknown
+            formControlName="isMiddleNameUnknown"
+            [ngClass]="(!this.editFarmerInfo && !this.addFarmerInfo) ? 'ion-margin-horizontal ion-hide' : 'ion-margin-horizontal'"
+            (ionChange)="onMiddleNameUnknownChange($event)">
+    </ion-checkbox><ion-label [ngClass]="(!this.editFarmerInfo && !this.addFarmerInfo) ? 'ion-hide' : ''">Unknown</ion-label>
+  </ion-item>
+
+  <ion-item>
+    <app-item-form-label
+      label="Last Name"
+      [required]="true"
+      [errorMessage]="getDefaultValidationError('lastName', 'last name')"
+    ></app-item-form-label>
+    <ion-input formControlName="lastName" ></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label color="medium">Suffix</ion-label>
+    <ion-select formControlName="suffix" interface="popover" >
+      <ion-select-option value="">---</ion-select-option>
+      <ion-select-option value="Jr">Jr.</ion-select-option>
+      <ion-select-option value="Sr">Sr.</ion-select-option>
+      <ion-select-option value="II">II</ion-select-option>
+      <ion-select-option value="III">III</ion-select-option>
+      <ion-select-option value="IV">IV</ion-select-option>
+      <ion-select-option value="V">V</ion-select-option>
+    </ion-select>
+  </ion-item>
+  <ion-item>
+    <app-item-form-label
+      label="Birthdate"
+      [required]="true"
+      [errorMessage]="birthdateValidationMessage"
+    ></app-item-form-label>
+    <ion-input
+      #bdInput
+      formControlName="birthdate"
+      [value]="birthdateFormatted"
+      readonly
+      (click)="birthdatePicker.open()" 
+      
+    ></ion-input>
+    <input
+      #birthdatePickerInput
+      style="visibility: hidden; width: 0"
+      formControlName="birthdate"
+      [matDatepicker]="birthdatePicker"
+      [min]="minBirthdate"
+      [max]="maxBirthdate"
+    />
+    <mat-datepicker #birthdatePicker></mat-datepicker>
+  </ion-item>
+
+  <ion-item>
+    <app-item-form-label
+      label="Sex"
+      [required]="true"
+      [errorMessage]="
+        getCustomSelectionValidationError(
+          'gender',
+          'please select one of the following'
+        )
+      "
+    ></app-item-form-label>
+    <ion-select formControlName="gender" interface="popover" >
+      <ion-select-option
+        *ngFor="let option of GENDER_OPTIONS"
+        [value]="option.value" 
+        >{{ option.label }}</ion-select-option
+      >
+    </ion-select>
+  </ion-item>
+  <app-address-form-control
+    [formGroup]="farmerForm"
+    [mode]="addresssFormMode"
+    [address]="address"
+    [offlineEnabled]="offlineEnabled"
+    [disabled]="disableLocationInput"
+  ></app-address-form-control>
+  <ion-item>
+  <ion-label style="color: #dedede">CONTACT</ion-label>
+  </ion-item>
+
+  <ion-item>
+    <app-item-form-label
+      label="Primary Cellphone Number"
+      [required]="true"
+      [errorMessage]="primaryContactValidationMessage"
+    ></app-item-form-label>
+    <ion-input
+      formControlName="primaryContactNumber"
+      placeholder="(ex: 09993334444)"
+      
+    ></ion-input>
+  </ion-item>
+  <ion-item>
+    <app-item-form-label
+      label="Phone Owner"
+      [required]="true"
+      [errorMessage]="
+        getDefaultSelectionValidationError('primaryContactOwner', 'Phone Owner')
+      "
+    ></app-item-form-label>
+    <ion-select
+      interface="popover"
+      formControlName="primaryContactOwner"
+      (ionChange)="onPrimaryContactOwnerChange($event.detail.value)"
+      
+    >
+      <ion-select-option
+        *ngFor="let option of PHONE_OWNER_OPTIONS"
+        [value]="option.value" 
+        
+        >{{ option.label }}</ion-select-option
+      >
+    </ion-select>
+  </ion-item>
+
+  <ion-item *ngIf="otherPhoneOwnerPrimaryInputVisible">
+    <app-item-form-label
+      label="Other Primary Phone Owner"
+      [required]="true"
+      [errorMessage]="
+        getDefaultValidationError(
+          'otherPrimaryContactOwner',
+          'other primary phone owner'
+        )
+      "
+    ></app-item-form-label>
+    <ion-input
+      formControlName="otherPrimaryContactOwner"
+      placeholder="please specify" 
+      
+    ></ion-input>
+  </ion-item>
+  <ion-item>
+    <app-item-form-label
+      label="Alternative Cellphone Number"
+      [errorMessage]="alternativeContactValidationMessage"
+    ></app-item-form-label>
+
+    <ion-input
+      formControlName="alternativeContactNumber"
+      placeholder="(ex: 09993334444)"
+      (ionChange)="onAlternativeContaceNumberChange($event.detail.value)" 
+      
+    ></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <app-item-form-label
+      label="Alternative Phone Owner"
+      [required]="alternativeContactNumberControl.value !== null"
+      [errorMessage]="
+        getDefaultSelectionValidationError(
+          'alternativeContactOwner',
+          'Alternative Phone Owner'
+        )
+      "
+    ></app-item-form-label>
+    <ion-select
+      interface="popover"
+      formControlName="alternativeContactOwner"
+      (ionChange)="onAlternativeContactOwnerChange($event.detail.value)" 
+      
+    >
+      <ion-select-option
+        *ngFor="let option of PHONE_OWNER_OPTIONS"
+        [value]="option.value"
+        >{{ option.label }}</ion-select-option
+      >
+    </ion-select>
+  </ion-item>
+  <ion-item *ngIf="otherPhoneOwnerAlternativeInputVisible">
+    <app-item-form-label
+      label="Other Alternative Phone Owner"
+      [required]="true"
+      [errorMessage]="
+        getDefaultValidationError(
+          'otherAlternativeContactOwner',
+          'other alternative phone owner'
+        )
+      "
+    ></app-item-form-label>
+    <ion-input
+      formControlName="otherAlternativeContactOwner"
+      placeholder="please specify" 
+      
+    ></ion-input>
+  </ion-item>
+  <ion-item>
+    <app-item-form-label
+      label="Is farmer already registered in RSBSA"
+      [required]="true"
+      [errorMessage]="
+        getCustomRequiredValidationError(
+          'isFarmerAlreadyRegisteredInRSBSA',
+          'please select one of the following'
+        )
+      "
+    ></app-item-form-label>
+    <ion-select
+      interface="popover"
+      formControlName="isFarmerAlreadyRegisteredInRSBSA"
+      (ionChange)="
+        onIsFarmerAlreadyRegisteredInRsbsaChanged($event.detail.value)
+      " 
+      
+    >
+      <ion-select-option
+        *ngFor="let option of AFFIRMATIVE_OPTIONS"
+        [value]="option.value"
+        >{{ option.label }}</ion-select-option
+      >
+    </ion-select>
+  </ion-item>
+
+  <ion-item *ngIf="rsbsaIdFormInputVisible">
+    <app-item-form-label
+      label="RSBSA ID"
+      [required]="true"
+      [errorMessage]="getDefaultValidationError('rsbsaId', 'RSBSA ID')"
+    ></app-item-form-label>
+    <ion-input formControlName="rsbsaId" ></ion-input>
+  </ion-item>
+  <ion-item>
+    <app-item-form-label
+      label="What type of farmer are you?"
+      [required]="true"
+      [errorMessage]="
+        getCustomRequiredValidationError(
+          'farmerType',
+          'please select one or more of the following'
+        )
+      "
+    ></app-item-form-label>
+    <ion-input
+      style="width: 0"
+      formControlName="farmerType"
+      type="hidden"
+    ></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-checkbox
+      formControlName="localFarmerTechnician"
+      (ionChange)="onFarmerTypeChange($event)"
+      [value]="FARMER_TYPE.LOCAL_FARMER_TECHNICIAN" 
+      
+    ></ion-checkbox>
+    <ion-label class="ion-padding-start ion-text-wrap">
+      <h5>Local Farmer Technician (LFT)</h5>
+    </ion-label>
+  </ion-item>
+  <ion-item>
+    <ion-checkbox
+      formControlName="farmerLedExtensionist"
+      (ionChange)="onFarmerTypeChange($event)"
+      [value]="FARMER_TYPE.FARMER_LED_EXTENSIONIST" 
+      
+    ></ion-checkbox>
+    <ion-label class="ion-padding-start ion-text-wrap">
+      <h5>Farmer-led Extensionist (FLE)</h5>
+    </ion-label>
+  </ion-item>
+  <ion-item>
+    <ion-checkbox
+      formControlName="technoDemoFarmer"
+      (ionChange)="onFarmerTypeChange($event)"
+      [value]="FARMER_TYPE.TECHNO_DEMO_FARMER_COOPERATOR" 
+      
+    ></ion-checkbox>
+    <ion-label class="ion-padding-start ion-text-wrap">
+      <h5>Techno Demo farmer-cooperator</h5>
+    </ion-label>
+  </ion-item>
+  <ion-item>
+    <ion-checkbox
+      formControlName="seedGrower"
+      (ionChange)="onFarmerTypeChange($event)"
+      [value]="FARMER_TYPE.SEED_GROWER" 
+      
+    ></ion-checkbox>
+    <ion-label class="ion-padding-start ion-text-wrap">
+      <h5>Seed grower</h5>
+    </ion-label>
+  </ion-item>
+  <ion-item>
+    <ion-checkbox
+      formControlName="typicalFarmer"
+      (ionChange)="onFarmerTypeChange($event)"
+      [value]="FARMER_TYPE.TYPICAL_FARMER" 
+      
+    ></ion-checkbox>
+    <ion-label class="ion-padding-start ion-text-wrap">
+      <h5>Typical farmer</h5>
+    </ion-label>
+  </ion-item>
+  <ion-item>
+    <ion-checkbox
+      formControlName="otherFarmerType"
+      (ionChange)="onOtherFarmerTypeChange($event)"
+      [value]="FARMER_TYPE.OTHER_FARMER_TYPE" 
+      
+    ></ion-checkbox>
+    <ion-label class="ion-padding-start ion-text-wrap">
+      <h5>Others, please specify:</h5>
+    </ion-label>
+  </ion-item>
+
+  <ion-item *ngIf="shouldShowSpecificOtherInput">
+    <app-item-form-label
+      label="please specify"
+      [required]="true"
+      [errorMessage]="
+        getDefaultValidationError('specificFarmerType', 'Other farmer type')
+      "
+    ></app-item-form-label>
+    <ion-input formControlName="specificFarmerType" ></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label color="medium">Farmer Association</ion-label>
+    <ion-input formControlName="farmerAssociation"></ion-input>
+  </ion-item>
+  <ion-row class="ion-justify-content-between ion-padding">
+    <ion-button
+      style="flex: 1; padding-left: 10px"
+      size="large"
+      expand="block"
+      color="medium"
+      (click)="clearForm()"
+      >
+        {{ addFarmerInfo || editFarmerInfo ? 'Clear' : 'Back' }}  
+      </ion-button
+    > 
+    <ion-button
+      style="flex: 1; padding-right: 10px"
+      size="large"
+      expand="block"
+      (click)="submitForm()"
+      [disabled]="isEditDisabled"
+      [innerHTML]="submitBtnLabel"
+      ></ion-button
+    >
+  </ion-row>
+</div>

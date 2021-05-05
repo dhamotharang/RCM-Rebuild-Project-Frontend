@@ -1,0 +1,6 @@
+export enum UpcomingSeedSource {
+    PURCHASED_CERTIFIED = 1,
+	PURCHASED_EXCHANGED = 2,
+	FIRST_HAVEST_SEED = 3,
+	HOME_SAVED_SEED = 4
+}

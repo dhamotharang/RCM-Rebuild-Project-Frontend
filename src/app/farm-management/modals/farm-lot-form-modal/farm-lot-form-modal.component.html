@@ -1,0 +1,247 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title class="ion-hide-sm-down">{{type == 'add' ? 'Add farm lot for Farmer ID:' : 'Edit Farm Lot ID:' }}
+      {{ type == 'add' ? this.farmerInfo?.farmerId : fieldInfo.field_id }}</ion-title>
+    <ion-title class="ion-hide-md-up" style="font-size: 0.85rem">
+      {{type == 'add' ? 'Add farm lot for Farmer ID:' : 'Edit Farm Lot ID:' }}
+      {{ type == 'add' ? farmer_id : fieldInfo.field_id }}</ion-title>
+
+    <ion-buttons slot="end">
+      <ion-button (click)="onCancel()">
+        <ion-icon name="close-circle-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <form [formGroup]="farmerFieldForm" (ngSubmit)="addField()">
+        <div class="ion-padding">
+          <ion-list-header>Farm lot location</ion-list-header>
+          <ion-row *ngIf="edit">
+            <ion-col>
+              <ion-item>
+
+                <ion-checkbox formControlName="sameFormLocation" (ionChange)="onSameLocationChange()">
+                </ion-checkbox>
+                <ion-label class="ion-margin-start">Farm Lot Location same with Farmer Residence</ion-label>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+
+          <ion-item>
+            <app-address-form-control [formGroup]="farmerFieldForm" [address]="fieldAddress"
+              [disabled]="locationIsDisabled" (locationChanged)="onFieldLocationChange($event)">
+            </app-address-form-control>
+          </ion-item>
+        </div>
+        <div class="form-group ion-padding">
+          <ion-list>
+            <ion-radio-group formControlName="fieldOwnership" (ionChange)="onFieldOwnershipChange($event)">
+              <ion-list-header>
+                <ion-label>Tenure<ion-text color="danger">*</ion-text>
+                </ion-label>
+              </ion-list-header>
+
+              <ion-item>
+                <ion-label class="ion-text-wrap">I own the farm lot – I make decision on management of the farm lot
+                </ion-label>
+                <ion-radio name="field_owner" slot="start" value="1"></ion-radio>
+              </ion-item>
+
+              <ion-item>
+                <ion-label class="ion-text-wrap">I am a tenant or renter of the farm lot with sharing or payment
+                  arrangement
+                  with the owner - The owner makes decision on management of the farm lot</ion-label>
+                <ion-radio name="field_owner" slot="start" value="2"></ion-radio>
+              </ion-item>
+
+              <ion-item>
+                <ion-label class="ion-text-wrap">I am a tenant or renter of the farm lot with sharing or payment
+                  arrangement
+                  with the owner - I make decision on management of the farm lot</ion-label>
+                <ion-radio name="field_owner" slot="start" value="3"></ion-radio>
+              </ion-item>
+
+              <div
+                *ngIf="farmerFieldForm.get('fieldOwnership').invalid && farmerFieldForm.get('fieldOwnership').touched"
+                class="text-danger">Please select farm lot
+                ownership!</div>
+            </ion-radio-group>
+          </ion-list>
+        </div>
+
+        <div class="ion-padding" *ngIf="selectedFieldOwnership == 2 || selectedFieldOwnership == 3">
+          <ion-item-group>
+            <ion-item-divider>
+              <ion-label>Farm lot owner information</ion-label>
+            </ion-item-divider>
+
+            <ion-item>
+              <ion-label position="stacked">Given name<ion-text color="danger">*</ion-text>
+              </ion-label>
+              <ion-input formControlName="farmLotOwnerGivenName" type="text" style="text-transform: capitalize"
+                (ionChange)="onOwnershipFName($event)"></ion-input>
+            </ion-item>
+
+            <div
+              *ngIf="(farmerFieldForm.get('farmLotOwnerGivenName').errors && farmerFieldForm.get('farmLotOwnerGivenName').errors.required)  && farmerFieldForm.get('farmLotOwnerGivenName').touched"
+              class="text-danger">Please enter the
+              given name!</div>
+            <div
+              *ngIf="(farmerFieldForm.get('farmLotOwnerGivenName').errors && farmerFieldForm.get('farmLotOwnerGivenName').errors.pattern)  && farmerFieldForm.get('farmLotOwnerGivenName').touched"
+              class="text-danger">Invalid characters!</div>
+
+            <ion-item>
+              <ion-label position="stacked">Surname<ion-text color="danger">*</ion-text>
+              </ion-label>
+              <ion-input formControlName="farmLotOwnerSurname" type="text" style="text-transform: capitalize"
+                (ionChange)="onOwnershipLName($event)"></ion-input>
+            </ion-item>
+
+            <div
+              *ngIf="(farmerFieldForm.get('farmLotOwnerSurname').errors && farmerFieldForm.get('farmLotOwnerSurname').errors.required) && farmerFieldForm.get('farmLotOwnerSurname').touched"
+              class="text-danger">Please enter the
+              surname!</div>
+
+            <div
+              *ngIf="(farmerFieldForm.get('farmLotOwnerSurname').errors && farmerFieldForm.get('farmLotOwnerSurname').errors.pattern) && farmerFieldForm.get('farmLotOwnerSurname').touched"
+              class="text-danger">Invalid characters!</div>
+
+            <ion-item>
+              <ion-label position="stacked">Mobile phone number</ion-label>
+              <ion-input formControlName="farmLotOwnerNumber" type="text"></ion-input>
+            </ion-item>
+
+            <div
+              *ngIf="farmerFieldForm.get('farmLotOwnerNumber').invalid && farmerFieldForm.get('farmLotOwnerNumber').touched"
+              class="text-danger">
+              <div *ngIf="farmerFieldForm.get('farmLotOwnerNumber').errors['pattern'] || 
+                          farmerFieldForm.get('farmLotOwnerNumber').errors['invalidMobileNumberLength']
+                          ">
+                Invalid mobile phone number!
+              </div>
+              <div *ngIf="farmerFieldForm.get('farmLotOwnerNumber').errors['invalidMobileNumberPrefix']">
+                Mobile phone number should start with 0!
+              </div>
+            </div>
+          </ion-item-group>
+        </div>
+
+        <div class="ion-padding">
+          <ion-list-header>Farm lot name<ion-text color="danger">*</ion-text>
+          </ion-list-header>
+          <ion-row>
+            <ion-col size="4">
+              <ion-item color="primary">
+                <ion-input disabled type="text">{{field_name | titlecase}}</ion-input>
+              </ion-item>
+            </ion-col>
+            <ion-col>
+              <ion-item>
+                <ion-input formControlName="field_name" type="text" maxlength=50 style="text-transform: capitalize">
+                </ion-input>
+              </ion-item>
+              <div *ngIf="farmerFieldForm.get('field_name').invalid && farmerFieldForm.get('field_name').touched"
+                class="text-danger">Please enter farm lot name!
+              </div>
+            </ion-col>
+          </ion-row>
+        </div>
+
+        <div class="ion-padding">
+          <ion-list>
+            <ion-list-header>Farm lot size unit<ion-text color="danger">*</ion-text>
+            </ion-list-header>
+            <ion-item>
+              <ion-select placeholder="Select one" formControlName="fieldUnit" (ionChange)="onFieldUnitChange($event)">
+                <ion-select-option [value]=1>Hectare</ion-select-option>
+                <ion-select-option [value]=2>Square meter</ion-select-option>
+              </ion-select>
+            </ion-item>
+
+            <div *ngIf="farmerFieldForm.get('fieldUnit').invalid && farmerFieldForm.get('fieldUnit').touched"
+              class="text-danger">Please select farm lot size unit!
+            </div>
+          </ion-list>
+        </div>
+
+        <div class="ion-padding" *ngIf="selectedFieldUnit != null">
+          <ion-list>
+            <ion-list-header>Farm lot size<ion-text color="danger">*</ion-text>
+            </ion-list-header>
+            <ion-item>
+              <ion-input formControlName="fieldSizeHa" type="text" step="0.01" placeholder="0.00" appTwoDigitDecimal
+                appDisableRightClick (keyup)="validFieldSize($event)"></ion-input>
+            </ion-item>
+            <ion-item color="primary" *ngIf="selectedFieldUnit == 2">
+              <ion-input disabled type="text">{{field_size_ha}} hectares</ion-input>
+            </ion-item>
+            <div *ngIf="farmerFieldForm.get('fieldSizeHa').invalid && farmerFieldForm.get('fieldSizeHa').touched"
+              class="text-danger">
+              Farm lot size must be 0.02 to 10 hectares only!
+            </div>
+          </ion-list>
+        </div>
+
+        <div class="form-group ion-padding">
+          <ion-list>
+            <ion-radio-group formControlName="fieldMemberOrg" (ionChange)="onFieldMemberOrgChange($event)">
+              <ion-list-header>Are you a member of a farmer cluster in which your {{field_name}} {{field_desc}} farm lot
+                is
+                registered?<ion-text color="danger">*</ion-text>
+              </ion-list-header>
+              <ion-item>
+                <ion-label>Yes</ion-label>
+                <ion-radio name="field_member_org" slot="start" value="1"></ion-radio>
+              </ion-item>
+              <ion-item>
+                <ion-label>No</ion-label>
+                <ion-radio name="field_member_org" slot="start" value="2"></ion-radio>
+              </ion-item>
+              <div
+                *ngIf="farmerFieldForm.get('fieldMemberOrg').invalid && farmerFieldForm.get('fieldMemberOrg').touched"
+                class="text-danger">
+                Please select yes or no!
+              </div>
+            </ion-radio-group>
+          </ion-list>
+        </div>
+
+        <div class="ion-padding" *ngIf="selectedFieldMemberOrg == 1">
+          <ion-row *ngIf="edit && isFarmerFarmLotOrgExists">
+            <ion-col>
+              <ion-item>
+                <ion-checkbox formControlName="sameFieldOrg" (ionChange)="onSameFieldOrgChange()">
+                </ion-checkbox>
+                <ion-label class="ion-margin-start">Farm lot organization same with Farmer</ion-label>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+          <ion-list-header>Farm lot organization<ion-text color="danger">*</ion-text>
+          </ion-list-header>
+          <ion-item>
+            <ion-input [disabled]="!!farmerFieldForm.get('sameFieldOrg').value" formControlName="fieldOrgName"
+              type="text" style="text-transform: capitalize"></ion-input>
+          </ion-item>
+          <div *ngIf="farmerFieldForm.get('fieldOrgName').invalid && farmerFieldForm.get('fieldOrgName').touched"
+            class="text-danger">Please provide the
+            organization name!</div>
+        </div>
+
+        <div class="ion-padding">
+          <ion-row>
+            <ion-col col-6 class="log-buttons">
+              <app-ghost-button expand="block" (onClick)="closeModal()">Cancel</app-ghost-button>
+            </ion-col>
+            <ion-col col-6 class="log-buttons">
+              <ion-button type="submit" [disabled]="clickedSubmit" color="success" expand="block">Save</ion-button>
+            </ion-col>
+          </ion-row>
+        </div>
+      </form>
+    </ion-row>
+  </ion-grid>
+</ion-content>

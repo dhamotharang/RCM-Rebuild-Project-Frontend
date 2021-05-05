@@ -1,0 +1,35 @@
+ion-toolbar {
+  --border-width: 0;
+  --border-style: none;
+}
+.user-dp {
+  background-size: cover;
+  border-radius: 100%;
+  height: 200px;
+  width: 200px;
+  overflow: hidden;
+  border: 4px solid gray;
+  background-position: center;
+  div {
+    height: 100%;
+    width: 100%;
+    border-radius: 100%;
+    border: 4px solid #ffffff;
+  }
+}
+
+.offline-icon-signal {
+  font-size: 1.3em;
+}
+
+.offline-icon-cross {
+  color: red;
+  position: absolute;
+  z-index: 2;
+  margin: 8px 0 0 8px;
+}
+
+.offline-label {
+  letter-spacing: 0.2em;
+  margin-left: 0.5em;
+}

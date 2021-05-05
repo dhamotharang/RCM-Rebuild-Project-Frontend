@@ -1,0 +1,81 @@
+<ion-row *ngIf="isGridView">
+  <ion-col *ngFor="let farmer of farmerList" size="12" size-sm="6">
+    <ion-card class="farmer-card" [routerLink]="['/data-admin/farmer-management/farmer-info', farmer.id ? farmer.id : farmer.offlineId , 'view']">
+      <ion-row class="ion-align-items-center">
+        <ion-col
+          size="3"
+          class="ion-justify-content-center ion-align-items-center"
+        >
+          <img
+            *ngIf="farmer.farmerPhotoBase64"
+            class="farmer-photo"
+            [src]="farmer.farmerPhotoBase64"
+          />
+          <ion-icon 
+            class="farmer-photo"
+            *ngIf="!farmer.farmerPhotoBase64"
+            name="person-circle-outline"
+          ></ion-icon>
+        </ion-col>
+        <ion-col size="7">
+          <div class="ion-margin-bottom">
+            <ion-text title="{{ farmer.firstName | titlecase }} {{ farmer.lastName | titlecase }}"
+              ><h5 class="farmers-name">
+                {{ farmer.firstName | titlecase }}
+                {{ farmer.lastName | titlecase }}
+              </h5></ion-text
+            >
+            <ion-text>
+              {{ farmer.farmerId ? farmer.farmerId : farmer.offlineId }}</ion-text
+            ><br />
+            <ion-text 
+              color="primary"
+              class="ion-hide-md-up"
+              >{{farmer.farmLotCount ? farmer.farmLotCount : 0}} Farm {{farmer.farmLotCount > 1 ? "lots" : "lot"}}
+            </ion-text
+            >
+          </div>
+          <div class="ion-hide-md-down">
+            <ion-text
+              ><strong
+                ><small>Date registered&nbsp;</small></strong
+              ></ion-text
+            >
+            <ion-text color="primary"
+              ><strong>
+                <small>{{ farmer.createdDate | date }}</small>
+              </strong></ion-text
+            >
+          </div>
+        </ion-col>
+        <ion-col size="2" class="ion-hide-md-down">
+          <ion-row class="ion-justify-content-center">
+            <ion-text color="primary"><h2>{{farmer.farmLotCount ? farmer.farmLotCount : 0}}</h2></ion-text>
+          </ion-row>
+          <ion-row class="ion-justify-content-center">
+            <ion-text><small>Farm {{farmer.farmLotCount > 1 ? "lots" : "lot"}}</small></ion-text>
+          </ion-row>
+        </ion-col>
+      </ion-row>
+    </ion-card>
+  </ion-col>
+</ion-row>
+<div *ngIf="isListView">
+  <ion-list>
+    <ion-item 
+      *ngFor="let farmer of farmerList"
+      [routerLink]="['/data-admin/farmer-management/farmer-info', farmer.id ? farmer.id : farmer.offlineId, 'view']"
+    >
+      <ion-label class="ion-text-wrap"> 
+        {{ farmer.firstName | titlecase }}
+        {{ farmer.lastName | titlecase }} 
+        <br/>
+        <small>
+          <ion-text color="medium">
+            {{ farmer.farmerId ? farmer.farmerId : farmer.offlineId }}
+          </ion-text>
+        </small>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+</div>

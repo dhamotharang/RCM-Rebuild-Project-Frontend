@@ -1,0 +1,5 @@
+<ion-app>
+  <mat-progress-bar [hidden]="!appLoading && !isLoadingAsyncModule" mode="indeterminate"></mat-progress-bar>
+  <div [hidden]="!isLoadingAsyncModule" class="overlay"></div>
+  <ion-router-outlet></ion-router-outlet>
+</ion-app>

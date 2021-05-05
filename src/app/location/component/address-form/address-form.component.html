@@ -1,0 +1,190 @@
+<div [formGroup]="formGroup">
+  <div *ngIf="actualMode === formMode.material">
+    <mat-form-field>
+      <mat-label>Region<ion-text color="danger">*</ion-text></mat-label>
+      <mat-select
+        formControlName="region"
+        (selectionChange)="regionChange($event.value)"
+      >
+        <mat-option *ngFor="let region of data.regions" [value]="region.value">
+          {{ region.label }}
+        </mat-option>
+      </mat-select>
+
+      <mat-error
+        *ngIf="
+          regionControl &&
+          ((regionControl.invalid && regionControl.touched) ||
+            regionControl.invalid)
+        "
+        >Please select your region!</mat-error
+      >
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Province<ion-text color="danger">*</ion-text></mat-label>
+      <mat-select
+        formControlName="province"
+        (selectionChange)="provinceChange($event.value)"
+      >
+        <mat-option
+          *ngFor="let province of data.provinces"
+          [value]="province.value"
+        >
+          {{ province.label }}
+        </mat-option>
+      </mat-select>
+      <mat-error
+        *ngIf="
+          provinceControl &&
+          ((provinceControl.invalid && provinceControl.touched) ||
+            provinceControl.invalid)
+        "
+        >Please select your province!
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Municipality <ion-text color="danger">*</ion-text></mat-label>
+      <mat-select
+        formControlName="municipality"
+        (selectionChange)="municipalityChange($event.value)"
+      >
+        <mat-option
+          *ngFor="let municipality of data.municipalities"
+          [value]="municipality.value"
+        >
+          {{ municipality.label }}
+        </mat-option>
+      </mat-select>
+      <mat-error
+        *ngIf="
+          municipalityControl &&
+          ((municipalityControl.invalid && municipalityControl.touched) ||
+            municipalityControl.invalid)
+        "
+        >Please select your municipality!
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field *ngIf="!barangayHidden">
+      <mat-label>Barangay<ion-text color="danger">*</ion-text></mat-label>
+      <mat-select
+        formControlName="barangay"
+        (selectionChange)="onBarangayChange.emit($event.value)"
+      >
+        <mat-option *ngFor="let barangay of barangays" [value]="barangay.value">
+          {{ barangay.label }}
+        </mat-option>
+      </mat-select>
+      <mat-error>Please select your barangay! </mat-error>
+    </mat-form-field>
+  </div>
+  <div *ngIf="actualMode === formMode.ionic">
+    <ion-item>
+      <app-item-form-label
+        label="Region"
+        [required]="true"
+        [errorMessage]="
+          regionControl &&
+          regionControl.touched &&
+          regionControl.errors &&
+          regionControl.errors.required
+            ? 'Please select your region!'
+            : ''
+        "
+      ></app-item-form-label>
+      <ion-select
+        interface="popover"
+        formControlName="region"
+        (ionChange)="regionChange($event.detail.value)"
+      >
+        <ion-select-option
+          *ngFor="let region of data.regions"
+          [value]="region.value"
+        >
+          {{ region.label }}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <app-item-form-label
+        label="Province"
+        [required]="true"
+        [errorMessage]="
+          provinceControl &&
+          provinceControl.touched &&
+          provinceControl.errors &&
+          provinceControl.errors.required
+            ? 'Please select your province!'
+            : ''
+        "
+      ></app-item-form-label>
+      <ion-select
+        interface="popover"
+        formControlName="province"
+        (ionChange)="provinceChange($event.detail.value)"
+      >
+        <ion-select-option
+          *ngFor="let province of data.provinces"
+          [value]="province.value"
+        >
+          {{ province.label }}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <app-item-form-label
+        label="Municipality"
+        [required]="true"
+        [errorMessage]="
+          municipalityControl &&
+          municipalityControl.touched &&
+          municipalityControl.errors &&
+          municipalityControl.errors.required
+            ? 'Please select your municipality!'
+            : ''
+        "
+      ></app-item-form-label>
+      <ion-select
+        interface="popover"
+        formControlName="municipality"
+        (ionChange)="municipalityChange($event.detail.value)"
+      >
+        <ion-select-option
+          *ngFor="let municipality of data.municipalities"
+          [value]="municipality.value"
+        >
+          {{ municipality.label }}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item *ngIf="!barangayHidden">
+      <app-item-form-label
+        label="Barangay"
+        [required]="true"
+        [errorMessage]="
+          barangayControl &&
+          barangayControl.touched &&
+          barangayControl.errors &&
+          barangayControl.errors.required
+            ? 'Please select your barangay!'
+            : ''
+        "
+      ></app-item-form-label>
+      <ion-select
+        interface="popover"
+        formControlName="barangay"
+        (ionChange)="onBarangayChange.emit($event.detail.value)"
+      >
+        <ion-select-option
+          *ngFor="let barangay of data.barangays"
+          [value]="barangay.value"
+        >
+          {{ barangay.label }}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+  </div>
+</div>

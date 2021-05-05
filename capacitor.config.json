@@ -1,0 +1,10 @@
+{
+  "appId": "da.rcm.gov.ph",
+  "appName": "Rice Crop Manager Advisory Service",
+  "bundledWebRuntime": false,
+  "npmClient": "npm",
+  "webDir": "www",
+  "cordova": {},
+  "linuxAndroidStudioPath": "/path/to/your/android/studio/bin/studio.sh"
+}
+

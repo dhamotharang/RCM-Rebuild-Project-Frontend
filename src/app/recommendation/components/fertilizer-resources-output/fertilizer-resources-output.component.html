@@ -1,0 +1,329 @@
+<ion-row class="ion-text-center">
+  <ion-col>
+    <p>
+      <b>{{ 'TIMING_AND_SPLITTING.TABLE_HEADING' | customDialectTranslation: dialectSelected | async }}</b>
+    </p>
+  </ion-col>
+</ion-row>
+<ion-row class="ion-text-center">
+  <ion-col class="col-title" size="4">{{
+    'TIMING_AND_SPLITTING.GROWTH_STAGES.LABEL' | customDialectTranslation: dialectSelected | async
+  }}</ion-col>
+  <ion-col
+    class="col-title"
+    size="{{ fertilizerRecommendationModel?.ATDaysColSize }}"
+    >{{
+      'COMMON.CROP_ESTABLISHMENT_SHORT_LABEL.' + daysAfterLabel
+        | customDialectTranslation: dialectSelected | async
+        | titlecase
+    }}
+    <span *ngIf="fertilizerRecommendationModel?.seedlingAgeOutputTableLabel">
+      ({{ 'COMMON.SEEDLING_AGE.' + seedlingAgeOutputTableLabel | customDialectTranslation: dialectSelected | async }}
+      {{ 'COMMON.SEEDLING' | customDialectTranslation: dialectSelected | async }})
+    </span>
+  </ion-col>
+  <ion-col
+    class="col-title"
+    size="2"
+    *ngIf="fertilizerRecommendationModel?.show21DaysSeedling"
+  >
+    {{
+      'COMMON.CROP_ESTABLISHMENT_SHORT_LABEL.TRANSPLANTING'
+        | customDialectTranslation: dialectSelected | async
+        | titlecase
+    }}
+    ({{ 'COMMON.SEEDLING_AGE.LATE_SEEDLING_AGE' | customDialectTranslation: dialectSelected | async }}
+    {{ 'COMMON.SEEDLING' | customDialectTranslation: dialectSelected | async }})
+  </ion-col>
+  <ion-col class="col-title" size="4">
+    <ion-row class="ion-text-center">
+      <ion-col class="col-title" size="12">
+        {{ 'TIMING_AND_SPLITTING.FERTILIZER_AMOUNT_FOR_SELECTED_FARM_SIZE' | customDialectTranslation: dialectSelected | async }}
+        <ion-text>{{ fieldInfoRecommendation?.selectedFarmSize }}</ion-text> 
+        {{ 'COMMON.UNIT.HA' | customDialectTranslation: dialectSelected | async }}
+      </ion-col>
+    </ion-row>
+    <ion-row class="ion-text-center">
+      <ion-col
+        class="col-title"
+        size="{{ fertilizerRecommendationModel?.fertTitleColSize }}"
+        *ngIf="fertilizerRecommendationModel?.showEarlyFert"
+      >
+        {{
+          (fertilizerRecommendationModel?.growthStages)[0].fertilizerSources[0]
+            .fertilizerSource
+        }}
+      </ion-col>
+      <ion-col
+        class="col-title"
+        size="{{ fertilizerRecommendationModel?.fertTitleColSize }}"
+      >
+        {{ fertilizerRecommendationModel?.ureaAmmosul }}
+      </ion-col>
+      <ion-col
+        class="col-title"
+        size="{{ fertilizerRecommendationModel?.fertTitleColSize }}"
+        *ngIf="fertilizerRecommendationModel?.showMOPFert"
+      >
+        MOP (0-0-60)
+      </ion-col>
+    </ion-row>
+  </ion-col>
+</ion-row>
+
+<ion-row class="ion-text-center">
+  <ion-col class="col" size="4">{{
+    'TIMING_AND_SPLITTING.GROWTH_STAGES.EARLY' | customDialectTranslation: dialectSelected | async
+  }}</ion-col>
+  <ion-col
+    class="col"
+    size="{{ fertilizerRecommendationModel?.ATDaysColSize }}"
+    id="datEarly"
+  >
+    {{ fertilizerRecommendationModel?.growthDuration.earlyLow }} -
+    {{ fertilizerRecommendationModel?.growthDuration.earlyHigh }}</ion-col
+  >
+  <ion-col
+    class="col"
+    size="2"
+    *ngIf="fertilizerRecommendationModel?.show21DaysSeedling"
+  >
+    {{ fertilizerRecommendationModel.twentyOneDaysSeedling.earlyLow }} -
+    {{ fertilizerRecommendationModel.twentyOneDaysSeedling.earlyHigh }}</ion-col
+  >
+  <ion-col
+    class="col"
+    id="earlyFert"
+    size="{{ fertilizerRecommendationModel?.fertColSize }}"
+    *ngIf="fertilizerRecommendationModel?.showEarlyFert"
+  >
+    {{
+      (fertilizerRecommendationModel?.growthStages)[0].fertilizerSources[0]
+        .fertilizerAmount
+        | kgToBags
+          : '---'
+          : ('COMMON.UNIT.BAG' | customDialectTranslation: dialectSelected | async)
+          : ('COMMON.AND' | customDialectTranslation: dialectSelected | async)
+          : ('COMMON.UNIT.KG' | customDialectTranslation: dialectSelected | async)
+          : ('COMMON.UNIT.BAGS' | customDialectTranslation: dialectSelected | async)
+    }}
+  </ion-col>
+  <ion-col class="col" size="{{ fertilizerRecommendationModel?.fertColSize }}">
+    {{
+      fertilizerRecommendationModel?.pRate == 0
+        ? ((fertilizerRecommendationModel?.growthStages)[0].fertilizerSources[1]
+            .fertilizerAmount
+          | kgToBags
+            : '---'
+            : ('COMMON.UNIT.BAG' | customDialectTranslation: dialectSelected | async)
+            : ('COMMON.AND' | customDialectTranslation: dialectSelected | async)
+            : ('COMMON.UNIT.KG' | customDialectTranslation: dialectSelected | async)
+            : ('COMMON.UNIT.BAGS' | customDialectTranslation: dialectSelected | async))
+        : '---'
+    }}
+  </ion-col>
+  <ion-col
+    class="col"
+    size="{{ fertilizerRecommendationModel?.fertColSize }}"
+    *ngIf="fertilizerRecommendationModel?.showMOPFert"
+  >
+    {{
+      fertilizerRecommendationModel?.pRate == 0
+        ? ((fertilizerRecommendationModel?.growthStages)[0].fertilizerSources[2]
+            .fertilizerAmount
+          | kgToBags
+            : '---'
+            : ('COMMON.UNIT.BAG' | customDialectTranslation: dialectSelected | async)
+            : ('COMMON.AND' | customDialectTranslation: dialectSelected | async)
+            : ('COMMON.UNIT.KG' | customDialectTranslation: dialectSelected | async)
+            : ('COMMON.UNIT.BAGS' | customDialectTranslation: dialectSelected | async))
+        : '---'
+    }}
+  </ion-col>
+</ion-row>
+
+<ion-row
+  class="ion-text-center"
+  *ngIf="
+    (fertilizerRecommendationModel?.growthStages)[1].fertilizerSources[0]
+      .fertilizerAmount > 0
+  "
+>
+  <ion-col class="col" size="4">{{
+    'TIMING_AND_SPLITTING.GROWTH_STAGES.ACTIVE_TILLERING' | customDialectTranslation: dialectSelected | async
+  }}</ion-col>
+  <ion-col
+    class="col"
+    size="{{ fertilizerRecommendationModel?.ATDaysColSize }}"
+    id="datAT"
+  >
+    {{ fertilizerRecommendationModel?.growthDuration.activeTilleringLow }} -
+    {{
+      fertilizerRecommendationModel?.growthDuration.activeTilleringHigh
+    }}</ion-col
+  >
+  <ion-col
+    class="col"
+    size="2"
+    *ngIf="fertilizerRecommendationModel?.show21DaysSeedling"
+  >
+    {{ fertilizerRecommendationModel.twentyOneDaysSeedling.activeTilleringLow }} -
+    {{
+      fertilizerRecommendationModel.twentyOneDaysSeedling.activeTilleringHigh
+    }}</ion-col
+  >
+  <ion-col
+    class="col"
+    size="{{ fertilizerRecommendationModel?.fertColSize }}"
+    *ngIf="fertilizerRecommendationModel?.showEarlyFert"
+  >
+    ----
+  </ion-col>
+  <ion-col
+    class="col"
+    id="atFert"
+    size="{{ fertilizerRecommendationModel?.fertColSize }}"
+  >
+    {{
+      (fertilizerRecommendationModel?.growthStages)[1].fertilizerSources[0]
+        .fertilizerAmount
+        | kgToBags
+          : '---'
+          : ('COMMON.UNIT.BAG' | customDialectTranslation: dialectSelected | async)
+          : ('COMMON.AND' | customDialectTranslation: dialectSelected | async)
+          : ('COMMON.UNIT.KG' | customDialectTranslation: dialectSelected | async)
+          : ('COMMON.UNIT.BAGS' | customDialectTranslation: dialectSelected | async)
+    }}
+  </ion-col>
+  <ion-col
+    class="col"
+    size="{{ fertilizerRecommendationModel?.fertColSize }}"
+    *ngIf="fertilizerRecommendationModel?.showMOPFert"
+  >
+    ----
+  </ion-col>
+</ion-row>
+
+<ion-row class="ion-text-center">
+  <ion-col class="col" size="4">{{
+    'TIMING_AND_SPLITTING.GROWTH_STAGES.PANICLE_INITIATION' | customDialectTranslation: dialectSelected | async
+  }}</ion-col>
+  <ion-col
+    class="col"
+    size="{{ fertilizerRecommendationModel?.ATDaysColSize }}"
+    id="datPI"
+  >
+    {{ fertilizerRecommendationModel?.growthDuration.panicleInitiationLow }} -
+    {{
+      fertilizerRecommendationModel?.growthDuration.panicleInitiationHigh
+    }}</ion-col
+  >
+  <ion-col
+    class="col"
+    size="2"
+    *ngIf="fertilizerRecommendationModel?.show21DaysSeedling"
+  >
+    {{ fertilizerRecommendationModel.twentyOneDaysSeedling.panicleInitiationLow }} -
+    {{
+      fertilizerRecommendationModel.twentyOneDaysSeedling.panicleInitiationHigh
+    }}</ion-col
+  >
+  <ion-col
+    class="col"
+    size="{{ fertilizerRecommendationModel?.fertColSize }}"
+    *ngIf="fertilizerRecommendationModel?.showEarlyFert"
+  >
+    ----
+  </ion-col>
+  <ion-col
+    class="col"
+    id="piFert"
+    size="{{ fertilizerRecommendationModel?.fertColSize }}"
+  >
+    {{
+      (fertilizerRecommendationModel?.growthStages)[2].fertilizerSources[0]
+        .fertilizerAmount
+        | kgToBags
+          : '---'
+          : ('COMMON.UNIT.BAG' | customDialectTranslation: dialectSelected | async)
+          : ('COMMON.AND' | customDialectTranslation: dialectSelected | async)
+          : ('COMMON.UNIT.KG' | customDialectTranslation: dialectSelected | async)
+          : ('COMMON.UNIT.BAGS' | customDialectTranslation: dialectSelected | async)
+    }}
+  </ion-col>
+  <ion-col
+    class="col"
+    size="{{ fertilizerRecommendationModel?.fertColSize }}"
+    *ngIf="fertilizerRecommendationModel?.showMOPFert"
+  >
+    {{
+      fertilizerRecommendationModel?.pRate == 0
+        ? '---'
+        : (fertilizerRecommendationModel?.growthStages)[2].fertilizerSources[1]
+            .fertilizerAmount > 0
+        ? ((fertilizerRecommendationModel?.growthStages)[2].fertilizerSources[1]
+            .fertilizerAmount
+          | kgToBags
+            : '---'
+            : ('COMMON.UNIT.BAG' | customDialectTranslation: dialectSelected | async)
+            : ('COMMON.AND' | customDialectTranslation: dialectSelected | async)
+            : ('COMMON.UNIT.KG' | customDialectTranslation: dialectSelected | async)
+            : ('COMMON.UNIT.BAGS' | customDialectTranslation: dialectSelected | async))
+        : '---'
+    }}
+  </ion-col>
+</ion-row>
+
+<ion-row
+  class="ion-text-center"
+  *ngIf="fertilizerRecommendationModel?.showHeading"
+>
+  <ion-col class="col" size="4">{{
+    'TIMING_AND_SPLITTING.GROWTH_STAGES.HEADING' | customDialectTranslation: dialectSelected | async
+  }}</ion-col>
+  <ion-col
+    class="col"
+    size="{{ fertilizerRecommendationModel?.ATDaysColSize }}"
+    id="datHD"
+    >{{ fertilizerRecommendationModel?.growthDuration.headingLow }} -
+    {{ fertilizerRecommendationModel?.growthDuration.headingHigh }}</ion-col
+  >
+  <ion-col
+    class="col"
+    size="2"
+    *ngIf="fertilizerRecommendationModel?.show21DaysSeedling"
+  >
+    {{ fertilizerRecommendationModel.twentyOneDaysSeedling.headingLow }} -
+    {{ fertilizerRecommendationModel.twentyOneDaysSeedling.headingHigh }}</ion-col
+  >
+  <ion-col
+    class="col"
+    size="{{ fertilizerRecommendationModel?.fertColSize }}"
+    *ngIf="fertilizerRecommendationModel?.showEarlyFert"
+  >
+    ----
+  </ion-col>
+  <ion-col
+    class="col"
+    id="hdFert"
+    size="{{ fertilizerRecommendationModel?.fertColSize }}"
+  >
+    {{
+      (fertilizerRecommendationModel?.growthStages)[3].fertilizerSources[0]
+        .fertilizerAmount
+        | kgToBags
+          : '---'
+          : ('COMMON.UNIT.BAG' | customDialectTranslation: dialectSelected | async)
+          : ('COMMON.AND' | customDialectTranslation: dialectSelected | async)
+          : ('COMMON.UNIT.KG' | customDialectTranslation: dialectSelected | async)
+          : ('COMMON.UNIT.BAGS' | customDialectTranslation: dialectSelected | async)
+    }}
+  </ion-col>
+  <ion-col
+    class="col"
+    size="{{ fertilizerRecommendationModel?.fertColSize }}"
+    *ngIf="fertilizerRecommendationModel?.showMOPFert"
+  >
+    ----
+  </ion-col>
+</ion-row>

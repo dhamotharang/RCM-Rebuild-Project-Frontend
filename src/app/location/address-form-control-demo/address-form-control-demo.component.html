@@ -1,0 +1,57 @@
+<ion-content>
+  <ion-row class="ion-justify-content-center">
+    <ion-col size="4">
+      <ion-row>
+        <ion-button (click)="toggleMode()">Toggle Mode</ion-button>
+      </ion-row>
+      <ion-row>
+        Current Mode: {{ currentMode === 1 ? 'Material' : 'Ionic' }}
+      </ion-row>
+      <h3>Default</h3>
+      <app-address-form-control [mode]="currentMode"></app-address-form-control>
+      <br />
+      <br />
+
+      <h3>Form Group</h3>
+      <app-address-form-control
+        [mode]="currentMode"
+        [formGroup]="myFormGroup"
+      ></app-address-form-control>
+      <pre>{{ myFormGroup.getRawValue() | json }}</pre>
+      <br />
+      <br />
+
+      <h3>With initial value</h3>
+      <app-address-form-control
+        [mode]="currentMode"
+        [formGroup]="existingValueFormGroup"
+        [address]="exitingValueAddressModel"
+      ></app-address-form-control>
+      <pre>{{ existingValueFormGroup.getRawValue() | json }}</pre>
+      <br />
+      <br />
+
+      <h3>Customization</h3>
+      <ion-button (click)="toggleInitialValue()"
+        >Toggle Initial Value</ion-button
+      >
+      <ion-button (click)="barangayVisible = !barangayVisible"
+        >Toggle Barangay Visibility</ion-button
+      >
+      <ion-button (click)="customizationFormDisabled = !customizationFormDisabled"
+        >Toggle Form Disabled</ion-button
+      >
+      <br />
+      <app-address-form-control
+        [mode]="currentMode"
+        [hideBarangay]="!barangayVisible"
+        [formGroup]="customizationFormGroup"
+        [address]="customizationLocationValue"
+        [disabled]="customizationFormDisabled"
+      ></app-address-form-control>
+      <pre>{{ customizationFormGroup.getRawValue() | json }}</pre>
+      <br />
+      <br />
+    </ion-col>
+  </ion-row>
+</ion-content>

@@ -1,0 +1,78 @@
+ion-input {
+    text-align: right;
+}
+
+.bg-white {
+    background-color: #FFFFFF !important;
+}
+
+.photo-upload-container {
+    background-color: #DEDEDE;
+}
+
+.farmer-photo-icon {
+    font-size: 180px;
+    flex: 1;
+}
+
+.photo-upload-display-size{
+    width: 150px;
+    height: 150px;
+}
+
+.photo-upload-logo-size{
+    font-size: 150px;
+}
+
+.data-privacy-upload-photo{
+    position:absolute;
+    opacity: 0.2;
+    object-fit:cover;
+    width: 100%;
+}
+
+.farmer-dp {
+    background-size: cover;
+    border-radius: 100%;
+    overflow: hidden;
+    border: 4px solid #FFFFFF;
+    background-position: center;
+    div {
+        height: 100%;
+        width: 100%;
+        border-radius: 100%; 
+        border:4px solid #FFFFFF;
+    }
+}
+
+.main-section {
+    display: flex;
+    flex-grow: 1;
+    flex-direction: row;
+    padding: 5px;
+}
+
+.photo-section {
+    display: flex;
+    flex-grow: 0.5;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+}
+
+.button-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    z-index: 1;
+}
+
+.note {
+    padding-left: 16px;
+}
+
+.farmLotsCounterContainer{
+    background-color: var(--ion-color-primary)
+}

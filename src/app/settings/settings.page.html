@@ -1,0 +1,15 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Settings</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div>
+    <ion-item>
+      <ion-label>Offline Mode</ion-label>
+      <ion-checkbox [(ngModel)]="offlineModeEnabled" (ionChange)="checkInterviewData($event)"></ion-checkbox>
+    </ion-item>
+    
+  </div>
+</ion-content>

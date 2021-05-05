@@ -1,0 +1,45 @@
+
+<ion-col size="12" class="ion-padding" *ngIf="showLoader">
+    <ion-row class="ion-justify-content-center ion-align-items-center">
+      <ion-col size="auto">
+        <span>Loading data history</span>
+      </ion-col>
+      <ion-col size="auto">
+        <ion-spinner></ion-spinner>
+      </ion-col>
+    </ion-row>
+  </ion-col>
+
+<ion-grid *ngIf="dataHistories.length > 0 && !showLoader">
+  <ion-row class="ion-text-center">
+    <ion-col class="col-title" size="3">USER</ion-col>
+    <ion-col class="col-title" size="3">ACTIVITY</ion-col>
+    <ion-col class="col-title" size="3">DETAILS</ion-col>
+    <ion-col class="col-title" size="3">DATE</ion-col>
+  </ion-row>
+  <ion-row *ngFor="let data of dataHistories">
+    <ion-col class="col" size="3">
+      <a class="st-action" tooltip tooltipHtml="ID: {{ data?.operator_id }}<br>Email: {{ data?.office_email }}<br>Mobile No: {{data?.contact_number}}" topOffset="-130" leftOffset="-340" event="click" [duration]="duration">{{ data?.first_name }} {{ data?.mother_maiden }}. {{ data?.last_name }}</a>
+    </ion-col>
+    <ion-col class="col" size="3">
+      {{ dataHistoryTypeText[data?.type] }}
+      {{ dataHistoryModuleText[data?.module] }}
+    </ion-col>
+    <ion-col class="col" size="3">
+      {{ dataHistoryDataText[data?.data_id] }} ID: {{ data?.ff_id }}
+      <p *ngIf="data?.type === 2">Data changes:</p>
+      <ion-text color="primary" *ngFor="let recipient of data.old_data | keyvalue">
+        {{recipient.key}} :
+        {{ getValue(recipient) }}
+        <br />
+      </ion-text>
+    </ion-col>
+    <ion-col class="col" size="3">
+      {{ data?.created_at | date:'medium' }}
+    </ion-col>
+  </ion-row>
+</ion-grid>
+
+<section *ngIf="dataHistories.length === 0 && !showLoader">
+  No Data History to show.
+</section>

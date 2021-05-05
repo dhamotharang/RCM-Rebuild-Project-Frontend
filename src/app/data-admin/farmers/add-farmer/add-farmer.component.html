@@ -1,0 +1,17 @@
+<ion-header>
+  <ion-toolbar color="default">
+    <ion-buttons slot="start">
+      <ion-button [routerLink]="['/data-admin/farmer-management/farmer-list']">
+        <ion-icon name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <div class="item item-divider item-assertive ion-padding bgheader ion-text-center" style="white-space: normal;">
+      ADD FARMER'S INFORMATION  
+    </div>
+    <ion-progress-bar [value]="progress"></ion-progress-bar>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <app-farmer-form submitLabel="Add Farmer" (formSubmit)="onFarmerAdd($event)">
+  </app-farmer-form>
+</ion-content>

@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-toolbar color="primary" >
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <div class="item item-divider item-assertive ion-padding bgheader ion-text-center" style="white-space: normal;">
+      RCM Farmer and Farm Lot Registration | Login
+    </div>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-grid>
+    <ion-row class="ion-justify-content-center ion-align-items-center">
+      <ion-col class="ion-align-self-center" size-md="6" size-lg="5" size-xs="12">
+        <div class="alert">
+          <img src="../../../../assets/error.png">
+          <h1>{{ 'Error Occured!' | uppercase }}</h1>
+          <p>Error Details: Unauthorized Request, Please Login your account!</p>
+          <ion-button color="danger" routerLink="/login">Go to Login Page</ion-button>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+

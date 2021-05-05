@@ -1,0 +1,19 @@
+<ion-header>
+  <ion-toolbar color="default">
+    <ion-buttons slot="start">
+      <ion-button [routerLink]="['/data-admin/farmers', farmerId]">
+        <ion-icon name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <div class="item item-divider item-assertive ion-padding bgheader ion-text-center" style="white-space: normal;">
+      EDIT FARMER'S INFORMATION
+    </div>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+<div *ngIf="farmerInfo">
+  <app-farmer-form #farmerForm  [farmer]="farmerInfo" submitLabel="Update Farmer Details"
+    (formSubmit)="onFarmerUpdate($event)" (onFormCancel)="onCancel()"></app-farmer-form>
+
+</div>
+</ion-content>

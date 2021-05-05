@@ -1,0 +1,28 @@
+.divLoading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #999;
+}
+
+.col-title {
+  border: 1px solid lightgray;
+  font-weight: bold;
+}
+
+.col {
+  border: 1px solid lightgray;
+}
+
+#recommendation-btn {
+  margin: auto;
+  --box-shadow: none;
+}
+
+table {
+  width: 100%;
+}
+
+th.mat-sort-header-sorted {
+  color: black;
+}

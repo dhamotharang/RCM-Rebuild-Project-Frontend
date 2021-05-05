@@ -1,0 +1,17 @@
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-card>
+          <img [src]="image.path">
+          <ion-card-content>
+            {{ image.description }}
+          </ion-card-content>
+        </ion-card>
+        <ion-card style="box-shadow:none">      
+            <ion-button expand="full" shape="round" (click)="onClose()" color="danger">Close</ion-button>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

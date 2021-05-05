@@ -1,0 +1,43 @@
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col size="12" size-lg="10" offset-lg="1">
+        <ion-grid>
+          <ion-row class="ion-justify-content-end">
+            <ion-button (click)="refreshFarmerList()">
+              <ion-icon name="refresh"></ion-icon>
+              <ion-label>Refresh Farmer List</ion-label>
+            </ion-button>
+            <ion-button (click)="downloadFarmerList()" [disabled]="disabledDownloadFarmerList" [appDisable]="roleId">
+              <ion-icon name="download"></ion-icon>
+              <ion-label>Download List</ion-label>
+            </ion-button>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <app-farmer-list
+                [pageInfo]="farmerPageInfo"
+                [roleId]="roleId"
+                (page)="onFarmerPageChange($event)"
+                [farmerList]="farmerList"
+                [showExternalFilter]="true"
+                [showLoader]="isFetchingFarmerList"
+                [filters]="farmerListFilter"
+                [filterData]="filterData"
+                [isDownload]="isDownload"
+                (selectFarmer)="onFarmerSelected($event)"
+                (externalFilter)="onExternalFilterClick()"
+                (search)="onFarmerSearch($event)"
+                [withFilters]="withFilters"
+                [withCheckFilters]="withCheckFilters"
+                (clearFilters)="clearFilters()"
+                (checkedFilter)="checkFilter($event)"
+                [isOffline]="isOffline"
+              ></app-farmer-list>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

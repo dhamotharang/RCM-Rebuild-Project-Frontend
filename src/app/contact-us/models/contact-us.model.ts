@@ -1,0 +1,16 @@
+export interface ContactUsModel {
+    category: number,
+    subCategory: number,
+    firstName: string,
+    lastName: string,
+    profession: number,
+    otherProfession?: string,
+    email: string,
+    contactNumber: number,
+    regionId: number,
+    provinceId: number,
+    municipalityId: number,
+    message: string,
+    attachment: string,
+    userId?: number,
+}

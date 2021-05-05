@@ -1,0 +1,92 @@
+<ion-card [id]="componentId" *ngIf="fileListMetadata && fileListMetadata.length > 0">
+  <ion-card-header>
+    <ion-card-title>{{posted ? 'Results' : 'Files to upload'}}</ion-card-title>
+  </ion-card-header>
+  <ion-card-content>
+  
+  <ion-row class="ion-justify-content-between">
+    <ion-col class="col-title" size="{{posted ? 3 : 4 }}">Filename</ion-col>
+    <ion-col class="col-title" size="{{posted ? 2 : 3 }}">Track name</ion-col>
+    <ion-col *ngIf="posted" class="col-title" size="1">Area (ha)</ion-col>
+    <ion-col *ngIf="posted" class="col-title" size="1">Status</ion-col>
+    <ion-col class="col-title" size="5">Errors/Remarks</ion-col>
+  </ion-row>
+  <ion-row *ngFor="let fileMetaData of fileListMetadata" class="ion-text-center">
+    <ion-col class="col" size="{{posted ? 3 : 4 }}">
+      {{fileMetaData.fileName}}
+    </ion-col>
+    <ion-col class="col" size="{{posted ? 2 : 3 }}">
+      {{fileMetaData.track.name}}
+    </ion-col>
+    <ion-col *ngIf="posted" class="col" size="1">
+      {{fileMetaData.computedArea}}
+    </ion-col>
+    <ion-col *ngIf="posted" class="col" size="1">
+      <ion-icon size="large" *ngIf="!fileMetaData.uploading && !fileMetaData.valid" name="alert-circle-outline" color="danger" matTooltip="Not valid" matTooltipPosition="right"></ion-icon>
+      <ion-icon size="large" *ngIf="!fileMetaData.hasPosted && !fileMetaData.uploading && fileMetaData.valid" name="checkmark" color="success" matTooltip="Ready" matTooltipPosition="right" matTooltipClass="tooltip-success"></ion-icon>
+      <ion-icon size="large" *ngIf="fileMetaData.hasPosted && !fileMetaData.uploading && fileMetaData.success" name="checkmark-circle" color="success" matTooltip="Valid" matTooltipPosition="right"></ion-icon>
+      <ion-icon size="large" *ngIf="!fileMetaData.success" name="alert-circle-outline" color="danger" matTooltip="Error!" matTooltipPosition="right"></ion-icon>
+      <ion-spinner *ngIf="fileMetaData.uploading && !fileMetaData['httpError']" name="crescent"></ion-spinner>
+    </ion-col>
+    <ion-col *ngIf="!posted" class="col ion-text-left" size="5">
+      <section *ngIf="!fileMetaData.valid" class="text-danger">
+        <ul *ngFor="let descriptionError of fileMetaData.errors">
+          <li>{{descriptionError}}</li>
+        </ul>
+      </section>
+      <section *ngIf="fileMetaData.valid">
+        <ul>
+          <li>Ready for submission</li>
+        </ul>
+      </section>
+    </ion-col>
+    <ion-col *ngIf="posted" class="col ion-text-left" size="5">
+      <section *ngIf="fileMetaData.errors['error'] && !fileMetaData['httpError']" class="text-danger">
+        <ul *ngFor="let list of fileMetaData.errors['error']">
+          <li>{{list.error}}</li>
+        </ul>
+      </section>
+      <section *ngIf="!fileMetaData.valid" class="text-danger">
+        <ul *ngFor="let descriptionError of fileMetaData.errors">
+          <li>{{descriptionError}}</li>
+        </ul>
+      </section>
+      <section *ngIf="fileMetaData['httpError']" class="text-danger">
+        <ul>
+          <li>{{fileMetaData.errors}}</li>
+        </ul>
+      </section>
+      <section *ngIf="fileMetaData.errors['error_overlap_data'] && fileMetaData.errors['error_overlap_data'].length > 0 && !fileMetaData['httpError']">
+        <ul>
+          <li>Farmer Name: {{fileMetaData.errors['error_overlap_data'][0].farmer_name}}</li>
+          <li>Farmer ID: {{fileMetaData.errors['error_overlap_data'][0].farmer_id}}</li>
+          <li>GPX ID: {{fileMetaData.errors['error_overlap_data'][0].gpx_id}}</li>
+          <li><ion-button (click)="viewGpx(fileMetaData)">Map preview</ion-button></li>
+        </ul>
+      </section>
+      <section *ngIf="fileMetaData.uploadDate && !fileMetaData['httpError']">
+        <ul>
+          <li>Previous upload: {{fileMetaData.uploadDate | date}} with verified farm lot size of {{fileMetaData.computedArea}}.</li>
+          <li><ion-button (click)="viewGpx(fileMetaData)">Map preview</ion-button></li>
+        </ul>
+      </section>
+      <section *ngIf="fileMetaData.success && !fileMetaData.uploadDate && !fileMetaData['httpError'] && fileMetaData.valid">
+        <ul>
+          <li><ion-button (click)="viewGpx(fileMetaData)">Map preview</ion-button></li>
+        </ul>
+      </section>   
+    </ion-col>
+  </ion-row>
+  
+  <ion-row class="ion-justify-content-center ion-padding" *ngIf="!posted">
+    <ion-text>
+      <b>{{numberOfGPXFilesToUpload}}</b> / <b>{{fileListMetadata.length}}</b> gpx files ready for further validation.
+    </ion-text>
+  </ion-row>
+  
+  <ion-row class="ion-justify-content-center">
+    <ion-button (click)="uploadGpx()" *ngIf="!isUploading && !hasPosted" [disabled]="numberOfGPXFilesToUpload ? false : true">Submit</ion-button>
+  </ion-row>
+
+  </ion-card-content>
+  </ion-card>

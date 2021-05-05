@@ -1,0 +1,331 @@
+/*
+ * App Global CSS
+ * ----------------------------------------------------------------------------
+ * Put style rules here that you want to apply globally. These styles are for
+ * the entire app and not just one component. Additionally, this file can be
+ * used as an entry point to import other CSS/Sass files to be included in the
+ * output CSS.
+ * For more information on global stylesheets, visit the documentation:
+ * https://ionicframework.com/docs/layout/global-stylesheets
+ */
+
+/* Core CSS required for Ionic components to work properly */
+@import '~@ionic/angular/css/core.css';
+
+/* Basic CSS for apps built with Ionic */
+@import '~@ionic/angular/css/normalize.css';
+@import '~@ionic/angular/css/structure.css';
+@import '~@ionic/angular/css/typography.css';
+@import '~@ionic/angular/css/display.css';
+
+/* Optional CSS utils that can be commented out */
+@import '~@ionic/angular/css/padding.css';
+@import '~@ionic/angular/css/float-elements.css';
+@import '~@ionic/angular/css/text-alignment.css';
+@import '~@ionic/angular/css/text-transformation.css';
+@import '~@ionic/angular/css/flex-utils.css';
+
+@import '~@angular/material/theming';
+@include mat-core();
+
+ion-badge {
+  font-weight: normal;
+}
+
+.success-toast {
+  --background: #22aa00;
+  --color: #FFFFFF;
+}
+
+
+.farmer-filter-modal .modal-wrapper {
+  background-color: rgba(255,255,255,0.9);
+}
+
+.divPadding {
+  padding-top: 15px;
+  padding-right: 15px;
+  padding-bottom: 15px;
+  padding-left: 15px;
+  position: relative;
+}
+
+.full-height {
+  height: 100%;
+}
+
+$matPrimary: (
+  50: #eaf5ec,
+  100: #cae5d0,
+  200: #a7d4b0,
+  300: #84c290,
+  400: #69b579,
+  500: #4fa861,
+  600: #48a059,
+  700: #3f974f,
+  800: #368d45,
+  900: #267d33,
+  A100: #beffc7,
+  A200: #8bff9c,
+  A400: #58ff70,
+  A700: #3fff5a,
+  contrast: (
+    50: #000000,
+    100: #000000,
+    200: #000000,
+    300: #000000,
+    400: #000000,
+    500: #000000,
+    600: #ffffff,
+    700: #ffffff,
+    800: #ffffff,
+    900: #ffffff,
+    A100: #000000,
+    A200: #000000,
+    A400: #000000,
+    A700: #000000,
+  ),
+);
+
+$matAccent: (
+  50: #fdf3e7,
+  100: #fff0b8,
+  200: #f7cf99,
+  300: #f3bc70,
+  400: #f1ad52,
+  500: #ee9f33,
+  600: #ec972e,
+  700: #e98d27,
+  800: #e78320,
+  900: #e27214,
+  A100: #ffffff,
+  A200: #ffecdf,
+  A400: #ffcfac,
+  A700: #ffc092,
+  contrast: (
+    50: #000000,
+    100: #000000,
+    200: #000000,
+    300: #000000,
+    400: #000000,
+    500: #000000,
+    600: #000000,
+    700: #000000,
+    800: #000000,
+    900: #000000,
+    A100: #000000,
+    A200: #000000,
+    A400: #000000,
+    A700: #000000,
+  ),
+);
+
+$matWarn: (
+  50: #fbeded,
+  100: #f6d1d1,
+  200: #f0b3b3,
+  300: #e99494,
+  400: #e57d7d,
+  500: #e06666,
+  600: #dc5e5e,
+  700: #d85353,
+  800: #d34949,
+  900: #cb3838,
+  A100: #ffffff,
+  A200: #ffe2e2,
+  A400: #ffafaf,
+  A700: #ff9696,
+  contrast: (
+    50: #000000,
+    100: #000000,
+    200: #000000,
+    300: #000000,
+    400: #000000,
+    500: #000000,
+    600: #000000,
+    700: #ffffff,
+    800: #ffffff,
+    900: #ffffff,
+    A100: #000000,
+    A200: #000000,
+    A400: #000000,
+    A700: #000000,
+  ),
+);
+
+ion-col {
+  mat-form-field {
+    width: 100%;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
+
+.fileUpload {
+  position: relative;
+  overflow: hidden;
+  margin: 10px;
+}
+.fileUpload input.upload {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 0;
+  padding: 0;
+  font-size: 20px;
+  cursor: pointer;
+  opacity: 0;
+  filter: alpha(opacity=0);
+}
+
+.mat-paginator-page-size-select {
+  min-width: 80px;
+}
+
+.text-ellipsis {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: center;
+}
+
+form ion-item ion-label {
+  white-space: normal !important;
+}
+
+ion-item.ion-pristine.ion-invalid {
+  --highlight-color-invalid: #d7d8da;
+}
+
+ion-item.ion-pristine.ion-invalid.ion-touched {
+  --highlight-color-invalid: #f04141;
+}
+
+.capitalizeText{
+  text-transform: capitalize;
+}
+
+$rcmPrimary: mat-palette($matPrimary);
+$rcmAccent: mat-palette($matAccent);
+$rcmWarn: mat-palette($matWarn);
+
+$defaultTheme: mat-light-theme($rcmPrimary, $rcmAccent, $rcmWarn);
+
+/*
+Defined colors
+
+primary: #198553;
+tertiary: #EE9F33
+medium: #979797;
+danger: #d43d5b
+
+input to: https://ionicframework.com/docs/theming/color-generator
+
+*/
+
+:root {
+  --ion-color-primary: #198553;
+  --ion-color-primary-rgb: 25, 133, 83;
+  --ion-color-primary-contrast: #ffffff;
+  --ion-color-primary-contrast-rgb: 255, 255, 255;
+  --ion-color-primary-shade: #167549;
+  --ion-color-primary-tint: #309164;
+
+  --ion-color-secondary: #3dc2ff;
+  --ion-color-secondary-rgb: 61, 194, 255;
+  --ion-color-secondary-contrast: #ffffff;
+  --ion-color-secondary-contrast-rgb: 255, 255, 255;
+  --ion-color-secondary-shade: #36abe0;
+  --ion-color-secondary-tint: #50c8ff;
+
+  --ion-color-tertiary: #ee9f33;
+  --ion-color-tertiary-rgb: 238, 159, 51;
+  --ion-color-tertiary-contrast: #000000;
+  --ion-color-tertiary-contrast-rgb: 0, 0, 0;
+  --ion-color-tertiary-shade: #d18c2d;
+  --ion-color-tertiary-tint: #f0a947;
+
+  --ion-color-success: #2dd36f;
+  --ion-color-success-rgb: 45, 211, 111;
+  --ion-color-success-contrast: #ffffff;
+  --ion-color-success-contrast-rgb: 255, 255, 255;
+  --ion-color-success-shade: #28ba62;
+  --ion-color-success-tint: #42d77d;
+
+  --ion-color-warning: #ffc409;
+  --ion-color-warning-rgb: 255, 196, 9;
+  --ion-color-warning-contrast: #000000;
+  --ion-color-warning-contrast-rgb: 0, 0, 0;
+  --ion-color-warning-shade: #e0ac08;
+  --ion-color-warning-tint: #ffca22;
+
+  --ion-color-danger: #d43d5b;
+  --ion-color-danger-rgb: 212, 61, 91;
+  --ion-color-danger-contrast: #ffffff;
+  --ion-color-danger-contrast-rgb: 255, 255, 255;
+  --ion-color-danger-shade: #dd3456;
+  --ion-color-danger-tint: #dd3456;
+
+  --ion-color-dark: #222428;
+  --ion-color-dark-rgb: 34, 36, 40;
+  --ion-color-dark-contrast: #ffffff;
+  --ion-color-dark-contrast-rgb: 255, 255, 255;
+  --ion-color-dark-shade: #1e2023;
+  --ion-color-dark-tint: #383a3e;
+
+  --ion-color-medium: #979797;
+  --ion-color-medium-rgb: 146, 148, 156;
+  --ion-color-medium-contrast: #ffffff;
+  --ion-color-medium-contrast-rgb: 255, 255, 255;
+  --ion-color-medium-shade: #808289;
+  --ion-color-medium-tint: #9d9fa6;
+
+  --ion-color-light: #f4f5f8;
+  --ion-color-light-rgb: 244, 245, 248;
+  --ion-color-light-contrast: #000000;
+  --ion-color-light-contrast-rgb: 0, 0, 0;
+  --ion-color-light-shade: #d7d8da;
+  --ion-color-light-tint: #f5f6f9;
+}
+
+.text-highlight {
+  font-weight: 500;
+  padding: 1px 5px 1px 5px;
+  border-radius: 3px;
+  background-color: var(--ion-color-tertiary);
+}
+
+.mat-step ion-label {
+  line-height: 24px;
+}
+
+
+:root {
+    .label-floating {
+        color: var(--ion-color-medium);
+    }
+}
+
+@include angular-material-theme($defaultTheme);
+@import url('https://fonts.googleapis.com/css?family=Barlow+Semi+Condensed&display=swap');
+
+.app-icon {
+    width: 50px;
+}
+
+.d-flex {
+  display:flex;
+}
+
+.farmerForm ion-input[aria-disabled],
+.farmerForm ion-select[aria-disabled],
+.farmerForm ion-checkbox[aria-disabled],
+.farmerForm .item-interactive-disabled .native-input:disabled,
+.farmerForm .item-interactive-disabled > ion-label,
+.farmerForm .item-interactive-disabled > app-item-form-label > *,
+.farmerForm .item-interactive-disabled > ion-input {
+  opacity: 1 !important;
+  color: var(--ion-color-dark);
+}
+
+

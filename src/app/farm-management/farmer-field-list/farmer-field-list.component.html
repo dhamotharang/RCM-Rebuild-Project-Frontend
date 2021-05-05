@@ -1,0 +1,66 @@
+<ion-header>
+  <ion-toolbar color="default">
+    <ion-title>Farm Lots</ion-title>
+
+    <ion-buttons slot="end">
+      <ion-button (click)="onCancel()">
+        <ion-icon name="close-circle-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    
+  </ion-toolbar>
+
+</ion-header>
+
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col class="ion-text-right">
+        <ion-button color="primary" matTooltip="List view" matTooltipPosition="above"
+          [fill]="isList ? 'solid' : 'default'" shape="round" (click)="onListTypeChange($event, 'table')">
+          <ion-icon name="list"></ion-icon>
+        </ion-button>
+        <ion-button color="primary" matTooltip="Grid view" matTooltipPosition="above"
+          [fill]="isGrid ? 'solid' : 'default'" shape="round" (click)="onListTypeChange($event, 'grid')">
+          <ion-icon name="grid"></ion-icon>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <div class="ion-padding" *ngIf="!fieldList; else hasList">
+        <section>
+          Loading farm lot list <ion-spinner></ion-spinner>
+        </section>
+      </div>
+
+      <ng-template #hasList>
+        <section *ngIf="hasList && (fieldList == null || fieldList.length == 0)">
+          No farm lot list to show.
+        </section>
+      </ng-template>
+
+      <ion-col>
+        <div *ngIf="isGrid">
+
+          <ion-row>
+            <ion-col size="6" *ngFor="let field of fieldList">
+              <app-field-card-item [fieldInfo]="field" (select)="onFieldSelected(field)"></app-field-card-item>
+
+            </ion-col>
+          </ion-row>
+
+        </div>
+        <div *ngIf="isList">
+          <ion-list>
+            <ion-item *ngFor="let field of fieldList">
+              <ion-label> {{ field.field_name }} </ion-label>
+
+              <ion-button (click)="onFieldSelected(field)" fill="outline" slot="end">View</ion-button>
+            </ion-item>
+          </ion-list>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

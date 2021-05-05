@@ -1,0 +1,114 @@
+[
+    {
+        "id": 1,
+        "filter_by_answer_name": "",
+        "filter_by_answer_value": "",
+        "value": "1",
+        "label": "CAR"
+    },
+    {
+        "id": 2,
+        "filter_by_answer_name": "",
+        "filter_by_answer_value": "",
+        "value": "2",
+        "label": "Region I"
+    },
+    {
+        "id": 3,
+        "filter_by_answer_name": "",
+        "filter_by_answer_value": "",
+        "value": "3",
+        "label": "Region II"
+    },
+    {
+        "id": 4,
+        "filter_by_answer_name": "",
+        "filter_by_answer_value": "",
+        "value": "4",
+        "label": "Region III"
+    },
+    {
+        "id": 5,
+        "filter_by_answer_name": "",
+        "filter_by_answer_value": "",
+        "value": "5",
+        "label": "CALABARZON"
+    },
+    {
+        "id": 6,
+        "filter_by_answer_name": "",
+        "filter_by_answer_value": "",
+        "value": "6",
+        "label": "MIMAROPA"
+    },
+    {
+        "id": 7,
+        "filter_by_answer_name": "",
+        "filter_by_answer_value": "",
+        "value": "7",
+        "label": "Region V"
+    },
+    {
+        "id": 8,
+        "filter_by_answer_name": "",
+        "filter_by_answer_value": "",
+        "value": "8",
+        "label": "Region VI"
+    },
+    {
+        "id": 9,
+        "filter_by_answer_name": "",
+        "filter_by_answer_value": "",
+        "value": "9",
+        "label": "Region VII"
+    },
+    {
+        "id": 10,
+        "filter_by_answer_name": "",
+        "filter_by_answer_value": "",
+        "value": "10",
+        "label": "Region VIII"
+    },
+    {
+        "id": 11,
+        "filter_by_answer_name": "",
+        "filter_by_answer_value": "",
+        "value": "11",
+        "label": "Region IX"
+    },
+    {
+        "id": 12,
+        "filter_by_answer_name": "",
+        "filter_by_answer_value": "",
+        "value": "12",
+        "label": "Region X"
+    },
+    {
+        "id": 13,
+        "filter_by_answer_name": "",
+        "filter_by_answer_value": "",
+        "value": "13",
+        "label": "Region XI"
+    },
+    {
+        "id": 14,
+        "filter_by_answer_name": "",
+        "filter_by_answer_value": "",
+        "value": "14",
+        "label": "Region XII"
+    },
+    {
+        "id": 15,
+        "filter_by_answer_name": "",
+        "filter_by_answer_value": "",
+        "value": "15",
+        "label": "ARMM"
+    },
+    {
+        "id": 16,
+        "filter_by_answer_name": "",
+        "filter_by_answer_value": "",
+        "value": "16",
+        "label": "Region XIII"
+    }
+]

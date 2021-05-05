@@ -1,0 +1,161 @@
+<ion-row class="ion-justify-content-center">
+  <ion-col size-sm="12">
+    
+    <form [formGroup]="smsNotificationForm" (ngSubmit)="onSmsNotificationSubmit()">
+
+      <ion-row class="ion-padding-top" *ngIf="displayReceiveSmsQuestion()">
+        <ion-col>
+          <ion-radio-group formControlName="receiveSms" (ionChange)="onReceiveSmsChange($event)">
+            <ion-list-header>
+              <ion-label
+                [innerHTML]="'SMS_AND_DIALECT.RECEIVE_SMS.QUESTION' | translate : { farmerNameDisplay: farmerNameDisplay, farmerMobileNumber: farmerMobileNumber } ">
+              </ion-label>
+            </ion-list-header>
+
+            <ion-item>
+              <ion-label>{{
+              'COMMON.ANSWER.YES'
+                | translate
+            }}</ion-label>
+              <ion-radio slot="start" [value]="yesNoValue.YES" [disabled]="isFormDisabled"></ion-radio>
+            </ion-item>
+
+            <ion-item>
+              <ion-label>{{
+              'COMMON.ANSWER.NO'
+                | translate
+            }}</ion-label>
+              <ion-radio slot="start" [value]="yesNoValue.NO" [disabled]="isFormDisabled"></ion-radio>
+            </ion-item>
+          </ion-radio-group>
+          <ion-item
+            lines="none"
+            *ngIf="
+            smsNotificationForm.get('receiveSms').invalid &&
+            smsNotificationForm.get('receiveSms').touched
+          ">
+            <mat-error class="form-error">
+              {{ 'COMMON.VALIDATION.REQUIRED' | translate }}
+            </mat-error>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+          <ion-radio-group formControlName="dialect" (ionChange)="onDialectSelectionChange($event)">
+            <ion-list-header>
+              <ion-label>
+                {{ 'SMS_AND_DIALECT.DIALECT.QUESTION' | translate : { } }}
+               <ion-text color="danger"> *</ion-text>
+              </ion-label>
+            </ion-list-header>
+
+            <ion-item>
+              <ion-label>
+                English
+              </ion-label>
+              <ion-radio slot="start" [value]="dialectValue.ENGLISH" [disabled]="isFormDisabled"></ion-radio>
+            </ion-item>
+
+            <ion-item>
+              <ion-label>
+                Tagalog
+              </ion-label>
+              <ion-radio slot="start" [value]="dialectValue.TAGALOG" [disabled]="isFormDisabled"></ion-radio>
+            </ion-item>
+
+            <ion-item>
+              <ion-label>
+                Iluko <ion-text color="danger">(coming soon!)</ion-text>
+              </ion-label>
+              <ion-radio slot="start" [value]="dialectValue.ILUKO" [disabled]="true"></ion-radio>
+            </ion-item>
+
+            <ion-item>
+              <ion-label>
+                Bisaya <ion-text color="danger">(coming soon!)</ion-text>
+              </ion-label>
+              <ion-radio slot="start" [value]="dialectValue.BISAYA" [disabled]="true"></ion-radio>
+            </ion-item>
+          </ion-radio-group>
+          <ion-item
+            lines="none"
+            *ngIf="
+            smsNotificationForm.get('dialect').invalid &&
+            smsNotificationForm.get('dialect').touched
+          ">
+            <mat-error class="form-error">
+              {{ 'COMMON.VALIDATION.REQUIRED' | translate }}
+            </mat-error>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row *ngIf="isTransplantingWillOccurQuestionDisplayed">
+        <ion-col>
+          <ion-radio-group formControlName="transplantingWillOccur" (ionChange)="onTransplantingWillOccurChange($event)">
+            <ion-list-header>
+              <ion-label
+                [innerHTML]="'SMS_AND_DIALECT.WILL_TRANSPLANTING_OCCUR.QUESTION' | translate: { transPlantingLowerMonth: 'COMMON.MONTH.' +
+                (lowerTransplantingDate | date: 'MMMM' | uppercase) | translate, transplantingLowerDate: lowerTransplantingDate | date: 'dd', transPlantingUpperMonth: 'COMMON.MONTH.' + (upperTransplantingDate | date:'MMMM' | uppercase) | translate, transplantingUpperDate: upperTransplantingDate | date: 'dd' } ">
+              </ion-label>
+            </ion-list-header>
+
+            <ion-item>
+              <ion-label>{{
+              'COMMON.ANSWER.YES'
+                | translate
+            }}</ion-label>
+              <ion-radio slot="start" [value]="yesNoValue.YES" [disabled]="isFormDisabled"></ion-radio>
+            </ion-item>
+
+            <ion-item>
+              <ion-label>{{
+              'COMMON.ANSWER.NO'
+                | translate
+            }}</ion-label>
+              <ion-radio slot="start" [value]="yesNoValue.NO" [disabled]="isFormDisabled"></ion-radio>
+            </ion-item>
+          </ion-radio-group>
+          <ion-item
+            lines="none"
+            *ngIf="
+            smsNotificationForm.get('transplantingWillOccur').invalid &&
+            smsNotificationForm.get('transplantingWillOccur').touched
+          ">
+            <mat-error class="form-error">
+              {{ 'COMMON.VALIDATION.REQUIRED' | translate }}
+            </mat-error>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+    </form>
+
+    <ion-button (click)="onSmsNotificationSubmit()">
+      <ion-text *ngIf="recommendationModel || wasTheRecommendationSaved">
+        {{ 'BUTTON.VIEW_RECOMMENDATION' | translate }}
+      </ion-text>
+      <ion-text *ngIf="!recommendationModel && !wasTheRecommendationSaved">
+        {{ 'BUTTON.GENERATE_RECOMMENDATION' | translate }}
+      </ion-text>
+    </ion-button>
+
+    <ion-button 
+      color="primary" 
+      type="button" 
+      (click)="editForm()" 
+      [hidden]="!isFormDisabled || recommendationModel"
+       *ngIf="wasTheRecommendationSaved === false"
+      >
+          {{ 'COMMON.EDIT' | translate }}
+      </ion-button
+    >
+    <ion-button color="medium" type="button"  *ngIf="wasTheRecommendationSaved === true" 
+        [matTooltip]="'BUTTON.RECOMMENDATION_IS_SAVED_TOOLTIP' | translate">
+          {{ 'COMMON.EDIT' | translate }}
+    </ion-button>
+
+  </ion-col>
+</ion-row>

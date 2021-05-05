@@ -1,0 +1,5 @@
+export enum QualitySeeds {
+    USE_SEED_OLDER_THAN_39_DAYS = 1,
+    USE_QUALITY_SEEDS_GOOD_SNAIL_CONTROL = 2,
+    USE_QUALITY_SEEDS = 3
+}

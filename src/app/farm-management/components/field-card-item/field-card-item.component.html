@@ -1,0 +1,20 @@
+<ion-card button (click)="onCardItemClicked()" [id]="fieldInfo?.field_id">
+  <ion-card-header>
+    <ion-card-title class="text-ellipsis">
+        <ion-icon size="small" *ngIf="fieldInfo['is_verified'] == 1" name="checkmark-circle" color="success" matTooltip="Verified" matTooltipPosition="right"></ion-icon>
+      {{ fieldInfo?.field_name | titlecase }}
+    </ion-card-title>
+    <ion-card-subtitle class="ion-text-center">
+      {{ fieldInfo?.field_id ? fieldInfo?.field_id : fieldInfo?.offlineFieldId  }}
+    </ion-card-subtitle>
+  </ion-card-header>
+
+  <ion-card-content #fullAddressTooltip="matTooltip" [matTooltip]="fullAddress" >
+    <div class="text-ellipsis">
+      {{addressLine1}}
+    </div>
+    <div class="text-ellipsis">
+      {{addressLine2}}
+    </div>
+   </ion-card-content>
+</ion-card>

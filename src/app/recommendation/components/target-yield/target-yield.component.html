@@ -1,0 +1,1018 @@
+<ion-row class="ion-justify-content-center">
+  <ion-col size-sm="12">
+    <form [formGroup]="targetYieldForm" (ngSubmit)="submit()">
+      <ion-card>
+        <ion-card-content>
+          <ion-grid>
+            <ion-row class="output-summary-intro">
+              {{ 'TARGET_YIELD.INTRO' | translate }}
+            </ion-row>
+          </ion-grid>
+        </ion-card-content>
+      </ion-card>
+
+      <ion-row class="ion-padding-top" *ngIf="getFarmLotName">
+        <ion-col>
+          <ion-radio-group
+            formControlName="timesPlantInAYear"
+            (ionChange)="onTimesPlantInAYearChange()"
+          >
+            <ion-list-header>
+              <ion-label
+                [innerHTML]="
+                  'TARGET_YIELD.CROPS_PER_YEAR.QUESTION'
+                    | translate: { getFarmLotName: getFarmLotName }
+                "
+              >
+              </ion-label>
+            </ion-list-header>
+
+            <ion-item>
+              <ion-label>{{
+                'TARGET_YIELD.CROPS_PER_YEAR.ANSWER.ONE' | translate
+              }}</ion-label>
+              <ion-radio
+                slot="start"
+                [value]="RICE_CROP_PER_YEAR.ONE"
+                [disabled]="isFormDisabled"
+              ></ion-radio>
+            </ion-item>
+
+            <ion-item>
+              <ion-label>{{
+                'TARGET_YIELD.CROPS_PER_YEAR.ANSWER.TWO' | translate
+              }}</ion-label>
+              <ion-radio
+                slot="start"
+                [value]="RICE_CROP_PER_YEAR.TWO"
+                [disabled]="isFormDisabled"
+              ></ion-radio>
+            </ion-item>
+
+            <ion-item>
+              <ion-label>{{
+                'TARGET_YIELD.CROPS_PER_YEAR.ANSWER.THREE' | translate
+              }}</ion-label>
+              <ion-radio
+                slot="start"
+                [value]="RICE_CROP_PER_YEAR.THREE"
+                [disabled]="isFormDisabled"
+              ></ion-radio>
+            </ion-item>
+          </ion-radio-group>
+          <ion-item lines="none" *ngIf="isQuestionOneHasError">
+            <mat-error class="form-error">
+              {{ 'COMMON.VALIDATION.REQUIRED' | translate }}
+            </mat-error>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row class="ion-padding-top">
+        <ion-col>
+          <ion-radio-group
+            formControlName="establishment"
+            (ionChange)="selectEstablishment($event)"
+          >
+            <ion-list-header>
+              <ion-label>
+                {{ 'TARGET_YIELD.CROP_ESTABLISHMENT.QUESTION' | translate }}
+                <ion-text color="danger"> *</ion-text>
+              </ion-label>
+            </ion-list-header>
+
+            <ion-item>
+              <ion-label>{{
+                'COMMON.CROP_ESTABLISHMENT.MANUAL' | translate
+              }}</ion-label>
+              <ion-radio
+                slot="start"
+                [value]="CROP_ESTABLISHMENT.MANUAL"
+                [disabled]="isFormDisabled"
+              ></ion-radio>
+            </ion-item>
+
+            <ion-item>
+              <ion-label>{{
+                'COMMON.CROP_ESTABLISHMENT.MECHANICAL' | translate
+              }}</ion-label>
+              <ion-radio
+                slot="start"
+                [value]="CROP_ESTABLISHMENT.MECHANICAL"
+                [disabled]="isFormDisabled"
+              ></ion-radio>
+            </ion-item>
+
+            <ion-item>
+              <ion-label>{{
+                'COMMON.CROP_ESTABLISHMENT.WET' | translate
+              }}</ion-label>
+              <ion-radio
+                slot="start"
+                [value]="CROP_ESTABLISHMENT.WET"
+                [disabled]="isFormDisabled"
+              ></ion-radio>
+            </ion-item>
+
+            <ion-item>
+              <ion-label>{{
+                'COMMON.CROP_ESTABLISHMENT.DRY' | translate
+              }}</ion-label>
+              <ion-radio
+                slot="start"
+                [value]="CROP_ESTABLISHMENT.DRY"
+                [disabled]="isFormDisabled"
+              ></ion-radio>
+            </ion-item>
+          </ion-radio-group>
+          <ion-item lines="none" *ngIf="isQuestionTwoHasError">
+            <mat-error class="form-error">
+              {{ 'COMMON.VALIDATION.REQUIRED' | translate }}
+            </mat-error>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <mat-form-field
+        class="ion-padding-top"
+        *ngIf="targetYieldForm.get('establishment').value"
+      >
+        <mat-label
+          >{{
+            'TARGET_YIELD.SOWING_DATE.QUESTION.' +
+              (isTransplanting ? 'TRANSPLANTING' : 'SEEDING') | translate
+          }}
+          <ion-text color="danger"> *</ion-text>
+        </mat-label>
+        <input
+          matInput
+          [matDatepicker]="picker"
+          (click)="picker.open()"
+          readonly
+          matInput
+          [min]="minSowingDate"
+          [max]="maxSowingDate"
+          formControlName="sowingDate"
+          (dateChange)="selectSowingDate($event)"
+          [disabled]="isFormDisabled"
+        />
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+        <mat-error
+          class="form-error error-padding-bottom"
+          *ngIf="isQuestionThreeHasError"
+        >
+          {{
+            'TARGET_YIELD.SOWING_DATE.VALIDATION.REQUIRED.' +
+              (isTransplanting ? 'TRANSPLANTING' : 'SEEDING') | translate
+          }}
+        </mat-error>
+      </mat-form-field>
+      <app-error *ngIf="isQuestionThreeAHasError" [errorMessage]="'TARGET_YIELD.SOWING_DATE.VALIDATION.INTERVIEW_NOT_MORE_THAN_EIGHT_DAYS_AFTER_SOWING_DATE'
+      | translate"></app-error>
+      <ion-row
+        class="ion-padding-top"
+        *ngIf="isEstablishmentManual || isEstablishmentMechanical"
+        (ionChange)="selectSeedlingAge()"
+      >
+        <ion-col>
+          <ion-radio-group formControlName="seedlingAge">
+            <ion-list-header>
+              <ion-label>
+                {{ 'TARGET_YIELD.SEEDLING_AGE.QUESTION' | translate }}
+                <ion-text color="danger"> *</ion-text>
+              </ion-label>
+            </ion-list-header>
+
+            <ion-item>
+              <ion-label>{{
+                'COMMON.SEEDLING_AGE.EARLY_SEEDLING_AGE'
+                  | translate
+              }}</ion-label>
+              <ion-radio
+                slot="start"
+                [value]="EARLY_SEEDLING_AGE"
+                [disabled]="isFormDisabled"
+              ></ion-radio>
+            </ion-item>
+
+            <ion-item>
+              <ion-label>{{
+                'COMMON.SEEDLING_AGE.MIDDLE_SEEDLING_AGE'
+                  | translate
+              }}</ion-label>
+              <ion-radio
+                slot="start"
+                [value]="MIDDLE_SEEDLING_AGE"
+                [disabled]="
+                  (isEstablishmentMechanical &&
+                    targetYieldForm.controls.establishment.value > 0) ||
+                  isFormDisabled
+                "
+              ></ion-radio>
+            </ion-item>
+
+            <ion-item>
+              <ion-label
+                >{{
+                  'COMMON.SEEDLING_AGE.LATE_SEEDLING_AGE'
+                    | translate
+                }}
+              </ion-label>
+              <ion-radio
+                slot="start"
+                [value]="LATE_SEEDLING_AGE"
+                [disabled]="
+                  (isEstablishmentMechanical &&
+                    targetYieldForm.controls.establishment.value > 0) ||
+                  isFormDisabled
+                "
+              ></ion-radio>
+            </ion-item>
+          </ion-radio-group>
+          <ion-item lines="none" *ngIf="isQuestionFourHasError">
+            <mat-error class="form-error">
+              {{ 'COMMON.VALIDATION.REQUIRED' | translate }}
+            </mat-error>
+          </ion-item>
+          <app-error *ngIf="isQuestionThreeBHasError" [errorMessage]="'TARGET_YIELD.SEEDLING_AGE.VALIDATION.ONE' | translate"></app-error>
+        </ion-col>
+      </ion-row>
+
+      <ion-row
+        class="ion-padding-top"
+        *ngIf="targetYieldForm.get('sowingDate').value"
+      >
+        <ion-col>
+          <ion-radio-group
+            formControlName="varietyType"
+            (ionChange)="selectVarietyType($event)"
+          >
+            <ion-list-header>
+              <ion-label
+                [innerHTML]="
+                  'TARGET_YIELD.VARIETY_TYPE.QUESTION'
+                    | translate
+                      : {
+                          sowingMonth:
+                            'COMMON.MONTH.' +
+                              (targetYieldForm.get('sowingDate').value
+                                | date: 'MMMM'
+                                | uppercase) | translate
+                        }
+                "
+              >
+              </ion-label>
+            </ion-list-header>
+
+            <ion-item>
+              <ion-label>{{
+                'COMMON.VARIETY_TYPE.INBRED' | translate
+              }}</ion-label>
+              <ion-radio
+                slot="start"
+                value="1"
+                [disabled]="isFormDisabled"
+              ></ion-radio>
+            </ion-item>
+
+            <ion-item>
+              <ion-label>{{
+                'COMMON.VARIETY_TYPE.HYBRID' | translate
+              }}</ion-label>
+              <ion-radio
+                slot="start"
+                value="2"
+                [disabled]="isFormDisabled"
+              ></ion-radio>
+            </ion-item>
+          </ion-radio-group>
+          <ion-item lines="none" *ngIf="isQuestionFiveHasError">
+            <mat-error class="form-error">
+              {{ 'TARGET_YIELD.VARIETY_TYPE.VALIDATION.REQUIRED' | translate }}
+            </mat-error>
+          </ion-item>
+          <mat-form-field
+            class="ion-padding-top"
+            *ngIf="targetYieldForm.get('varietyType').value"
+          >
+            <mat-select
+              [formControl]="targetYieldForm.controls.varietyName"
+              placeholder="{{
+                'TARGET_YIELD.VARIETY_NAME.QUESTION' | translate
+              }}"
+              (selectionChange)="selectVarietyName($event)"
+              #singleSelect
+              [disabled]="isFormDisabled"
+            >
+              <mat-option>
+                <ngx-mat-select-search
+                  [formControl]="varietyNameFilterCtrl"
+                  [placeholderLabel]="'TARGET_YIELD.VARIETY_NAME.SEARCH' | translate"
+                  [noEntriesFoundLabel]="'TARGET_YIELD.VARIETY_NAME.NO_VARIETY_FOUND' | translate"
+                >
+                </ngx-mat-select-search>
+              </mat-option>
+
+              <mat-option
+                *ngFor="let variety of filteredVariety | async"
+                [value]="variety.value"
+              >
+                {{ variety.label }}
+              </mat-option>
+            </mat-select>
+            <mat-error
+              class="form-error error-padding-bottom"
+              *ngIf="isQuestionFiveAHasError"
+              >{{
+                'TARGET_YIELD.VARIETY_NAME.VALIDATION.REQUIRED' | translate
+              }}</mat-error
+            >
+          </mat-form-field>
+
+          <ion-item *ngIf="isVarietyNameNotInTheList">
+            <ion-label position="floating">
+              {{ 'TARGET_YIELD.SPECIFIED_VARIETY_NAME.QUESTION' | translate }}
+              <ion-text color="danger"> *</ion-text>
+            </ion-label>
+            <ion-input
+              formControlName="specifiedVariety"
+              (ionChange)="onSpecifiedVariety()"
+              [disabled]="isFormDisabled"
+            >
+            </ion-input>
+          </ion-item>
+          <ion-item lines="none" *ngIf="isSpecifiedVarietyHasError">
+            <mat-error class="form-error">
+              {{
+                'TARGET_YIELD.SPECIFIED_VARIETY_NAME.VALIDATION.REQUIRED'
+                  | translate
+              }}
+            </mat-error>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row
+        class="ion-padding-top"
+        *ngIf="
+          isVarietyNameNotInTheList &&
+          targetYieldForm.get('establishment').value
+        "
+      >
+        <ion-col>
+          <ion-radio-group
+            formControlName="growthDuration"
+            (ionChange)="selectGrowthDuration($event)"
+          >
+            <ion-list-header>
+              <ion-label>
+                {{ 'TARGET_YIELD.GROWTH_DURATION.QUESTION' | translate }}
+                <ion-text color="danger"> *</ion-text>
+              </ion-label>
+            </ion-list-header>
+
+            <div
+              *ngIf="
+                isVarietyNameNotInTheList &&
+                (isEstablishmentManual || isEstablishmentMechanical)
+              "
+            >
+              <ion-item>
+                <ion-label>{{
+                  'TARGET_YIELD.GROWTH_DURATION.ANSWER.TRANSPLANTING.EARLY_GROWTH_DURATION'
+                    | translate
+                }}</ion-label>
+                <ion-radio
+                  slot="start"
+                  value="1"
+                  [disabled]="isFormDisabled"
+                ></ion-radio>
+              </ion-item>
+
+              <ion-item>
+                <ion-label>{{
+                  'TARGET_YIELD.GROWTH_DURATION.ANSWER.TRANSPLANTING.MIDDLE_GROWTH_DURATION'
+                    | translate
+                }}</ion-label>
+                <ion-radio
+                  slot="start"
+                  value="2"
+                  [disabled]="isFormDisabled"
+                ></ion-radio>
+              </ion-item>
+
+              <ion-item>
+                <ion-label
+                  >{{
+                    'TARGET_YIELD.GROWTH_DURATION.ANSWER.TRANSPLANTING.LATE_GROWTH_DURATION'
+                      | translate
+                  }}
+                </ion-label>
+                <ion-radio
+                  slot="start"
+                  value="3"
+                  [disabled]="isFormDisabled"
+                ></ion-radio>
+              </ion-item>
+            </div>
+
+            <div
+              *ngIf="
+                isVarietyNameNotInTheList &&
+                (isEstablishmentWet || isEstablishmentDry)
+              "
+            >
+              <ion-item>
+                <ion-label>{{
+                  'TARGET_YIELD.GROWTH_DURATION.ANSWER.SEEDING.EARLY_GROWTH_DURATION'
+                    | translate
+                }}</ion-label>
+                <ion-radio
+                  slot="start"
+                  value="1"
+                  [disabled]="isFormDisabled"
+                ></ion-radio>
+              </ion-item>
+
+              <ion-item>
+                <ion-label>{{
+                  'TARGET_YIELD.GROWTH_DURATION.ANSWER.SEEDING.MIDDLE_GROWTH_DURATION'
+                    | translate
+                }}</ion-label>
+                <ion-radio
+                  slot="start"
+                  value="2"
+                  [disabled]="isFormDisabled"
+                ></ion-radio>
+              </ion-item>
+
+              <ion-item>
+                <ion-label>{{
+                  'TARGET_YIELD.GROWTH_DURATION.ANSWER.SEEDING.LATE_GROWTH_DURATION'
+                    | translate
+                }}</ion-label>
+                <ion-radio
+                  slot="start"
+                  value="3"
+                  [disabled]="isFormDisabled"
+                ></ion-radio>
+              </ion-item>
+            </div>
+          </ion-radio-group>
+          <ion-item lines="none" *ngIf="isGrowthDurationHasError">
+            <mat-error class="form-error">
+              {{
+                'TARGET_YIELD.GROWTH_DURATION.VALIDATION.REQUIRED' | translate
+              }}
+            </mat-error>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row
+        class="ion-padding-top"
+        *ngIf="
+          (isEstablishmentWet || isEstablishmentDry) &&
+          targetYieldForm.get('sowingDate').value &&
+          getFieldSizeHectare &&
+          getFarmLotName
+        "
+      >
+        <ion-col>
+          <ion-list-header>
+            <ion-label
+              [innerHTML]="
+                'TARGET_YIELD.SEED_RATE.QUESTION'
+                  | translate
+                    : {
+                        getFieldSizeHectare: getFieldSizeHectare,
+                        getFarmLotName: getFarmLotName,
+                        sowingMonth:
+                          'COMMON.MONTH.' +
+                            (targetYieldForm.get('sowingDate').value
+                              | date: 'MMMM'
+                              | uppercase)
+                          | translate
+                          | titlecase,
+                        seedRate: seedRate
+                          ? '<b><u> Seed Rate: ' + seedRate + ' kg/ha</u></b>'
+                          : ''
+                      }
+              "
+            >
+            </ion-label>
+          </ion-list-header>
+          <ion-item>
+            <ion-input
+              type="number"
+              [placeholder]="'TARGET_YIELD.SEED_RATE.PLACEHOLDER' | translate"
+              formControlName="kilogram"
+              (ionChange)="onSeedRateKgChanged()"
+              [disabled]="isFormDisabled"
+            ></ion-input>
+          </ion-item>
+          <ion-item lines="none" *ngIf="isQuestionSixHasError">
+            <mat-error class="form-error">
+              {{ 'TARGET_YIELD.SEED_RATE.VALIDATION.REQUIRED' | translate }}
+            </mat-error>
+          </ion-item>
+          <ion-item lines="none" *ngIf="isQuestionSixHasMaxError">
+            <mat-error class="form-error">
+              {{ 'TARGET_YIELD.SEED_RATE.VALIDATION.MAX' | translate }}
+            </mat-error>
+          </ion-item>
+          <ion-item lines="none" *ngIf="isQuestionSixHasMinError">
+            <mat-error class="form-error">
+              {{ 'TARGET_YIELD.SEED_RATE.VALIDATION.MAX' | translate }}
+            </mat-error>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row
+        class="ion-padding-top"
+        *ngIf="
+          getFieldSizeHectare &&
+          getFarmLotName &&
+          estimatedHarvestMonth &&
+          targetYieldForm.get('varietyType').value &&
+          targetYieldForm.get('sowingDate').value &&
+          waterSource
+        "
+        formGroupName="numberAndWeightOfSacksGroup"
+      >
+        <ion-col>
+          <ion-list-header>
+            <ion-label
+              [innerHTML]="
+                'TARGET_YIELD.NUMBER_AND_WEIGHT_OF_SACK.QUESTION'
+                  | translate
+                    : {
+                        getFieldSizeHectare: getFieldSizeHectare,
+                        getFarmLotName: getFarmLotName,
+                        estimatedHarvestMonth:
+                          'COMMON.MONTH.' + estimatedHarvestMonth
+                          | translate
+                          | titlecase,
+                        getVarietyType:
+                          'COMMON.VARIETY_TYPE.' +
+                            (getVarietyType() | uppercase) | translate
+                      }
+              "
+            >
+            </ion-label>
+          </ion-list-header>
+
+          <ion-row>
+            <ion-col>
+              <div class="note">
+                {{ 'TARGET_YIELD.NUMBER_AND_WEIGHT_OF_SACK.NOTE' | translate }}
+              </div>
+            </ion-col>
+          </ion-row>
+
+          <ion-item>
+            <ion-label position="floating">
+              <ion-text color="medium">{{ 'COMMON.NUMBER_OF_SACKS' | translate }}</ion-text>
+              <ion-text color="danger"> *</ion-text>
+            </ion-label>
+            <ion-input
+              type="number"
+              formControlName="noOfSacks"
+              (ionChange)="onNoOfSacksAndWeightOfSackChange($event)"
+              [disabled]="isFormDisabled"
+            ></ion-input>
+          </ion-item>
+
+          <ion-item lines="none" *ngIf="isNumberOfSacksHasValue">
+            <mat-error class="form-error">
+              {{
+                'TARGET_YIELD.NUMBER_OF_SACKS.VALIDATION.REQUIRED' | translate
+              }}
+            </mat-error>
+          </ion-item>
+
+          <ion-item lines="none" *ngIf="isNumberOfSacksValid">
+            <mat-error class="form-error">
+              {{ 'TARGET_YIELD.NUMBER_OF_SACKS.VALIDATION.MIN' | translate }}
+            </mat-error>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="floating">
+              <ion-text color="medium">{{ 'COMMON.WEIGHT_OF_SACK' | translate }}</ion-text>
+              <ion-text color="danger"> *</ion-text>
+            </ion-label>
+            <ion-input
+              type="number"
+              formControlName="weightOfSack"
+              (ionChange)="onNoOfSacksAndWeightOfSackChange($event)"
+              [disabled]="isFormDisabled"
+            ></ion-input>
+          </ion-item>
+
+          <ion-item lines="none" *ngIf="isWeightOfSackHasValue">
+            <mat-error class="form-error">
+              {{
+                'TARGET_YIELD.WEIGHT_OF_SACK.VALIDATION.REQUIRED' | translate
+              }}
+            </mat-error>
+          </ion-item>
+
+          <ion-item lines="none" *ngIf="isWeightOfSacksMinValid">
+            <mat-error class="form-error">
+              {{ 'TARGET_YIELD.WEIGHT_OF_SACK.VALIDATION.MIN' | translate }}
+            </mat-error>
+          </ion-item>
+
+          <ion-item lines="none" *ngIf="isWeightOfSacksMaxValid">
+            <mat-error class="form-error">
+              {{ 'TARGET_YIELD.WEIGHT_OF_SACK.VALIDATION.MAX' | translate }}
+            </mat-error>
+          </ion-item>
+
+          <div
+            *ngIf="reportedYield && maxReportedYield"
+            style="font-weight: bold; padding-left: 5px;"
+          >
+            <div style="display: inline-block;">
+              <ion-text>{{ reportedYield | number: '1.1-1' }}</ion-text> {{ 'COMMON.UNIT.TON_PER_HECTARE' | translate }} {{ 'COMMON.OF' | translate }}
+              {{ 'COMMON.FRESH_WEIGHT' | translate }}
+            </div>
+          </div>
+
+          <div *ngIf="reportedYield && maxReportedYield">
+            <ion-row class="ion-justify-content-center">
+              <ion-col>
+
+                <app-error  *ngIf="isReportedYieldMinHasError" [errorMessage]="'TARGET_YIELD.NUMBER_AND_WEIGHT_OF_SACK.VALIDATION.MIN'
+                | translate"></app-error>
+                <app-error  *ngIf="isReportedYieldMaxHasError" [errorMessage]="'TARGET_YIELD.NUMBER_AND_WEIGHT_OF_SACK.VALIDATION.MAX'
+                | translate: { maxReportedYield: maxReportedYield }"></app-error>
+                <div
+                  class="ion-padding success"
+                  *ngIf="
+                    farmerNormalYield >= 7 && reportedYield <= maxReportedYield
+                  "
+                  color="ion-padding warning"
+                >
+                  {{
+                    'TARGET_YIELD.NUMBER_AND_WEIGHT_OF_SACK.WARNING' | translate
+                  }}
+                </div>
+              </ion-col>
+            </ion-row>
+          </div>
+        </ion-col>
+      </ion-row>
+
+      <ion-row
+        class="ion-padding-top"
+        *ngIf="isVarietyTypeHybrid && targetYieldForm.get('sowingDate').value"
+      >
+        <ion-col>
+          <ion-radio-group
+            formControlName="previousVariety"
+            (ionChange)="onPreviousVarietyChange()"
+          >
+            <ion-list-header>
+              <ion-label
+                [innerHTML]="
+                  'TARGET_YIELD.PREVIOUS_VARIETY_TYPE.QUESTION'
+                    | translate
+                      : {
+                          sowingMonth:
+                            'COMMON.MONTH.' +
+                              (targetYieldForm.get('sowingDate').value
+                                | date: 'MMMM'
+                                | uppercase)
+                            | translate
+                            | titlecase
+                        }
+                "
+              >
+              </ion-label>
+            </ion-list-header>
+
+            <ion-item>
+              <ion-label>{{
+                'COMMON.VARIETY_TYPE.INBRED' | translate
+              }}</ion-label>
+              <ion-radio
+                slot="start"
+                value="1"
+                [disabled]="isFormDisabled"
+              ></ion-radio>
+            </ion-item>
+
+            <ion-item>
+              <ion-label>{{
+                'COMMON.VARIETY_TYPE.HYBRID' | translate
+              }}</ion-label>
+              <ion-radio
+                slot="start"
+                value="2"
+                [disabled]="isFormDisabled"
+              ></ion-radio>
+            </ion-item>
+          </ion-radio-group>
+
+          <ion-item lines="none" *ngIf="isQuestionEightAHasError">
+            <mat-error class="form-error">
+              {{
+                'TARGET_YIELD.PREVIOUS_VARIETY_TYPE.VALIDATION.REQUIRED'
+                  | translate
+              }}
+            </mat-error>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row
+        class="ion-padding-top"
+        *ngIf="isVarietyTypeInbred && targetYieldForm.get('sowingDate').value"
+      >
+        <ion-col>
+          <ion-radio-group
+            formControlName="upcomingSeasonSeedSource"
+            (ionChange)="onUpcomingSeasonSeedSourceChange()"
+          >
+            <ion-list-header>
+              <ion-label
+                [innerHTML]="
+                  'TARGET_YIELD.UPCOMING_SEED_SOURCE.QUESTION'
+                    | translate
+                      : {
+                          sowingMonth:
+                            'COMMON.MONTH.' +
+                              (targetYieldForm.get('sowingDate').value
+                                | date: 'MMMM'
+                                | uppercase)
+                            | translate
+                            | titlecase
+                        }
+                "
+              >
+              </ion-label>
+            </ion-list-header>
+
+            <ion-item>
+              <ion-label
+                >{{
+                  'COMMON.SEED_SOURCE_ANSWER.PURCHASE_CERTIFIED_SEED'
+                    | translate
+                }}
+              </ion-label>
+              <ion-radio
+                slot="start"
+                value="1"
+                [disabled]="isFormDisabled"
+              ></ion-radio>
+            </ion-item>
+
+            <ion-item>
+              <ion-label class="ion-text-wrap"
+                >{{
+                  'COMMON.SEED_SOURCE_ANSWER.QUALITY_SEED'
+                    | translate
+                }}
+              </ion-label>
+              <ion-radio
+                slot="start"
+                value="2"
+                [disabled]="isFormDisabled"
+              ></ion-radio>
+            </ion-item>
+
+            <ion-item>
+              <ion-label>{{
+                'COMMON.SEED_SOURCE_ANSWER.FIRST_HARVEST_SEED'
+                  | translate
+              }}</ion-label>
+              <ion-radio
+                slot="start"
+                value="3"
+                [disabled]="isFormDisabled"
+              ></ion-radio>
+            </ion-item>
+
+            <ion-item>
+              <ion-label
+                >{{
+                  'COMMON.SEED_SOURCE_ANSWER.HOME_SAVED_SEED'
+                    | translate
+                }}
+              </ion-label>
+              <ion-radio
+                slot="start"
+                value="4"
+                [disabled]="isFormDisabled"
+              ></ion-radio>
+            </ion-item>
+          </ion-radio-group>
+
+          <ion-item lines="none" *ngIf="isQuestionEightBHasError">
+            <mat-error class="form-error">
+              {{ 'COMMON.VALIDATION.REQUIRED' | translate }}
+            </mat-error>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row
+        class="ion-padding-top"
+        *ngIf="
+          isVarietyTypeInbred &&
+          targetYieldForm.value.numberAndWeightOfSacksGroup.noOfSacks &&
+          estimatedHarvestMonth
+        "
+      >
+        <ion-col>
+          <ion-radio-group
+            formControlName="seedSource"
+            (ionChange)="onSeedSourceChange()"
+          >
+            <ion-list-header>
+              <ion-label
+                [innerHTML]="
+                  'TARGET_YIELD.PREVIOUS_SEED_SOURCE.QUESTION'
+                    | translate
+                      : {
+                          noOfSacks:
+                            targetYieldForm.value.numberAndWeightOfSacksGroup
+                              .noOfSacks,
+                          estimatedHarvestMonth:
+                            'COMMON.MONTH.' + estimatedHarvestMonth
+                            | translate
+                            | titlecase
+                        }
+                "
+              >
+              </ion-label>
+            </ion-list-header>
+
+            <ion-item>
+              <ion-label
+                >{{
+                  'COMMON.SEED_SOURCE_ANSWER.PURCHASE_CERTIFIED_SEED'
+                    | translate
+                }}
+              </ion-label>
+              <ion-radio
+                slot="start"
+                value="1"
+                [disabled]="isFormDisabled"
+              ></ion-radio>
+            </ion-item>
+
+            <ion-item>
+              <ion-label
+                >{{
+                  'COMMON.SEED_SOURCE_ANSWER.QUALITY_SEED'
+                    | translate
+                }}
+              </ion-label>
+              <ion-radio
+                slot="start"
+                value="2"
+                [disabled]="isFormDisabled"
+              ></ion-radio>
+            </ion-item>
+
+            <ion-item>
+              <ion-label>{{
+                'COMMON.SEED_SOURCE_ANSWER.FIRST_HARVEST_SEED'
+                  | translate
+              }}</ion-label>
+              <ion-radio
+                slot="start"
+                value="3"
+                [disabled]="isFormDisabled"
+              ></ion-radio>
+            </ion-item>
+
+            <ion-item>
+              <ion-label
+                >{{
+                  'COMMON.SEED_SOURCE_ANSWER.HOME_SAVED_SEED'
+                    | translate
+                }}
+              </ion-label>
+              <ion-radio
+                slot="start"
+                value="4"
+                [disabled]="isFormDisabled"
+              ></ion-radio>
+            </ion-item>
+          </ion-radio-group>
+
+          <ion-item lines="none" *ngIf="isQuestionNineHasError">
+            <mat-error class="form-error">
+              {{ 'COMMON.VALIDATION.REQUIRED' | translate }}
+            </mat-error>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row
+        class="ion-padding-top"
+        *ngIf="targetYieldForm.get('sowingDate').value"
+      >
+        <ion-col>
+          <ion-radio-group
+            formControlName="recentYearsFarmLotDescription"
+            (ionChange)="onRecentYearsFarmLotDescriptionChange()"
+          >
+            <ion-list-header>
+              <ion-label
+                [innerHTML]="
+                  'TARGET_YIELD.WATER.QUESTION'
+                    | translate
+                      : {
+                          sowingMonth:
+                            'COMMON.MONTH.' +
+                              (targetYieldForm.get('sowingDate').value
+                                | date: 'MMMM'
+                                | uppercase)
+                            | translate
+                            | titlecase
+                        }
+                "
+              >
+              </ion-label>
+            </ion-list-header>
+
+            <ion-item>
+              <ion-label>
+                {{ 'TARGET_YIELD.WATER.ANSWER.ADEQUATE_WATER' | translate }}
+              </ion-label>
+              <ion-radio
+                slot="start"
+                value="1"
+                [disabled]="isFormDisabled"
+              ></ion-radio>
+            </ion-item>
+
+            <ion-item>
+              <ion-label>
+                {{ 'TARGET_YIELD.WATER.ANSWER.SUBMERGENCE_STRESS' | translate }}
+              </ion-label>
+              <ion-radio
+                slot="start"
+                value="2"
+                [disabled]="isFormDisabled"
+              ></ion-radio>
+            </ion-item>
+
+            <ion-item>
+              <ion-label
+                >{{ 'TARGET_YIELD.WATER.ANSWER.SHORTAGE_OF_WATER' | translate }}
+              </ion-label>
+              <ion-radio
+                slot="start"
+                value="3"
+                [disabled]="isFormDisabled"
+              ></ion-radio>
+            </ion-item>
+          </ion-radio-group>
+
+          <ion-item lines="none" *ngIf="isQuestionTenHasError">
+            <mat-error class="form-error">
+              {{ 'COMMON.VALIDATION.REQUIRED' | translate }}
+            </mat-error>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row
+        class="ion-padding-top"
+        *ngIf="shouldDisplayTargetYieldOutput || recommendation"
+      >
+        <ion-col>
+          <app-target-yield-output
+            [targetYield]="targetYieldModel"
+            [fieldInfoRecommendation]="fieldInfoRecommendationFormValue"
+            [dialectSelected]="defaultSelectedLanguage"
+          ></app-target-yield-output>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-button type="submit">{{ 'COMMON.NEXT' | translate }}</ion-button>
+
+          <ion-button 
+          color="primary" 
+          type="button" 
+          (click)="editForm()"
+          *ngIf="wasTheRecommendationSaved === false"
+          [hidden]="!isFormDisabled || recommendation">
+          {{ 'COMMON.EDIT' | translate }}
+        </ion-button>
+         <ion-button color="medium" type="button"  *ngIf="wasTheRecommendationSaved === true" [matTooltip]="'BUTTON.RECOMMENDATION_IS_SAVED_TOOLTIP' | translate">
+          {{ 'COMMON.EDIT' | translate }}
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </form>
+  </ion-col>
+</ion-row>

@@ -1,0 +1,167 @@
+<form
+  [formGroup]="nFertilizerSourceForm"
+  (ngSubmit)="onSplittingFertilizerRecommendationFormSubmit()"
+>
+  <ion-card>
+    <ion-card-content>
+      <ion-grid>
+        <ion-row class="output-summary-intro">
+          {{ 'TIMING_AND_SPLITTING.INTRO' | translate }}
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-content>
+      <div class="ion-text-center output-summary-intro">
+        <p>
+          {{
+            'TIMING_AND_SPLITTING.OUTPUT_SUMMARY_INTRO.CROP_ESTABLISHMENT_METHOD'
+              | translate
+          }}:
+          <ion-text color="primary">{{
+            'COMMON.CROP_ESTABLISHMENT.' + cropEstablishmentLabel | translate
+          }}</ion-text>
+        </p>
+        <p>
+          {{
+            'TIMING_AND_SPLITTING.OUTPUT_SUMMARY_INTRO.' +
+              (cropEstablishmentLabel === 'MANUAL' ||
+              cropEstablishmentLabel === 'MECHANICAL'
+                ? 'SOWING_DATE_IN_SEEDBED'
+                : 'SOWING_DATE_IN_FARM_LOT') | translate
+          }}:
+          <ion-text color="primary"
+            >{{
+              'COMMON.MONTH.' +
+                (targetYield?.sowingDate | date: 'MMMM' | uppercase) | translate
+            }}
+            {{ targetYield?.sowingDate | date: 'dd' }},
+            {{ targetYield?.sowingDate | date: 'yyyy' }}
+          </ion-text>
+        </p>
+        <p [hidden]="!showTransplanting">
+          {{
+            'TIMING_AND_SPLITTING.OUTPUT_SUMMARY_INTRO.APPROXIMATE_SEEDLING_AGE'
+              | translate
+          }}:
+          <ion-text color="primary"
+            >{{ 'COMMON.SEEDLING_AGE.' + seedlingAgeLabel | translate }}
+          </ion-text>
+        </p>
+        <p>
+          {{
+            'TIMING_AND_SPLITTING.OUTPUT_SUMMARY_INTRO.VARIETY_TYPE'
+              | translate
+          }}:
+          <ion-text color="primary">
+            {{ 'COMMON.VARIETY_TYPE.' + varietyTypeLabel | translate }},
+            {{
+              'TARGET_YIELD.GROWTH_DURATION.ANSWER.' +
+                (showTransplanting ? 'TRANSPLANTING.' : 'SEEDING.') +
+                varietyGrowthDurationLabel | translate
+            }}
+          </ion-text>
+        </p>
+      </div>
+      <div class="ion-text-center output-summary-intro">
+        {{ 'COMMON.TARGET_YIELD' | translate }} ({{
+          'COMMON.FRESH_WEIGHT' | translate
+        }}):
+        <ion-text color="primary">{{
+          targetYield?.targetYieldSackCount
+        }}</ion-text>
+        {{ 'COMMON.SACKS_AT' | translate }}
+        <ion-text color="primary">{{
+          targetYield?.targetYieldKgPerSack
+        }}</ion-text>
+        {{ 'COMMON.UNIT.KG_PER_SACK' | translate }},
+        <ion-text color="primary">{{
+          targetYield?.freshWeightOutput
+        }}</ion-text>
+        {{ 'COMMON.UNIT.TON_PER_HECTARE' | translate }}
+      </div>
+      <div class="ion-text-center output-summary-intro">
+        <p>
+          {{ 'COMMON.WATER_SOURCE.LABEL' | translate }}:
+          <ion-text color="primary">
+            {{
+              'COMMON.WATER_SOURCE.' + waterSourceLabel | translate
+            }}, {{ 'RECOMMENDATION_SUMMARY.' + waterPump | translate }}
+          </ion-text>
+        </p>
+      </div>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-list>
+    <ion-radio-group formControlName="nSource" (ionChange)="onSourceChange()">
+      <ion-list-header>
+        <ion-label>
+          {{ 'TIMING_AND_SPLITTING.NSOURCE.QUESTION' | translate }}
+          <ion-text color="danger"> *</ion-text>
+        </ion-label>
+      </ion-list-header>
+
+      <ion-item>
+        <ion-label>Urea (46-0-0)</ion-label>
+        <ion-radio value="1" [disabled]="isFormDisabled"></ion-radio>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Ammosul (21-0-0)</ion-label>
+        <ion-radio value="2" [disabled]="isFormDisabled"></ion-radio>
+      </ion-item>
+    </ion-radio-group>
+
+    <ion-item
+      lines="none"
+      *ngIf="nSourceControl.invalid && nSourceControl.touched"
+    >
+      <mat-error class="form-error" *ngIf="nSourceControl.errors.required">
+        {{ 'COMMON.VALIDATION.REQUIRED_SECONDARY' | translate }}
+      </mat-error>
+    </ion-item>
+  </ion-list>
+
+  <ion-grid
+    *ngIf="
+      (nFertilizerSourceForm.valid || nFertilizerSourceForm.disabled) &&
+      timingSplittingModel
+    "
+  >
+    <app-fertilizer-resources-output
+      [fieldInfoRecommendation]="farmLotInfo"
+      [fertilizerRecommendationModel]="timingSplittingModel"
+      [dialectSelected]="defaultSelectedLanguage"
+    >
+    </app-fertilizer-resources-output>
+  </ion-grid>
+
+  <ion-grid>
+    <ion-row>
+      <ion-button color="primary" type="submit">{{
+        'COMMON.NEXT' | translate
+      }}</ion-button>
+      <ion-button
+        color="primary"
+        type="button"
+        (click)="editForm()"
+        *ngIf="wasTheRecommendationSaved === false"
+        [hidden]="!isFormDisabled || recommendationModel"
+      >
+        {{ 'COMMON.EDIT' | translate }}
+      </ion-button>
+
+      <ion-button
+        color="medium"
+        type="button"
+        *ngIf="wasTheRecommendationSaved === true"
+        [matTooltip]="'BUTTON.RECOMMENDATION_IS_SAVED_TOOLTIP' | translate"
+      >
+        {{ 'COMMON.EDIT' | translate }}
+      </ion-button>
+    </ion-row>
+  </ion-grid>
+</form>

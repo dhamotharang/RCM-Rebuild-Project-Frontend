@@ -1,0 +1,80 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Data Privacy</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="ion-padding">
+    <p>We are committed to ensuring that your privacy is protected and we shall endeavour to use any
+      information that you provide when using this website in accordance with this privacy policy.
+    </p>
+    <p>
+      This privacy policy explains what information we collect, how we protect any information you submit to us, and how
+      we
+      use it.
+    </p>
+    <p>
+      We may amend this policy from time to time by updating this page. Therefore, we suggest you check this page
+      occasionally to ensure you are aware of and are happy with any amendments.
+    </p>
+
+    <h5>What information do we collect?</h5>
+    <p>Personal information may be collected from you in various ways, for example: </p>
+
+    <p>
+      1. Information about your computer and about your visits to and use of this website (these are information about
+      your
+      browser, your IP address, your general location as determined from your IP address and provided by your browser,
+      the
+      site from which you come, and the links followed when leaving our site). This information is also collected
+      through
+      cookies.
+      <br />
+      <br />
+      2. When you register and voluntarily provide information in response to questionnaires or download forms, or to
+      register for newsletters or start or contribute to petitions. (this includes your name, email address, and any
+      other
+      details asked for and which you provide)
+      <br />
+      <br />
+      3. When you conduct activities on our site (for example, when you purchase a product or service we record what you
+      purchased etc.) we may collect your name and contact details, details of your subscription to our services, and
+      other
+      information gathered by Facebook and transferred to us, including your address.
+    </p>
+  </div>
+  <div class="ion-padding">
+    <ion-item>
+      <ion-label>Select Data Privacy Language</ion-label>
+      <ion-select (ionChange)="onSelectLanguage($event)" [value]="DEFAULT_LANGUAGE_ID">
+        <ion-select-option *ngFor="let farmerConsentLanguage of farmerConsentLanguages"
+        [value]="farmerConsentLanguage.id">{{ farmerConsentLanguage.label }}</ion-select-option>
+      </ion-select>
+    </ion-item>
+  </div>
+  <div class="ion-padding" *ngIf="viewOnly">
+    <ion-row>
+      <ion-col col-6 class="log-buttons">
+        <ion-button color="primary" (click)="download()" expand="block">Download Data Privacy</ion-button>
+      </ion-col>
+      <ion-col col-6 class="log-buttons">
+        <app-ghost-button expand="block" (onClick)="closeModal()">Close</app-ghost-button>
+      </ion-col>
+    </ion-row>
+  </div>
+
+  <div class="ion-padding" *ngIf="!viewOnly">
+    <ion-row>
+      <ion-col col-6 class="log-buttons">
+        <app-ghost-button expand="block" (onClick)="closeModal()">Decline</app-ghost-button>
+      </ion-col>
+      <ion-col col-6 class="log-buttons">
+        <ion-button color="success" (click)="accept()" expand="block">Agree and Continue</ion-button>
+      </ion-col>
+      <ion-col col-6 class="log-buttons">
+        <ion-button color="primary" (click)="download()" expand="block">Download Data Privacy</ion-button>
+      </ion-col>
+    </ion-row>
+  </div>
+</ion-content>

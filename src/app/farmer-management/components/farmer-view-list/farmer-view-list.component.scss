@@ -1,0 +1,32 @@
+.farmer-card {
+    padding: 10px;
+    cursor: pointer;
+  }
+  
+  .farmer-photo {
+    width: 4.3rem;
+    border-radius: 100%;
+    font-size: 4.3rem;
+  }
+
+  .farmers-name {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  h1 {
+    font-size: 4rem;
+    font-weight: bold;
+  }
+  
+  h1,
+  h2,
+  h4,
+  h5 {
+    margin: 0;
+  }
+  
+  small {
+    opacity: 0.8;
+  }

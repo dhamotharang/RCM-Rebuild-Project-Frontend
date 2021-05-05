@@ -1,0 +1,15 @@
+<ion-card>
+  <ion-card-content>
+    <div class="ion-text-center output-summary">
+      <p>{{ 'TARGET_YIELD.OUTPUT.THE_TARGET_YIELD_FOR_YOUR' | customDialectTranslation: dialectSelected | async }}
+        <ion-text color="primary">{{ fieldInfoRecommendation?.selectedFarmSize }}</ion-text> {{ 'COMMON.UNIT.HECTARE' | customDialectTranslation: dialectSelected | async }}
+        <ion-text color="primary">{{ fieldInfoRecommendation?.farmLotName }}</ion-text> {{ 'TARGET_YIELD.OUTPUT.FARM_LOT_IS' | customDialectTranslation: dialectSelected | async }}</p>
+      <p>
+        <ion-text color="primary">{{ targetYield?.targetYieldSackCount | roundUp }}</ion-text> {{ 'COMMON.SACKS_AT' | customDialectTranslation: dialectSelected | async }}
+        <ion-text color="primary">{{ targetYield?.targetYieldKgPerSack }}</ion-text> {{ 'COMMON.UNIT.KG_PER_SACK' | customDialectTranslation: dialectSelected | async }},
+        <ion-text color="primary">{{ targetYield?.freshWeightOutput }}</ion-text> {{ 'COMMON.UNIT.TON_PER_HECTARE' | customDialectTranslation: dialectSelected | async }} {{ 'COMMON.OF' | customDialectTranslation: dialectSelected | async }} {{ 'COMMON.FRESH_WEIGHT' | customDialectTranslation: dialectSelected | async }}
+      </p>
+      <p>= <ion-text color="primary">{{ targetYield?.dryWeightOutput }}</ion-text> {{ 'COMMON.UNIT.TON_PER_HECTARE' | customDialectTranslation: dialectSelected | async }} {{ 'TARGET_YIELD.OUTPUT.MOISTURE_CONTENT_14' | customDialectTranslation: dialectSelected | async }} {{ 'COMMON.OF' | customDialectTranslation: dialectSelected | async }} {{ 'COMMON.DRY_WEIGHT' | customDialectTranslation: dialectSelected | async }}</p>
+    </div>
+  </ion-card-content>
+</ion-card>

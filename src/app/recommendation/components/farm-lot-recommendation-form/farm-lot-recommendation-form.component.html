@@ -1,0 +1,295 @@
+<div class="ion-padding" *ngIf="recommendation || !viewMode; else loading">
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>{{ 'FARM_LOT.FARM_LOT_DETAILS' | translate }}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <div class="ion-margin-bottom">
+        <ion-label class="small-label">
+          <ion-label>{{ 'COMMON.NAME' | translate }}</ion-label>
+        </ion-label>
+        <h2>
+          {{ fieldInfo?.field_name }}
+        </h2>
+      </div>
+      <div class="ion-margin-bottom">
+        <ion-label class="small-label">
+          Address
+        </ion-label>
+        <h2>
+          {{ fieldInfo?.address | address }}
+        </h2>
+      </div>
+      
+      <div class="ion-margin-bottom">
+        <ion-label class="small-label">
+          {{'FARM_LOT.FARM_LOT_SIZE' | translate }}
+        </ion-label>
+        <h2>
+          {{ fieldInfo?.field_size_ha }} {{ 'COMMON.UNIT.HA' | translate }}
+        </h2>
+      </div>
+    </ion-card-content>
+  </ion-card>
+  <form [formGroup]="fieldInfoRecommendationForm" (ngSubmit)="onFieldInfoRecommendationFormSubmit()">
+
+    <!-- USE FULL FARM SIZE CHECKBOX -->
+    <ion-item class="ion-margin-bottom">
+      <ion-label>{{ 'FARM_LOT.USE_WHOLE_FARM_LOT_SIZE' | translate }}</ion-label>
+      <ion-checkbox
+      (ionChange)="onShouldUseFullFarmSizeChange($event)" 
+      [checked]="shouldUseFullFarmSize"
+        [disabled]="isFormDisabled"></ion-checkbox>
+    </ion-item>
+
+    <ion-list *ngIf="!shouldUseFullFarmSize">
+      <!-- FARM SIZE UNIT RADIO BUTTON -->
+      <ion-radio-group formControlName="farmSizeUnit" (ionChange)="onFieldUnitChange($event)">
+        <ion-list-header>
+          <ion-label>
+            
+          {{'FARM_LOT.SELECT_FARM_LOT_SIZE' | translate }}
+            <ion-text color="danger">*</ion-text>
+          </ion-label>
+        </ion-list-header>
+
+        <ion-item>
+          <ion-label>{{'COMMON.UNIT.HECTARES' | translate }}</ion-label>
+          <ion-radio 
+          slot="start" 
+          [value]="HECTARE"
+          [disabled]="isFormDisabled"></ion-radio>
+        </ion-item>
+        <ion-item>
+          <ion-label>{{'COMMON.UNIT.SQUARE_METER' | translate }}</ion-label>
+          <ion-radio 
+          slot="start" 
+          [value]="SQUARE_METER"
+          [disabled]="isFormDisabled"></ion-radio>
+        </ion-item>
+      </ion-radio-group>
+
+      <ion-item lines="none" *ngIf="farmSizeUnitControl.invalid && farmSizeUnitControl.touched">
+        <mat-error class="form-error" *ngIf="farmSizeUnitControl.errors.required ">
+          {{ 'COMMON.VALIDATION.REQUIRED_SECONDARY' | translate }}
+        </mat-error>
+      </ion-item>
+
+      <!-- FARM SIZE INPUT ELEMENT -->
+      <ion-item *ngIf="farmSizeUnitControl.value">
+        <ion-label position="floating">
+          <ion-text color="medium">{{'FARM_LOT.INPUT_SIZE' | translate }} ({{ farmSizeUnitSelected }}) | max:
+            {{ maxValueValidation }} {{ farmSizeUnitSelected }}
+          </ion-text>
+          <ion-text color="danger"> *</ion-text>
+        </ion-label>
+        <ion-input
+        type="text" 
+        formControlName="farmSize" 
+        (ionChange)="onFieldSizeChange()" 
+        [disabled]="isFormDisabled" appTwoDigitDecimal appDisableRightClick></ion-input>
+      </ion-item>
+      <div *ngIf="this.fieldInfoRecommendationForm.controls.farmSizeUnit.value == SQUARE_METER && this.fieldInfoRecommendationForm.controls.farmSize.value > 0" style="font-weight: bold; padding-left:5px;">
+        <div style="display: inline-block;">
+          <ion-input type="text" size="2" [value]="fieldSizeHa | number:'1.2-2'" readonly="readonly">
+          </ion-input>
+        </div>
+        <div style="vertical-align: baseline; display: inline-block;">
+          <u>{{'COMMON.UNIT.HECTARES' | translate }}</u>
+        </div>
+      </div>
+      <!-- FARM SIZE ERROR LABELS -->
+      <ion-item lines="none" *ngIf="farmSizeUnitControl.valid && farmSizeControl.invalid && farmSizeControl.touched">
+        <mat-error class="form-error" *ngIf="farmSizeControl.errors.required">
+          {{ 'COMMON.VALIDATION.REQUIRED_SECONDARY' | translate }}
+        </mat-error>
+        <mat-error class="form-error" *ngIf="farmSizeControl.errors.max">
+          Value should not exceed whole farm lot size
+        </mat-error>
+        <mat-error class="form-error" *ngIf="farmSizeControl.errors.min">
+          Value should not be less than 0.02 hectares
+        </mat-error>
+      </ion-item>
+    </ion-list>
+    <ion-list>
+      <ion-radio-group formControlName="daProject" (ionChange)="onDaProjectChange($event)">
+        <ion-list-header>
+          <ion-label>
+            {{ 'FARM_LOT.DA_PROGRAM_QUESTION' | translate }}
+            <ion-text color="danger">*</ion-text>
+          </ion-label>
+        </ion-list-header>
+  
+        <ion-item>
+          <ion-label>RCM large scale dissemination project
+          </ion-label>
+          <ion-radio
+          slot="start" 
+          [value]="RCM_LARGE_SCALE"
+          [disabled]="isFormDisabled"
+          ></ion-radio>
+        </ion-item>
+        <ion-item>
+          <ion-label>Rice Model Farm</ion-label>
+          <ion-radio 
+          slot="start" 
+          [value]="RICE_MODEL_FARM"
+          [disabled]="isFormDisabled"></ion-radio>
+        </ion-item>
+        <ion-item>
+          <ion-label>Intensive hybridization program</ion-label>
+          <ion-radio 
+          slot="start" 
+          [value]="INTENSIVE_HYBRIDIZATION_PROGRAM"
+          [disabled]="isFormDisabled"></ion-radio>
+        </ion-item>
+        <ion-item>
+          <ion-label>RCM Research</ion-label>
+          <ion-radio 
+          slot="start" 
+          [value]="RCM_RESEARCH"
+          [disabled]="isFormDisabled"></ion-radio>
+        </ion-item>
+        <ion-item>
+          <ion-label>{{ 'COMMON.OTHERS_PLEASE_SPECIFY' | translate }}</ion-label>
+          <ion-radio 
+          slot="start" 
+          [value]="OTHERS"
+          [disabled]="isFormDisabled"></ion-radio>
+        </ion-item>
+      </ion-radio-group>
+      <ion-item *ngIf="fieldInfoRecommendationForm.get('daProject').value === OTHERS">
+        <ion-label position="floating">{{ 'FARM_LOT.PLEASE_SPECIFY_PROGRAM_OR_PROJECT' | translate }}</ion-label>
+        <ion-input formControlName="specifiedDaProject" [disabled]="isFormDisabled" (ionChange)="onSpecifiedDaProjectChange()"></ion-input>
+      </ion-item>
+      <ion-item lines="none" *ngIf="fieldInfoRecommendationForm.get('daProject').invalid && fieldInfoRecommendationForm.get('daProject').touched">
+        <mat-error class="form-error">
+          {{ 'COMMON.VALIDATION.REQUIRED_SECONDARY' | translate }}
+        </mat-error>
+      </ion-item>
+      <ion-item lines="none" *ngIf="fieldInfoRecommendationForm.get('specifiedDaProject').invalid && fieldInfoRecommendationForm.get('specifiedDaProject').touched">
+        <mat-error class="form-error">
+          {{ 'COMMON.VALIDATION.REQUIRED_SECONDARY' | translate }}
+        </mat-error>
+      </ion-item>
+    </ion-list>
+
+
+<ion-list>
+    <ion-radio-group formControlName="fieldSeasonDescription" (ionChange)="onFieldSeasonDescriptionChange($event)">
+      <ion-list-header>
+        <ion-label [innerHtml]="('FARM_LOT.FARM_DESCRIPTION_IN_UPCOMING_SEASON_QUESTION' | translate).replace('{FARM_LOT_NAME}', fieldInfo?.field_name)">
+         
+          <!-- Which describes best your <b>{{ fieldInfo?.field_name }}</b> farm
+          lot for upcoming season?  -->
+          <ion-text color="danger">*</ion-text>
+        </ion-label>
+      </ion-list-header>
+
+      <ion-item>
+        <ion-label>{{'COMMON.WATER_SOURCE.IRRIGATED' | translate}}</ion-label>
+        <ion-radio 
+        slot="start" 
+        [value]="IRRIGATED"
+        [disabled]="isFormDisabled"></ion-radio>
+      </ion-item>
+      <ion-item>
+        <ion-label>{{'COMMON.WATER_SOURCE.RAINFED' | translate}}</ion-label>
+        <ion-radio 
+        slot="start" 
+        [value]="RAINFED"
+        [disabled]="isFormDisabled"></ion-radio>
+      </ion-item>
+    </ion-radio-group>
+    <ion-item lines="none" *ngIf="fieldInfoRecommendationForm.get('fieldSeasonDescription').invalid && fieldInfoRecommendationForm.get('fieldSeasonDescription').touched">
+      <mat-error class="form-error">
+        {{ 'COMMON.VALIDATION.REQUIRED_SECONDARY' | translate }}
+      </mat-error>
+    </ion-item>
+  </ion-list>
+
+  <!-- IRRIGATED QUESTION -->
+  <ion-list *ngIf="irrigatedQuestionShouldShow">
+    <ion-radio-group formControlName="isUsingPumpPoweredEquipment" (ionChange)="emitFormModel()">
+      <ion-list-header>
+        <ion-label>
+         {{'FARM_LOT.DO_YOU_USE_PUMP_QUESTION' | translate}} <ion-text color="danger">*</ion-text>
+        </ion-label>
+      </ion-list-header>
+      <ion-item>
+        <ion-label>{{'COMMON.ANSWER.NO' | translate}}</ion-label>
+        <ion-radio 
+        slot="start" 
+        [value]="NO_VALUE"
+        [disabled]="isFormDisabled"></ion-radio>
+      </ion-item>
+      <ion-item>
+        <ion-label>{{'COMMON.ANSWER.YES' | translate}}</ion-label>
+        <ion-radio 
+        slot="start" 
+        [value]="YES_VALUE"
+        [disabled]="isFormDisabled"></ion-radio>
+      </ion-item>
+    </ion-radio-group>
+    <ion-item lines="none" *ngIf="fieldInfoRecommendationForm.get('isUsingPumpPoweredEquipment').invalid && fieldInfoRecommendationForm.get('isUsingPumpPoweredEquipment').touched">
+      <mat-error class="form-error">
+        {{ 'COMMON.VALIDATION.REQUIRED_SECONDARY' | translate }}
+      </mat-error>
+    </ion-item>
+  </ion-list>
+
+    <!-- RAINFED QUESTION -->
+    <ion-list *ngIf="rainfedQuestionShouldShow">
+      <ion-radio-group formControlName="hasPumpSupplyAccess" (ionChange)="emitFormModel()">
+        <ion-list-header>
+          <ion-label>
+            {{ 'FARM_LOT.DO_YOU_HAVE_ACCESS_TO_PUMP_QUESTION' | translate }} <ion-text color="danger">*</ion-text>
+          </ion-label>
+        </ion-list-header>
+        <ion-item>
+          <ion-label>{{'COMMON.ANSWER.NO' | translate}}</ion-label>
+          <ion-radio 
+          slot="start" 
+          [value]="NO_VALUE" 
+          [disabled]="isFormDisabled"></ion-radio>
+        </ion-item>
+        <ion-item>
+          <ion-label>{{'COMMON.ANSWER.YES' | translate}}</ion-label>
+          <ion-radio 
+          slot="start" 
+          [value]="YES_VALUE" 
+          [disabled]="isFormDisabled"></ion-radio>
+        </ion-item>
+      </ion-radio-group>
+
+      <ion-item lines="none" *ngIf="fieldInfoRecommendationForm.get('hasPumpSupplyAccess').invalid && fieldInfoRecommendationForm.get('hasPumpSupplyAccess').touched">
+        <mat-error class="form-error">
+          {{ 'COMMON.VALIDATION.REQUIRED_SECONDARY' | translate }}
+        </mat-error>
+      </ion-item>
+    </ion-list>
+    <ion-row class="ion-justify-content-start" *ngIf="!hideSubmitButton">
+      <ion-button 
+      color="primary" 
+      type="submit">{{ 'COMMON.NEXT' | translate }}</ion-button>
+
+      <ion-button 
+      color="primary" 
+      type="button" 
+      (click)="editForm()" 
+      *ngIf="wasTheRecommendationSaved === false"
+      [hidden]="!isFormDisabled || recommendation">{{ 'COMMON.EDIT' | translate }}</ion-button>
+
+      <ion-button color="medium" type="button"  *ngIf="wasTheRecommendationSaved === true" [matTooltip]="'BUTTON.RECOMMENDATION_IS_SAVED_TOOLTIP' | translate">
+          {{ 'COMMON.EDIT' | translate }}
+      </ion-button>
+    </ion-row>
+  </form>
+</div>
+<ng-template #loading>
+  <div class="ion-padding divLoading">
+    <section>
+      Loading Modules <ion-spinner></ion-spinner>
+    </section>
+  </div>
+</ng-template>

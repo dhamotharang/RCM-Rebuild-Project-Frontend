@@ -1,0 +1,21 @@
+.title {
+    margin:10px;
+    font-weight: bolder;
+    letter-spacing: 2px;
+}
+
+.count {
+    font-size: 4em;
+    font-weight: bolder;
+}
+
+.title, .content {
+    text-align: center;
+}
+
+ion-card {
+    background: #cccccc;
+    color:black;
+    transition:1s background;
+    transition-timing-function: ease-in;
+}

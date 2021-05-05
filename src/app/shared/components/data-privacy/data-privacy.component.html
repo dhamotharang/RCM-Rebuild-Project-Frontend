@@ -1,0 +1,20 @@
+<ion-item>
+  <ion-grid>
+    <ion-row>
+      <ion-col size-xs="12" size-sm="12" size-md="1" size-lg="1" size-xl="1" class="ion-padding-vertical">
+        <ion-label>{{ label }}</ion-label>
+      </ion-col>
+      <ion-col size-xs="12" size-sm="12" size-md="5" size-lg="5" size-xl="6">
+        <ion-input #filebtn type="file" accept=".pdf" (change)="onFileSelected($event)"></ion-input>
+      </ion-col>
+      <ion-col size-xs="12" size-sm="12" size-md="3" size-lg="3" size-xl="2">
+          <ion-button (click)="upload()" [disabled]="!selectedFile" expand="full">
+          <ion-icon slot="start" name="cloud-upload"></ion-icon>Upload</ion-button>
+      </ion-col>
+      <ion-col size-xs="12" size-sm="12" size-md="3" size-lg="3" size-xl="2" class="ion-text-left">
+          <ion-button (click)="download()" [disabled]="!file" expand="full">
+          <ion-icon slot="start" name="cloud-download"></ion-icon>Download</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-item>

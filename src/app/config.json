@@ -1,0 +1,17 @@
+{
+  "itemsPerPage": [5, 10, 25, 100],
+  "maxGpxFiles": 15,
+  "mapType": "hybrid",
+  "uploadGpxTimeout": 30000,
+  "apiTimeout": 30000,
+  "overlayLoaderTimeOut": 30000,
+  "fileSizeAttachment": 2,
+  "fileSizeAttachmentExt": "image/*, .doc, .docx, .csv, .xls, .xlsx, .pdf, .gpx",
+  "initialFarmersPerPage": 5,
+  "initialFarmersPage": 1,
+  "avatarImageCropperToWidth": 200,
+  "dataPrivacyImageCropperToWidth": 768,
+  "farmerMaxAge": 93,
+  "farmerMinAge": 15,
+  "version": "Sprint build_sprint - Build build_timestamp"
+}

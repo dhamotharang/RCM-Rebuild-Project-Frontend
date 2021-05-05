@@ -1,0 +1,24 @@
+
+<ion-content>
+  <ion-row class="ion-justify-content-center">
+    <ion-col size="12" size-lg="6">
+      <ion-card>
+        <ion-card-header>
+          <ion-buttons>
+            <ion-button [routerLink]="['/data-admin/farmer-management/farmer-list']">
+              <ion-icon name="arrow-back"></ion-icon>
+            </ion-button>
+            <ion-card-title>Add Farmer Information</ion-card-title>
+          </ion-buttons>
+        </ion-card-header>
+        <app-farmer-form 
+          #farmerFormInstance 
+          (formSubmit)="onFarmerFormSubmit($event)"
+          [adminUser]="true"
+          [addFarmerInfo]="true"
+          [editFarmerInfo]="false"
+        ></app-farmer-form>
+      </ion-card>
+    </ion-col>
+  </ion-row>
+</ion-content>

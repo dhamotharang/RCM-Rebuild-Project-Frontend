@@ -1,0 +1,20 @@
+<ion-content>
+  <ion-row>
+    <ion-col>
+      <farmer-filter
+        [farmerFilter]="farmerFilter"
+        (filterChange)="farmerFilter = $event"
+        [isOfflineModeEnabled]="isOfflineModeEnabled"
+      ></farmer-filter>
+    </ion-col>
+  </ion-row>
+</ion-content>
+<ion-footer>
+  <ion-toolbar>
+    <ion-row class="ion-justify-content-center ion-align-items-center">
+      <ion-col>
+        <ion-button class="search-btn" (click)="search()" [disabled]="searchButtonDisabled">Search</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-toolbar>
+</ion-footer>

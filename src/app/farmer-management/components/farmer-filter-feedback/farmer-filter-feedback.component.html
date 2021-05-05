@@ -1,0 +1,74 @@
+<div *ngIf="hasActiveFilter">
+  <ion-row class="ion-justify-content-between">
+    <div style="flex: 1;">
+      <ion-row class="ion-margin-bottom">
+        <ion-badge class="d-flex ion-justify-content-center ion-align-items-center"
+          ><ion-icon name="filter-outline"></ion-icon>
+          <ion-text class="font-light">&nbsp;  Filters Applied</ion-text></ion-badge
+        >
+      </ion-row>
+      <ion-row class="ion-margin-bottom">
+        <div class="ion-margin-end" *ngIf="farmerFilter.interviewedByMe">
+          <ion-icon color="primary" name="checkmark-outline"></ion-icon> 
+          <ion-text class="font-light">&nbsp;  Interviewed By Me</ion-text>
+        </div>
+        
+        <div class="ion-margin-end" *ngIf="farmerFilter.verifiedField">
+          <ion-icon color="primary" name="checkmark-outline"></ion-icon> 
+          <ion-text class="font-light">&nbsp;  Verified Field</ion-text>
+        </div>
+        <div class="ion-margin-end" *ngIf="farmerFilter.notVerifiedField">
+          <ion-icon color="primary" name="checkmark-outline"></ion-icon> 
+          <ion-text class="font-light">&nbsp;  Not Verified Field</ion-text>
+        </div>
+        <div *ngIf="farmerFilter.idGenerated">
+          <ion-icon color="primary" name="checkmark-outline"></ion-icon> 
+          <ion-text class="font-light">&nbsp;  ID Generated</ion-text>
+        </div>
+      </ion-row>
+      <ion-row class="ion-margin-bottom">
+        <div>
+          <span *ngIf="farmerFilter.regionName">
+            Region:
+            <span class="font-light">
+              {{ farmerFilter.regionName }}
+            </span>
+          </span>
+          <span *ngIf="farmerFilter.provinceName">
+            Province:
+            <span class="font-light">
+              {{ farmerFilter.provinceName }}
+            </span>
+          </span>
+          <span *ngIf="farmerFilter.municipalityName">
+            Municipality:
+            <span class="font-light">
+              {{ farmerFilter.municipalityName }}
+            </span>
+          </span>
+          <span *ngIf="farmerFilter.barangayName">
+            Barangay:
+
+            <span class="font-light">
+              {{ farmerFilter.barangayName }}
+            </span>
+          </span>
+        </div>
+      </ion-row>
+      <ion-row *ngIf="farmerFilter.interviewDateFrom && farmerFilter.interviewDateTo">
+        <div>
+          From:
+          <span class="font-light">
+            {{ farmerFilter.interviewDateFrom | date }}
+          </span>
+          To:
+          <span class="font-light">
+            {{ farmerFilter.interviewDateTo | date }}
+          </span>
+        </div>
+      </ion-row>
+    </div>
+    <app-ghost-button (click)="clearFilters.emit()" color="primary">Clear Filters</app-ghost-button>
+  </ion-row>
+  <!-- <div>{{ farmerFilter | json }}</div> -->
+</div>

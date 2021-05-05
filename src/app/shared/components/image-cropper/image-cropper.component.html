@@ -1,0 +1,24 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{ cropperTitle }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div>
+    <image-cropper [imageChangedEvent]="imageChangedEvent" [maintainAspectRatio]="isFarmerPhoto" [aspectRatio]="4 / 4"
+      [resizeToWidth]="resizeToWidth" format="jpeg" (imageCropped)="imageCropped($event)" (imageLoaded)="imageLoaded()"
+      (loadImageFailed)="loadImageFailed()"></image-cropper>
+  </div>
+
+  <div class="ion-padding">
+    <ion-row>
+      <ion-col col-6 class="log-buttons">
+        <ion-button size-lg="large" color="medium" fill="outline" (click)="closeModal()">Cancel</ion-button>
+      </ion-col>
+      <ion-col col-6 class="log-buttons">
+        <ion-button (click)="submitImage()" expand="block">Upload</ion-button>
+      </ion-col>
+    </ion-row>
+  </div>
+</ion-content>

@@ -1,0 +1,1962 @@
+[
+    {
+        "variety_id": "26",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "1",
+        "value": "26",
+        "label": "IR 30 ",
+        "growth_duration": "2"
+    },
+    {
+        "variety_id": "27",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "1",
+        "value": "27",
+        "label": "IR 42 ",
+        "growth_duration": "3"
+    },
+    {
+        "variety_id": "28",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "1",
+        "value": "28",
+        "label": "IR 60 ",
+        "growth_duration": "1"
+    },
+    {
+        "variety_id": "29",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "1",
+        "value": "29",
+        "label": "IR 64 ",
+        "growth_duration": "2"
+    },
+    {
+        "variety_id": "32",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "1",
+        "value": "32",
+        "label": "IR 74 ",
+        "growth_duration": "3"
+    },
+    {
+        "variety_id": "33",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "1",
+        "value": "33",
+        "label": "LG-52- 5  (Matatag 5)",
+        "growth_duration": "1"
+    },
+    {
+        "variety_id": "30",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "1",
+        "value": "30",
+        "label": "Matatag  2 ",
+        "growth_duration": "2"
+    },
+    {
+        "variety_id": "31",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "1",
+        "value": "31",
+        "label": "Matatag  9 ",
+        "growth_duration": "2"
+    },
+    {
+        "variety_id": "34",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "1",
+        "value": "34",
+        "label": "NSIC Rc 106  (Sumilao)",
+        "growth_duration": "2"
+    },
+    {
+        "variety_id": "35",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "1",
+        "value": "35",
+        "label": "NSIC Rc 108  (Anahawan)",
+        "growth_duration": "3"
+    },
+    {
+        "variety_id": "36",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "1",
+        "value": "36",
+        "label": "NSIC Rc 110  (Tubigan 1)",
+        "growth_duration": "2"
+    },
+    {
+        "variety_id": "37",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "1",
+        "value": "37",
+        "label": "NSIC Rc 112  (Tubigan 2)",
+        "growth_duration": "2"
+    },
+    {
+        "variety_id": "38",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "1",
+        "value": "38",
+        "label": "NSIC Rc 118  (Matatag 3)",
+        "growth_duration": "1"
+    },
+    {
+        "variety_id": "39",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "1",
+        "value": "39",
+        "label": "NSIC Rc 120  (Matatag 6)",
+        "growth_duration": "1"
+    },
+    {
+        "variety_id": "40",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "1",
+        "value": "40",
+        "label": "NSIC Rc 122  (Angelica)",
+        "growth_duration": "3"
+    },
+    {
+        "variety_id": "41",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "1",
+        "value": "41",
+        "label": "NSIC Rc 128  (Mabango 1)",
+        "growth_duration": "2"
+    },
+    {
+        "variety_id": "42",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "1",
+        "value": "42",
+        "label": "NSIC Rc 130  (Tubigan 3)",
+        "growth_duration": "1"
+    },
+    {
+        "variety_id": "43",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "1",
+        "value": "43",
+        "label": "NSIC Rc 134  (Tubigan 4)",
+        "growth_duration": "1"
+    },
+    {
+        "variety_id": "44",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "1",
+        "value": "44",
+        "label": "NSIC Rc 138  (Tubigan 5)",
+        "growth_duration": "2"
+    },
+    {
+        "variety_id": "45",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "1",
+        "value": "45",
+        "label": "NSIC Rc 140  (Tubigan 6)",
+        "growth_duration": "1"
+    },
+    {
+        "variety_id": "46",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "1",
+        "value": "46",
+        "label": "NSIC Rc 142  (Tubigan 7)",
+        "growth_duration": "2"
+    },
+    {
+        "variety_id": "47",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "1",
+        "value": "47",
+        "label": "NSIC Rc 144  (Tubigan 8)",
+        "growth_duration": "1"
+    },
+    {
+        "variety_id": "48",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "1",
+        "value": "48",
+        "label": "NSIC Rc 146  (PJ7)",
+        "growth_duration": "1"
+    },
+    {
+        "variety_id": "49",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "1",
+        "value": "49",
+        "label": "NSIC Rc 148  (Mabango 2)",
+        "growth_duration": "2"
+    },
+    {
+        "variety_id": "50",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "1",
+        "value": "50",
+        "label": "NSIC Rc 150  (Tubigan 9)",
+        "growth_duration": "1"
+    },
+    {
+        "variety_id": "51",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "1",
+        "value": "51",
+        "label": "NSIC Rc 152  (Tubigan 10)",
+        "growth_duration": "1"
+    },
+    {
+        "variety_id": "52",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "1",
+        "value": "52",
+        "label": "NSIC Rc 154  (Tubigan 11)",
+        "growth_duration": "1"
+    },
+    {
+        "variety_id": "53",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "1",
+        "value": "53",
+        "label": "NSIC Rc 156  (Tubigan 12)",
+        "growth_duration": "2"
+    },
+    {
+        "variety_id": "54",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "1",
+        "value": "54",
+        "label": "NSIC Rc 158  (Tubigan 13)",
+        "growth_duration": "2"
+    },
+    {
+        "variety_id": "55",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "1",
+        "value": "55",
+        "label": "NSIC Rc 160  (Tubigan 14)",
+        "growth_duration": "2"
+    },
+    {
+        "variety_id": "56",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "1",
+        "value": "56",
+        "label": "NSIC Rc 170 (MS 11)",
+        "growth_duration": "2"
+    },
+    {
+        "variety_id": "57",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "1",
+        "value": "57",
+        "label": "NSIC Rc 172 (MS 13)",
+        "growth_duration": "2"
+    },
+    {
+        "variety_id": "143",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "1",
+        "value": "143",
+        "label": "NSIC Rc 192 (Sahod Ulan 1)",
+        "growth_duration": "1"
+    },
+    {
+        "variety_id": "144",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "1",
+        "value": "144",
+        "label": "NSIC Rc 194 (Submarino 1)",
+        "growth_duration": "2"
+    },
+    {
+        "variety_id": "58",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "1",
+        "value": "58",
+        "label": "NSIC Rc 212  (Tubigan 15)",
+        "growth_duration": "2"
+    },
+    {
+        "variety_id": "59",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "1",
+        "value": "59",
+        "label": "NSIC Rc 214  (Tubigan 16)",
+        "growth_duration": "2"
+    },
+    {
+        "variety_id": "60",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "1",
+        "value": "60",
+        "label": "NSIC Rc 216  (Tubigan 17)",
+        "growth_duration": "2"
+    },
+    {
+        "variety_id": "61",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "1",
+        "value": "61",
+        "label": "NSIC Rc 218  (Mabango 3)",
+        "growth_duration": "2"
+    },
+    {
+        "variety_id": "62",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "1",
+        "value": "62",
+        "label": "NSIC Rc 220  (SR Japonica 1)",
+        "growth_duration": "1"
+    },
+    {
+        "variety_id": "93",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "1",
+        "value": "93",
+        "label": "NSIC Rc 222  (Tubigan 18)",
+        "growth_duration": "2"
+    },
+    {
+        "variety_id": "94",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "1",
+        "value": "94",
+        "label": "NSIC Rc 224  (Tubigan 19)",
+        "growth_duration": "2"
+    },
+    {
+        "variety_id": "95",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "1",
+        "value": "95",
+        "label": "NSIC Rc 226  (Tubigan 20)",
+        "growth_duration": "2"
+    },
+    {
+        "variety_id": "101",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "1",
+        "value": "101",
+        "label": "NSIC Rc 238  (Tubigan 21)",
+        "growth_duration": "2"
+    },
+    {
+        "variety_id": "102",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "1",
+        "value": "102",
+        "label": "NSIC Rc 240  (Tubigan 22)",
+        "growth_duration": "2"
+    },
+    {
+        "variety_id": "195",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "1",
+        "value": "195",
+        "label": "NSIC Rc 242 SR (Japonica 2)",
+        "growth_duration": "1"
+    },
+    {
+        "variety_id": "131",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "1",
+        "value": "131",
+        "label": "NSIC Rc 272  (Sahod Ulan 2)",
+        "growth_duration": "1"
+    },
+    {
+        "variety_id": "132",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "1",
+        "value": "132",
+        "label": "NSIC Rc 274  (Sahod Ulan 3)",
+        "growth_duration": "2"
+    },
+    {
+        "variety_id": "133",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "1",
+        "value": "133",
+        "label": "NSIC Rc 276  (Sahod Ulan 4)",
+        "growth_duration": "2"
+    },
+    {
+        "variety_id": "134",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "1",
+        "value": "134",
+        "label": "NSIC Rc 278  (Sahod Ulan 5)",
+        "growth_duration": "1"
+    },
+    {
+        "variety_id": "135",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "1",
+        "value": "135",
+        "label": "NSIC Rc 280  (Sahod Ulan 6)",
+        "growth_duration": "3"
+    },
+    {
+        "variety_id": "136",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "1",
+        "value": "136",
+        "label": "NSIC Rc 282  (Sahod Ulan 7)",
+        "growth_duration": "2"
+    },
+    {
+        "variety_id": "137",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "1",
+        "value": "137",
+        "label": "NSIC Rc 284  (Sahod Ulan 8)",
+        "growth_duration": "2"
+    },
+    {
+        "variety_id": "138",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "1",
+        "value": "138",
+        "label": "NSIC Rc 286  (Sahod Ulan 9)",
+        "growth_duration": "2"
+    },
+    {
+        "variety_id": "139",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "1",
+        "value": "139",
+        "label": "NSIC Rc 288  (Sahod Ulan 10)",
+        "growth_duration": "2"
+    },
+    {
+        "variety_id": "140",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "1",
+        "value": "140",
+        "label": "NSIC Rc 298  (Tubigan 23)",
+        "growth_duration": "2"
+    },
+    {
+        "variety_id": "141",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "1",
+        "value": "141",
+        "label": "NSIC Rc 300  (Tubigan 24)",
+        "growth_duration": "2"
+    },
+    {
+        "variety_id": "142",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "1",
+        "value": "142",
+        "label": "NSIC Rc 302  (Tubigan 25)",
+        "growth_duration": "2"
+    },
+    {
+        "variety_id": "196",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "1",
+        "value": "196",
+        "label": "NSIC Rc 304 SR (Japonica 3)",
+        "growth_duration": "2"
+    },
+    {
+        "variety_id": "156",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "1",
+        "value": "156",
+        "label": "NSIC Rc 308 (Tubigan 26)",
+        "growth_duration": "2"
+    },
+    {
+        "variety_id": "197",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "1",
+        "value": "197",
+        "label": "NSIC Rc 342 SR (Mabango 4)",
+        "growth_duration": "2"
+    },
+    {
+        "variety_id": "198",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "1",
+        "value": "198",
+        "label": "NSIC Rc 344 SR (Mabango 5)",
+        "growth_duration": "2"
+    },
+    {
+        "variety_id": "145",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "1",
+        "value": "145",
+        "label": "NSIC Rc 346 (Sahod Ulan 11)",
+        "growth_duration": "1"
+    },
+    {
+        "variety_id": "146",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "1",
+        "value": "146",
+        "label": "NSIC Rc 348 (Sahod Ulan 12)",
+        "growth_duration": "1"
+    },
+    {
+        "variety_id": "157",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "1",
+        "value": "157",
+        "label": "NSIC Rc 352 (Tubigan 27)",
+        "growth_duration": "2"
+    },
+    {
+        "variety_id": "158",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "1",
+        "value": "158",
+        "label": "NSIC Rc 354 (Tubigan 28)",
+        "growth_duration": "2"
+    },
+    {
+        "variety_id": "159",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "1",
+        "value": "159",
+        "label": "NSIC Rc 356 (Tubigan 29)",
+        "growth_duration": "2"
+    },
+    {
+        "variety_id": "160",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "1",
+        "value": "160",
+        "label": "NSIC Rc 358 (Tubigan 30)",
+        "growth_duration": "2"
+    },
+    {
+        "variety_id": "161",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "1",
+        "value": "161",
+        "label": "NSIC Rc 360 (Tubigan 31)",
+        "growth_duration": "2"
+    },
+    {
+        "variety_id": "176",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "1",
+        "value": "176",
+        "label": "NSIC Rc 394 (Tubigan 32)",
+        "growth_duration": "2"
+    },
+    {
+        "variety_id": "177",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "1",
+        "value": "177",
+        "label": "NSIC Rc 396 (Tubigan 33)",
+        "growth_duration": "2"
+    },
+    {
+        "variety_id": "178",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "1",
+        "value": "178",
+        "label": "NSIC Rc 398 (Tubigan 34)",
+        "growth_duration": "2"
+    },
+    {
+        "variety_id": "179",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "1",
+        "value": "179",
+        "label": "NSIC Rc 400 (Tubigan 35)",
+        "growth_duration": "2"
+    },
+    {
+        "variety_id": "180",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "1",
+        "value": "180",
+        "label": "NSIC Rc 402 (Tubigan 36)",
+        "growth_duration": "2"
+    },
+    {
+        "variety_id": "199",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "1",
+        "value": "199",
+        "label": "NSIC Rc 414 SR (Japonica 4)",
+        "growth_duration": "2"
+    },
+    {
+        "variety_id": "186",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "1",
+        "value": "186",
+        "label": "NSIC Rc 416 (Sahod Ulan 13)",
+        "growth_duration": "2"
+    },
+    {
+        "variety_id": "187",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "1",
+        "value": "187",
+        "label": "NSIC Rc 418 (Sahod Ulan 14)",
+        "growth_duration": "2"
+    },
+    {
+        "variety_id": "188",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "1",
+        "value": "188",
+        "label": "NSIC Rc 420 (Sahod Ulan 15)",
+        "growth_duration": "1"
+    },
+    {
+        "variety_id": "189",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "1",
+        "value": "189",
+        "label": "NSIC Rc 422 (Sahod Ulan 16)",
+        "growth_duration": "2"
+    },
+    {
+        "variety_id": "190",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "1",
+        "value": "190",
+        "label": "NSIC Rc 424 (Sahod Ulan 17)",
+        "growth_duration": "1"
+    },
+    {
+        "variety_id": "191",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "1",
+        "value": "191",
+        "label": "NSIC Rc 426 (Sahod Ulan 18)",
+        "growth_duration": "1"
+    },
+    {
+        "variety_id": "192",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "1",
+        "value": "192",
+        "label": "NSIC Rc 428 (Sahod Ulan 19)",
+        "growth_duration": "1"
+    },
+    {
+        "variety_id": "193",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "1",
+        "value": "193",
+        "label": "NSIC Rc 430 (Sahod Ulan 20)",
+        "growth_duration": "2"
+    },
+    {
+        "variety_id": "204",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "1",
+        "value": "204",
+        "label": "NSIC Rc 434 (Sahod Ulan 21)",
+        "growth_duration": "1"
+    },
+    {
+        "variety_id": "200",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "1",
+        "value": "200",
+        "label": "NSIC Rc 436 (Tubigan 37)",
+        "growth_duration": "1"
+    },
+    {
+        "variety_id": "201",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "1",
+        "value": "201",
+        "label": "NSIC Rc 438 (Tubigan 38)",
+        "growth_duration": "1"
+    },
+    {
+        "variety_id": "202",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "1",
+        "value": "202",
+        "label": "NSIC Rc 440 (Tubigan 39)",
+        "growth_duration": "1"
+    },
+    {
+        "variety_id": "203",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "1",
+        "value": "203",
+        "label": "NSIC Rc 442 (Tubigan 40)",
+        "growth_duration": "2"
+    },
+    {
+        "variety_id": "205",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "1",
+        "value": "205",
+        "label": "NSIC Rc 472 (Sahod Ulan 22)",
+        "growth_duration": "2"
+    },
+    {
+        "variety_id": "206",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "1",
+        "value": "206",
+        "label": "NSIC Rc 474 (Sahod Ulan 23)",
+        "growth_duration": "2"
+    },
+    {
+        "variety_id": "207",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "1",
+        "value": "207",
+        "label": "NSIC Rc 476 (Sahod Ulan 24)",
+        "growth_duration": "2"
+    },
+    {
+        "variety_id": "208",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "1",
+        "value": "208",
+        "label": "NSIC Rc 478 (Sahod Ulan 25)",
+        "growth_duration": "2"
+    },
+    {
+        "variety_id": "194",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "1",
+        "value": "194",
+        "label": "NSIC Rc 480 (GSR 8)",
+        "growth_duration": "1"
+    },
+    {
+        "variety_id": "217",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "1",
+        "value": "217",
+        "label": "NSIC Rc 482 SR (Japonica 5)",
+        "growth_duration": "2"
+    },
+    {
+        "variety_id": "218",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "1",
+        "value": "218",
+        "label": "NSIC Rc 484 SR (Japonica 6)",
+        "growth_duration": "3"
+    },
+    {
+        "variety_id": "229",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "1",
+        "value": "229",
+        "label": "NSIC Rc 506 (Tubigan 41)",
+        "growth_duration": "1"
+    },
+    {
+        "variety_id": "230",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "1",
+        "value": "230",
+        "label": "NSIC Rc 508 (Tubigan 42)",
+        "growth_duration": "1"
+    },
+    {
+        "variety_id": "231",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "1",
+        "value": "231",
+        "label": "NSIC Rc 510 (Tubigan 43)",
+        "growth_duration": "1"
+    },
+    {
+        "variety_id": "232",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "1",
+        "value": "232",
+        "label": "NSIC Rc 512 (Tubigan 44)",
+        "growth_duration": "2"
+    },
+    {
+        "variety_id": "233",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "1",
+        "value": "233",
+        "label": "NSIC Rc 514 (Tubigan 45)",
+        "growth_duration": "2"
+    },
+    {
+        "variety_id": "63",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "1",
+        "value": "63",
+        "label": "PSB Rc 10  (Pagsanjan)",
+        "growth_duration": "1"
+    },
+    {
+        "variety_id": "122",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "1",
+        "value": "122",
+        "label": "PSB Rc 100  (Santiago)",
+        "growth_duration": "2"
+    },
+    {
+        "variety_id": "123",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "1",
+        "value": "123",
+        "label": "PSB Rc 102  (Mamburao)",
+        "growth_duration": "2"
+    },
+    {
+        "variety_id": "117",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "1",
+        "value": "117",
+        "label": "PSB Rc 12  (Caliraya)",
+        "growth_duration": "1"
+    },
+    {
+        "variety_id": "64",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "1",
+        "value": "64",
+        "label": "PSB Rc 14  (Rio Grande)",
+        "growth_duration": "1"
+    },
+    {
+        "variety_id": "124",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "1",
+        "value": "124",
+        "label": "PSB Rc 16  (Ennano)",
+        "growth_duration": "3"
+    },
+    {
+        "variety_id": "65",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "1",
+        "value": "65",
+        "label": "PSB Rc 18  (Ala)",
+        "growth_duration": "3"
+    },
+    {
+        "variety_id": "66",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "1",
+        "value": "66",
+        "label": "PSB Rc 2  (Nahalin)",
+        "growth_duration": "3"
+    },
+    {
+        "variety_id": "67",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "1",
+        "value": "67",
+        "label": "PSB Rc 20  (Chico)",
+        "growth_duration": "2"
+    },
+    {
+        "variety_id": "68",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "1",
+        "value": "68",
+        "label": "PSB Rc 22  (Liliw)",
+        "growth_duration": "3"
+    },
+    {
+        "variety_id": "125",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "1",
+        "value": "125",
+        "label": "PSB Rc 24  (Cagayan)",
+        "growth_duration": "2"
+    },
+    {
+        "variety_id": "69",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "1",
+        "value": "69",
+        "label": "PSB Rc 28  (Agno)",
+        "growth_duration": "2"
+    },
+    {
+        "variety_id": "70",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "1",
+        "value": "70",
+        "label": "PSB Rc 30  (Agus)",
+        "growth_duration": "2"
+    },
+    {
+        "variety_id": "71",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "1",
+        "value": "71",
+        "label": "PSB Rc 32  (Jaro)",
+        "growth_duration": "2"
+    },
+    {
+        "variety_id": "72",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "1",
+        "value": "72",
+        "label": "PSB Rc 34  (Burdagol)",
+        "growth_duration": "3"
+    },
+    {
+        "variety_id": "118",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "1",
+        "value": "118",
+        "label": "PSB Rc 36  (Ma-ayon)",
+        "growth_duration": "3"
+    },
+    {
+        "variety_id": "119",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "1",
+        "value": "119",
+        "label": "PSB Rc 38  (Rinara)",
+        "growth_duration": "3"
+    },
+    {
+        "variety_id": "73",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "1",
+        "value": "73",
+        "label": "PSB Rc 4  (Molawin)",
+        "growth_duration": "1"
+    },
+    {
+        "variety_id": "120",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "1",
+        "value": "120",
+        "label": "PSB Rc 40  (Chayong)",
+        "growth_duration": "3"
+    },
+    {
+        "variety_id": "126",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "1",
+        "value": "126",
+        "label": "PSB Rc 42  (Baliwag)",
+        "growth_duration": "2"
+    },
+    {
+        "variety_id": "74",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "1",
+        "value": "74",
+        "label": "PSB Rc 48  (Hagonoy)",
+        "growth_duration": "3"
+    },
+    {
+        "variety_id": "75",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "1",
+        "value": "75",
+        "label": "PSB Rc 50  (Bicol)",
+        "growth_duration": "2"
+    },
+    {
+        "variety_id": "76",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "1",
+        "value": "76",
+        "label": "PSB Rc 52  (Gandara)",
+        "growth_duration": "2"
+    },
+    {
+        "variety_id": "77",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "1",
+        "value": "77",
+        "label": "PSB Rc 54  (Abra)",
+        "growth_duration": "2"
+    },
+    {
+        "variety_id": "78",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "1",
+        "value": "78",
+        "label": "PSB Rc 56  (Dapitan)",
+        "growth_duration": "2"
+    },
+    {
+        "variety_id": "79",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "1",
+        "value": "79",
+        "label": "PSB Rc 58  (Mayapa)",
+        "growth_duration": "3"
+    },
+    {
+        "variety_id": "80",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "1",
+        "value": "80",
+        "label": "PSB Rc 6  (Carranglan)",
+        "growth_duration": "2"
+    },
+    {
+        "variety_id": "127",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "1",
+        "value": "127",
+        "label": "PSB Rc 60  (Tugatog)",
+        "growth_duration": "2"
+    },
+    {
+        "variety_id": "128",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "1",
+        "value": "128",
+        "label": "PSB Rc 62  (Naguilan)",
+        "growth_duration": "2"
+    },
+    {
+        "variety_id": "81",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "1",
+        "value": "81",
+        "label": "PSB Rc 64  (Kabacan)",
+        "growth_duration": "3"
+    },
+    {
+        "variety_id": "82",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "1",
+        "value": "82",
+        "label": "PSB Rc 66  (Agusan)",
+        "growth_duration": "3"
+    },
+    {
+        "variety_id": "129",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "1",
+        "value": "129",
+        "label": "PSB Rc 68  (Sacobia)",
+        "growth_duration": "2"
+    },
+    {
+        "variety_id": "130",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "1",
+        "value": "130",
+        "label": "PSB Rc 70  (Bamban)",
+        "growth_duration": "2"
+    },
+    {
+        "variety_id": "83",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "1",
+        "value": "83",
+        "label": "PSB Rc 74  (Aklan)",
+        "growth_duration": "2"
+    },
+    {
+        "variety_id": "84",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "1",
+        "value": "84",
+        "label": "PSB Rc 78  (Pampanga)",
+        "growth_duration": "2"
+    },
+    {
+        "variety_id": "85",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "1",
+        "value": "85",
+        "label": "PSB Rc 8  (Talavera)",
+        "growth_duration": "1"
+    },
+    {
+        "variety_id": "86",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "1",
+        "value": "86",
+        "label": "PSB Rc 80  (Pasig)",
+        "growth_duration": "2"
+    },
+    {
+        "variety_id": "87",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "1",
+        "value": "87",
+        "label": "PSB Rc 82  (Penaranda)",
+        "growth_duration": "1"
+    },
+    {
+        "variety_id": "88",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "1",
+        "value": "88",
+        "label": "PSB Rc 84  (Sipocot)",
+        "growth_duration": "2"
+    },
+    {
+        "variety_id": "89",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "1",
+        "value": "89",
+        "label": "PSB Rc 86  (Matnog)",
+        "growth_duration": "2"
+    },
+    {
+        "variety_id": "90",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "1",
+        "value": "90",
+        "label": "PSB Rc 88  (Naga)",
+        "growth_duration": "2"
+    },
+    {
+        "variety_id": "91",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "1",
+        "value": "91",
+        "label": "PSB Rc 90  (Buguey)",
+        "growth_duration": "3"
+    },
+    {
+        "variety_id": "92",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "1",
+        "value": "92",
+        "label": "PSB Rc 98  (Lian)",
+        "growth_duration": "2"
+    },
+    {
+        "variety_id": "150",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "2",
+        "value": "150",
+        "label": "Arize Bigante Plus (NSIC Rc 314H)",
+        "growth_duration": "2"
+    },
+    {
+        "variety_id": "184",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "2",
+        "value": "184",
+        "label": "Arize Habilis Plus (NSIC Rc 410)",
+        "growth_duration": "2"
+    },
+    {
+        "variety_id": "3",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "2",
+        "value": "3",
+        "label": "Bigante (NSIC Rc 124H)",
+        "growth_duration": "2"
+    },
+    {
+        "variety_id": "7",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "2",
+        "value": "7",
+        "label": "Bioseed 401 (NSIC Rc 162H)",
+        "growth_duration": "2"
+    },
+    {
+        "variety_id": "169",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "2",
+        "value": "169",
+        "label": "Frontline S6003 (NSIC Rc 376)",
+        "growth_duration": "2"
+    },
+    {
+        "variety_id": "23",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "2",
+        "value": "23",
+        "label": "Magat (PSB Rc 26H)",
+        "growth_duration": "1"
+    },
+    {
+        "variety_id": "9",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "2",
+        "value": "9",
+        "label": "Mestiso 10 (NSIC Rc 166H)",
+        "growth_duration": "1"
+    },
+    {
+        "variety_id": "244",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "2",
+        "value": "244",
+        "label": "Mestiso 100 (NSIC Rc 546H)",
+        "growth_duration": "2"
+    },
+    {
+        "variety_id": "245",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "2",
+        "value": "245",
+        "label": "Mestiso 101 (NSIC Rc 548H)",
+        "growth_duration": "2"
+    },
+    {
+        "variety_id": "10",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "2",
+        "value": "10",
+        "label": "Mestiso 11 (NSIC Rc 168H)",
+        "growth_duration": "2"
+    },
+    {
+        "variety_id": "11",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "2",
+        "value": "11",
+        "label": "Mestiso 12 (NSIC Rc 174H)",
+        "growth_duration": "2"
+    },
+    {
+        "variety_id": "13",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "2",
+        "value": "13",
+        "label": "Mestiso 14 (NSIC Rc 178H)",
+        "growth_duration": "1"
+    },
+    {
+        "variety_id": "14",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "2",
+        "value": "14",
+        "label": "Mestiso 15 (NSIC Rc 180H)",
+        "growth_duration": "1"
+    },
+    {
+        "variety_id": "15",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "2",
+        "value": "15",
+        "label": "Mestiso 16 (NSIC Rc 196H)",
+        "growth_duration": "1"
+    },
+    {
+        "variety_id": "16",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "2",
+        "value": "16",
+        "label": "Mestiso 17 (NSIC Rc 198H)",
+        "growth_duration": "1"
+    },
+    {
+        "variety_id": "17",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "2",
+        "value": "17",
+        "label": "Mestiso 18 (NSIC Rc 200H)",
+        "growth_duration": "2"
+    },
+    {
+        "variety_id": "18",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "2",
+        "value": "18",
+        "label": "Mestiso 19 (NSIC Rc 202H)",
+        "growth_duration": "1"
+    },
+    {
+        "variety_id": "1",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "2",
+        "value": "1",
+        "label": "Mestiso 2 (NSIC Rc 114H)",
+        "growth_duration": "1"
+    },
+    {
+        "variety_id": "19",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "2",
+        "value": "19",
+        "label": "Mestiso 20 (NSIC Rc 204H)",
+        "growth_duration": "2"
+    },
+    {
+        "variety_id": "20",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "2",
+        "value": "20",
+        "label": "Mestiso 21 (NSIC Rc 206H)",
+        "growth_duration": "1"
+    },
+    {
+        "variety_id": "21",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "2",
+        "value": "21",
+        "label": "Mestiso 22 (NSIC Rc 208H)",
+        "growth_duration": "2"
+    },
+    {
+        "variety_id": "22",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "2",
+        "value": "22",
+        "label": "Mestiso 23 (NSIC Rc 210H)",
+        "growth_duration": "2"
+    },
+    {
+        "variety_id": "96",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "2",
+        "value": "96",
+        "label": "Mestiso 24 (NSIC Rc 228H)",
+        "growth_duration": "1"
+    },
+    {
+        "variety_id": "97",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "2",
+        "value": "97",
+        "label": "Mestiso 25 (NSIC Rc 230H)",
+        "growth_duration": "1"
+    },
+    {
+        "variety_id": "98",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "2",
+        "value": "98",
+        "label": "Mestiso 26 (NSIC Rc 232H)",
+        "growth_duration": "1"
+    },
+    {
+        "variety_id": "100",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "2",
+        "value": "100",
+        "label": "Mestiso 28 (NSIC Rc 236H)",
+        "growth_duration": "2"
+    },
+    {
+        "variety_id": "103",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "2",
+        "value": "103",
+        "label": "Mestiso 29 (NSIC Rc 244H)",
+        "growth_duration": "1"
+    },
+    {
+        "variety_id": "2",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "2",
+        "value": "2",
+        "label": "Mestiso 3 (NSIC Rc 116H)",
+        "growth_duration": "2"
+    },
+    {
+        "variety_id": "104",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "2",
+        "value": "104",
+        "label": "Mestiso 30 (NSIC Rc 246H)",
+        "growth_duration": "1"
+    },
+    {
+        "variety_id": "105",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "2",
+        "value": "105",
+        "label": "Mestiso 31 (NSIC Rc 248H)",
+        "growth_duration": "1"
+    },
+    {
+        "variety_id": "106",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "2",
+        "value": "106",
+        "label": "Mestiso 32 (NSIC Rc 250H)",
+        "growth_duration": "1"
+    },
+    {
+        "variety_id": "107",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "2",
+        "value": "107",
+        "label": "Mestiso 33 (NSIC Rc 252H)",
+        "growth_duration": "1"
+    },
+    {
+        "variety_id": "108",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "2",
+        "value": "108",
+        "label": "Mestiso 34 (NSIC Rc 254H)",
+        "growth_duration": "2"
+    },
+    {
+        "variety_id": "109",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "2",
+        "value": "109",
+        "label": "Mestiso 35 (NSIC Rc 256H)",
+        "growth_duration": "1"
+    },
+    {
+        "variety_id": "110",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "2",
+        "value": "110",
+        "label": "Mestiso 36 (NSIC Rc 258H)",
+        "growth_duration": "1"
+    },
+    {
+        "variety_id": "111",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "2",
+        "value": "111",
+        "label": "Mestiso 37 (NSIC Rc 260H)",
+        "growth_duration": "1"
+    },
+    {
+        "variety_id": "112",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "2",
+        "value": "112",
+        "label": "Mestiso 38 (NSIC Rc 262H)",
+        "growth_duration": "2"
+    },
+    {
+        "variety_id": "113",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "2",
+        "value": "113",
+        "label": "Mestiso 39 (NSIC Rc 264H)",
+        "growth_duration": "2"
+    },
+    {
+        "variety_id": "114",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "2",
+        "value": "114",
+        "label": "Mestiso 40 (NSIC Rc 266H)",
+        "growth_duration": "1"
+    },
+    {
+        "variety_id": "115",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "2",
+        "value": "115",
+        "label": "Mestiso 41 (NSIC Rc 268H)",
+        "growth_duration": "2"
+    },
+    {
+        "variety_id": "116",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "2",
+        "value": "116",
+        "label": "Mestiso 42 (NSIC Rc 270H)",
+        "growth_duration": "1"
+    },
+    {
+        "variety_id": "147",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "2",
+        "value": "147",
+        "label": "Mestiso 43 (NSIC Rc 306H)",
+        "growth_duration": "2"
+    },
+    {
+        "variety_id": "148",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "2",
+        "value": "148",
+        "label": "Mestiso 44 (NSIC Rc 310H)",
+        "growth_duration": "2"
+    },
+    {
+        "variety_id": "149",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "2",
+        "value": "149",
+        "label": "Mestiso 45 (NSIC Rc 312H)",
+        "growth_duration": "2"
+    },
+    {
+        "variety_id": "151",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "2",
+        "value": "151",
+        "label": "Mestiso 47 (NSIC Rc 316H)",
+        "growth_duration": "2"
+    },
+    {
+        "variety_id": "152",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "2",
+        "value": "152",
+        "label": "Mestiso 48 (NSIC Rc 318H)",
+        "growth_duration": "2"
+    },
+    {
+        "variety_id": "153",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "2",
+        "value": "153",
+        "label": "Mestiso 49 (NSIC Rc 320H)",
+        "growth_duration": "2"
+    },
+    {
+        "variety_id": "4",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "2",
+        "value": "4",
+        "label": "Mestiso 5 (NSIC Rc 126H)",
+        "growth_duration": "1"
+    },
+    {
+        "variety_id": "163",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "2",
+        "value": "163",
+        "label": "Mestiso  53 (NSIC Rc 364H)",
+        "growth_duration": "1"
+    },
+    {
+        "variety_id": "164",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "2",
+        "value": "164",
+        "label": "Mestiso  54 (NSIC Rc 366H)",
+        "growth_duration": "1"
+    },
+    {
+        "variety_id": "165",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "2",
+        "value": "165",
+        "label": "Mestiso  55 (NSIC Rc 368H)",
+        "growth_duration": "1"
+    },
+    {
+        "variety_id": "166",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "2",
+        "value": "166",
+        "label": "Mestiso  56 (NSIC Rc 370H)",
+        "growth_duration": "1"
+    },
+    {
+        "variety_id": "167",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "2",
+        "value": "167",
+        "label": "Mestiso  57 (NSIC Rc 372H)",
+        "growth_duration": "1"
+    },
+    {
+        "variety_id": "168",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "2",
+        "value": "168",
+        "label": "Mestiso  58 (NSIC Rc 374H)",
+        "growth_duration": "1"
+    },
+    {
+        "variety_id": "170",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "2",
+        "value": "170",
+        "label": "Mestiso  60 (NSIC Rc 378H)",
+        "growth_duration": "1"
+    },
+    {
+        "variety_id": "171",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "2",
+        "value": "171",
+        "label": "Mestiso  61 (NSIC Rc 380H)",
+        "growth_duration": "1"
+    },
+    {
+        "variety_id": "172",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "2",
+        "value": "172",
+        "label": "Mestiso  62 (NSIC Rc 382H)",
+        "growth_duration": "1"
+    },
+    {
+        "variety_id": "173",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "2",
+        "value": "173",
+        "label": "Mestiso  63 (NSIC Rc 384H)",
+        "growth_duration": "2"
+    },
+    {
+        "variety_id": "174",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "2",
+        "value": "174",
+        "label": "Mestiso  64 (NSIC Rc 386H)",
+        "growth_duration": "1"
+    },
+    {
+        "variety_id": "175",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "2",
+        "value": "175",
+        "label": "Mestiso  65 (NSIC Rc 388H)",
+        "growth_duration": "1"
+    },
+    {
+        "variety_id": "181",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "2",
+        "value": "181",
+        "label": "Mestiso 66 (NSIC Rc 404H)",
+        "growth_duration": "2"
+    },
+    {
+        "variety_id": "182",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "2",
+        "value": "182",
+        "label": "Mestiso 67 (NSIC Rc 406H)",
+        "growth_duration": "2"
+    },
+    {
+        "variety_id": "183",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "2",
+        "value": "183",
+        "label": "Mestiso 68 (NSIC Rc 408H)",
+        "growth_duration": "1"
+    },
+    {
+        "variety_id": "6",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "2",
+        "value": "6",
+        "label": "Mestiso 7 (NSIC Rc 136H)",
+        "growth_duration": "2"
+    },
+    {
+        "variety_id": "185",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "2",
+        "value": "185",
+        "label": "Mestiso 70 (NSIC Rc 412H)",
+        "growth_duration": "2"
+    },
+    {
+        "variety_id": "209",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "2",
+        "value": "209",
+        "label": "Mestiso 71 (NSIC Rc 432H)",
+        "growth_duration": "2"
+    },
+    {
+        "variety_id": "210",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "2",
+        "value": "210",
+        "label": "Mestiso 72 (NSIC Rc 444H)",
+        "growth_duration": "2"
+    },
+    {
+        "variety_id": "211",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "2",
+        "value": "211",
+        "label": "Mestiso 73 (NSIC Rc 446H)",
+        "growth_duration": "2"
+    },
+    {
+        "variety_id": "212",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "2",
+        "value": "212",
+        "label": "Mestiso 74 (NSIC Rc 448H)",
+        "growth_duration": "2"
+    },
+    {
+        "variety_id": "213",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "2",
+        "value": "213",
+        "label": "Mestiso 75 (NSIC Rc 450H)",
+        "growth_duration": "1"
+    },
+    {
+        "variety_id": "214",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "2",
+        "value": "214",
+        "label": "Mestiso 76 (NSIC Rc 452H)",
+        "growth_duration": "2"
+    },
+    {
+        "variety_id": "215",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "2",
+        "value": "215",
+        "label": "Mestiso 77 (NSIC Rc 454H)",
+        "growth_duration": "2"
+    },
+    {
+        "variety_id": "216",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "2",
+        "value": "216",
+        "label": "Mestiso 78 (NSIC Rc 456H)",
+        "growth_duration": "2"
+    },
+    {
+        "variety_id": "219",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "2",
+        "value": "219",
+        "label": "Mestiso 80 (NSIC Rc 486H)",
+        "growth_duration": "2"
+    },
+    {
+        "variety_id": "220",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "2",
+        "value": "220",
+        "label": "Mestiso 81 (NSIC Rc 488H)",
+        "growth_duration": "2"
+    },
+    {
+        "variety_id": "221",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "2",
+        "value": "221",
+        "label": "Mestiso 82 (NSIC Rc 490H)",
+        "growth_duration": "2"
+    },
+    {
+        "variety_id": "222",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "2",
+        "value": "222",
+        "label": "Mestiso 83 (NSIC Rc 492H)",
+        "growth_duration": "2"
+    },
+    {
+        "variety_id": "223",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "2",
+        "value": "223",
+        "label": "Mestiso 84 (NSIC Rc 494H)",
+        "growth_duration": "2"
+    },
+    {
+        "variety_id": "224",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "2",
+        "value": "224",
+        "label": "Mestiso 85 (NSIC Rc 496H)",
+        "growth_duration": "1"
+    },
+    {
+        "variety_id": "225",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "2",
+        "value": "225",
+        "label": "Mestiso 86 (NSIC Rc 498H)",
+        "growth_duration": "1"
+    },
+    {
+        "variety_id": "226",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "2",
+        "value": "226",
+        "label": "Mestiso 87 (NSIC Rc 500H)",
+        "growth_duration": "1"
+    },
+    {
+        "variety_id": "227",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "2",
+        "value": "227",
+        "label": "Mestiso 88 (NSIC Rc 502H)",
+        "growth_duration": "2"
+    },
+    {
+        "variety_id": "228",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "2",
+        "value": "228",
+        "label": "Mestiso 89 (NSIC Rc 504H)",
+        "growth_duration": "1"
+    },
+    {
+        "variety_id": "234",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "2",
+        "value": "234",
+        "label": "Mestiso 90 (NSIC Rc 516H)",
+        "growth_duration": "2"
+    },
+    {
+        "variety_id": "235",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "2",
+        "value": "235",
+        "label": "Mestiso 91 (NSIC Rc 518H)",
+        "growth_duration": "1"
+    },
+    {
+        "variety_id": "236",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "2",
+        "value": "236",
+        "label": "Mestiso 92 (NSIC Rc 520H)",
+        "growth_duration": "2"
+    },
+    {
+        "variety_id": "237",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "2",
+        "value": "237",
+        "label": "Mestiso 93 (NSIC Rc 522H)",
+        "growth_duration": "2"
+    },
+    {
+        "variety_id": "238",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "2",
+        "value": "238",
+        "label": "Mestiso 94 (NSIC Rc 524H)",
+        "growth_duration": "2"
+    },
+    {
+        "variety_id": "239",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "2",
+        "value": "239",
+        "label": "Mestiso 95 (NSIC Rc 526H)",
+        "growth_duration": "2"
+    },
+    {
+        "variety_id": "240",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "2",
+        "value": "240",
+        "label": "Mestiso 96 (NSIC Rc 538H)",
+        "growth_duration": "2"
+    },
+    {
+        "variety_id": "241",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "2",
+        "value": "241",
+        "label": "Mestiso 97 (NSIC Rc 540H)",
+        "growth_duration": "2"
+    },
+    {
+        "variety_id": "242",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "2",
+        "value": "242",
+        "label": "Mestiso 98 (NSIC Rc 542H)",
+        "growth_duration": "2"
+    },
+    {
+        "variety_id": "243",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "2",
+        "value": "243",
+        "label": "Mestiso 99 (NSIC Rc 544H)",
+        "growth_duration": "2"
+    },
+    {
+        "variety_id": "24",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "2",
+        "value": "24",
+        "label": "Mestizo 1 (PSB Rc 72H)",
+        "growth_duration": "3"
+    },
+    {
+        "variety_id": "99",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "2",
+        "value": "99",
+        "label": "NK 5017 (NSIC Rc 234H)",
+        "growth_duration": "2"
+    },
+    {
+        "variety_id": "25",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "2",
+        "value": "25",
+        "label": "Panay (PSB Rc 76H)",
+        "growth_duration": "1"
+    },
+    {
+        "variety_id": "12",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "2",
+        "value": "12",
+        "label": "Pioneer 73 (NSIC Rc 176)",
+        "growth_duration": "2"
+    },
+    {
+        "variety_id": "154",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "2",
+        "value": "154",
+        "label": "Pioneer 79 (NSIC Rc 322H)",
+        "growth_duration": "2"
+    },
+    {
+        "variety_id": "162",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "2",
+        "value": "162",
+        "label": "RH 9000 (NSIC Rc 362)",
+        "growth_duration": "2"
+    },
+    {
+        "variety_id": "8",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "2",
+        "value": "8",
+        "label": "Rizalina 28 (NSIC Rc 164H)",
+        "growth_duration": "1"
+    },
+    {
+        "variety_id": "5",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "2",
+        "value": "5",
+        "label": "SL8 (NSIC Rc 132H)",
+        "growth_duration": "2"
+    },
+    {
+        "variety_id": "155",
+        "filter_by_answer_name": "variety-type",
+        "filter_by_answer_value": "2",
+        "value": "155",
+        "label": "TH 82 (NSIC Rc 350H)",
+        "growth_duration": "2"
+    },
+	{
+		"variety_id": "245",
+		"filter_by_answer_name": "variety-type",
+		"filter_by_answer_value": "-1",
+		"value": "-99",
+		"label": "Not in the list",
+		"growth_duration": "0"
+	}
+]

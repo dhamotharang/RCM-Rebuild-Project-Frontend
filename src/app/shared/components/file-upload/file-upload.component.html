@@ -1,0 +1,2 @@
+<ion-button [appDisable]="roleId" [expand]="isExpand ? 'full': 'block'" (click)="fileUploadInput.click()">{{buttonText}}</ion-button>
+<input [id]="componentId" [multiple]="isMultiple" #fileUploadInput type="file" style="display: none;" class="upload" accept=".gpx" (change)="fileChange.emit($event)"/>

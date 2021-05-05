@@ -1,0 +1,190 @@
+<ion-header>
+  <ion-toolbar color="default">
+    <ion-buttons slot="start">
+      <ion-button [routerLink]="['/data-admin/farmer-management/farmer-list']">
+        <ion-icon name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <div
+      class="item item-divider item-assertive ion-padding bgheader ion-text-center"
+      style="white-space: normal"
+    >
+      DATA ADMIN PAGE
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row class="ion-justify-content-center">
+      <ion-col size="12" size-sm="10" offset-lg="1">
+        <ion-card>
+          <ion-card-content>
+            <form [formGroup]="searchFilterForm">
+              <ion-row class="ion-text-right">
+                <ion-col>
+                  <ion-button
+                    color="primary"
+                    (click)="switchDataDisplay()"
+                    type="button"
+                  >
+                    Switch to {{ dataEdit ? 'Data History': 'Summary'}}
+                  </ion-button>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-item-divider>
+                  <ion-col size-lg="8">
+                    <ion-label>Location Filter:</ion-label>
+                  </ion-col>
+                  <ion-col>
+                    <ion-button
+                      color="default"
+                      fill="outline"
+                      (click)="clearLocation()"
+                      type="button"
+                      style="width: 90%"
+                    >
+                      clear Location</ion-button
+                    >
+                  </ion-col>
+                </ion-item-divider>
+              </ion-row>
+              <ion-row style="padding-top: 15px">
+                <app-address-form-control
+                  #rcmLocationForm
+                  style="flex: 1"
+                  [formGroup]="searchFilterForm"
+                  [address]="userAddressAccess"
+                  [hideBarangay]="true"
+                  [userAccess]="userAccess"
+                >
+                </app-address-form-control>
+              </ion-row>
+              <ion-list>
+                <ion-item-divider>
+                  <ion-col size-lg="8">
+                    <ion-label>Date Filter:</ion-label>
+                  </ion-col>
+                  <ion-col>
+                    <ion-button
+                      color="default"
+                      fill="outline"
+                      (click)="clearDate()"
+                      type="button"
+                      style="width: 95%"
+                    >
+                      clear Date</ion-button
+                    >
+                  </ion-col>
+                </ion-item-divider>
+
+                <ion-item>
+                  <ion-col size-lg="5">
+                    <mat-label>From: </mat-label>
+                  </ion-col>
+                  <ion-col class="ion-text-right">
+                    <mat-datepicker #picker></mat-datepicker>
+                    <input
+                      (click)="picker.open()"
+                      readonly
+                      [min]="minDate"
+                      [max]="dateToday"
+                      formControlName="fromDate"
+                      [matDatepicker]="picker"
+                      (dateInput)="onFromDateChange($event.value)"
+                    />
+                    <mat-datepicker-toggle
+                      matSuffix
+                      [for]="picker"
+                    ></mat-datepicker-toggle>
+                  </ion-col>
+                </ion-item>
+
+                <ion-item>
+                  <ion-col size-lg="5">
+                    <mat-label>To: </mat-label>
+                  </ion-col>
+                  <ion-col class="ion-text-right">
+                    <mat-datepicker #picker2></mat-datepicker>
+                    <input
+                      (click)="picker2.open()"
+                      readonly
+                      [min]="fromDate ? fromDate : minDate"
+                      [max]="dateToday"
+                      formControlName="toDate"
+                      [matDatepicker]="picker2"
+                    />
+                    <mat-datepicker-toggle
+                      matSuffix
+                      [for]="picker2"
+                    ></mat-datepicker-toggle>
+                  </ion-col>
+                </ion-item>
+              </ion-list>
+
+              <ion-list *ngIf="!dataEdit">
+                <ion-radio-group
+                  formControlName="filterBy"
+                  (ionChange)="onFilterByChange()"
+                >
+                  <ion-item-divider>
+                    <ion-label>Filter By:</ion-label>
+                  </ion-item-divider>
+
+                  <ion-item>
+                    <ion-label>User</ion-label>
+                    <ion-radio value="User"></ion-radio>
+                  </ion-item>
+                  <ion-item>
+                    <ion-label>Farmer</ion-label>
+                    <ion-radio value="Farmer"></ion-radio>
+                  </ion-item>
+                </ion-radio-group>
+              </ion-list>
+            </form>
+
+            <ion-item
+              *ngIf="!dataEdit && selectedFilter && !isSelectableListDisabled"
+              button
+              (click)="handleSelectFilterItems()"
+            >
+              <ion-label>Select {{ selectedFilter }}</ion-label>
+              <ion-label class="ion-text-right">
+                <ion-spinner *ngIf="showSpinner"></ion-spinner>
+              </ion-label>
+
+              <ion-label class="ion-text-right"
+                >{{selectedItems.length}} {{ selectedItems.length > 1 ?
+                selectedFilter.toLowerCase() + 's' :
+                selectedFilter.toLowerCase() }} selected</ion-label
+              >
+              <ion-icon name="chevron-down-outline" slot="end"></ion-icon>
+            </ion-item>
+
+            <ion-button
+              [disabled]="isEnabledViewData(selectedItems)"
+              color="primary"
+              size-lg="large"
+              expand="block"
+              type="button"
+              (click)="onViewData()"
+            >
+              {{ dataEdit ? 'View Summary': 'View Data History' }}
+            </ion-button>
+
+            <div *ngIf="dataEdit && isSummaryDisplayed">
+              <app-data-edit [count]="summary"></app-data-edit>
+            </div>
+            <div *ngIf="!dataEdit && !showLoader && isDataHistoryDisplayed">
+              <app-data-history
+                [dataHistories]="dataHistories"
+                [showLoader]="showLoader"
+              ></app-data-history>
+            </div>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

@@ -1,0 +1,7 @@
+{
+  "name": "rcmffr-rebuild",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

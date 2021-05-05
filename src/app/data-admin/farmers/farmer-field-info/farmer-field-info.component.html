@@ -1,0 +1,348 @@
+<ion-header>
+  <ion-toolbar color="default">
+    <ion-buttons slot="start">
+      <ion-button (click)="backClicked()">
+        <ion-icon name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <div class="item item-divider item-assertive ion-padding bgheader ion-text-center" style="white-space: normal;">
+      FARMER FARM LOT INFORMATION
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="ion-padding divLoading" *ngIf="loadingInfo; else hasList">
+    <section>Loading farm lot info <ion-spinner></ion-spinner>
+    </section>
+  </div>
+
+  <ng-template #hasList>
+    <ion-grid>
+      <ion-row class="ion-justify-content-center">
+        <ion-col size="12" size-sm="9" size-xl="7">
+          <ion-card>
+            <ion-card-content>
+              <ion-fab vertical="top" horizontal="end" slot="fixed">
+                <ion-row class="ion-text-center">
+                  <ion-col>
+                    <ion-fab-button (click)="editFieldModal()" matTooltip="Edit" matTooltipPosition="above" [disabled]="isOffline">
+                      <ion-icon name="create"></ion-icon>
+                    </ion-fab-button>
+                  </ion-col>
+                  <ion-col *ngIf="isDataAdmin()">
+                    <ion-fab-button color="danger" (click)="confirmDeletion()" matTooltip="Delete Farm Lot"
+                      matTooltipPosition="above">
+                      <ion-icon name="trash"></ion-icon>
+                    </ion-fab-button>
+                  </ion-col>
+                </ion-row>
+              </ion-fab>
+              <br />
+              <ion-list>
+                <ion-item-group>
+                  <ion-item-divider>
+                    <ion-label>FARM LOT INFO</ion-label>
+                  </ion-item-divider>
+
+                  <ion-item class="ion-justify-content-between" lines="none">
+                    <ion-label>Farm Lot Name:</ion-label>
+                    <ion-label class="ion-text-end ion-text-wrap">{{
+                      field.field_name | titlecase
+                    }}</ion-label>
+                  </ion-item>
+
+                  <ion-item class="ion-justify-content-between" lines="none">
+                    <ion-label>Farm Lot ID<ion-text *ngIf="!fieldId"> (offline)</ion-text>:</ion-label>
+                    <ion-label class="ion-text-end ion-text-wrap">{{
+                      field.field_id ? field.field_id : offlineFieldId
+                    }}</ion-label>
+                  </ion-item>
+
+                  <ion-item class="ion-justify-content-between" lines="none">
+                    <ion-label>GPX ID:</ion-label>
+                    <ion-label class="ion-text-end">{{
+                      field.gpx_id
+                    }}</ion-label>
+                  </ion-item>
+
+                  <ion-item class="ion-justify-content-between" lines="none">
+                    <ion-label>Farm Lot Size:</ion-label>
+                    <ion-label *ngIf="field.field_unit === 0" class="ion-text-end">{{ field.field_size_ha }} ha
+                    </ion-label>
+                    <ion-label *ngIf="field.field_unit === 1" class="ion-text-end">{{ field.field_size }} ha</ion-label>
+                    <ion-label *ngIf="field.field_unit === 2" class="ion-text-end">{{ field.field_size }} sqm =
+                      {{ field.field_size_ha }} ha</ion-label>
+                  </ion-item>
+
+                  <ion-item class="ion-justify-content-between" lines="none">
+                    <ion-label class="ion-text-wrap">Farm Lot Address:</ion-label>
+                    <ion-label class="ion-text-end ion-text-wrap">{{
+                      fieldAddressDisplay
+                    }}</ion-label>
+                  </ion-item>
+
+                  <ion-item class="ion-justify-content-between" lines="none">
+                    <ion-label class="ion-text-wrap">Farm Lot Ownership:</ion-label>
+                    <ion-label class="ion-text-end">{{
+                      fieldOwnerText[field.field_ownership]
+                    }}</ion-label>
+                  </ion-item>
+
+                  <ion-item *ngIf="
+                      field.field_member_org != '2' &&
+                      field.field_org_name != null
+                    " class="ion-justify-content-between" lines="none">
+                    <ion-label>Farm Lot Organization:</ion-label>
+                    <ion-label class="ion-text-end ion-text-wrap">{{
+                      field.field_org_name | titlecase
+                    }}</ion-label>
+                  </ion-item>
+
+                  <div *ngIf="field.field_ownership != 1">
+                    <ion-item-divider>
+                      <ion-label>FARM LOT OWNER INFO</ion-label>
+                    </ion-item-divider>
+
+                    <ion-item class="ion-justify-content-between" lines="none">
+                      <ion-label class="ion-text-wrap">Farm Lot Owner Given Name:</ion-label>
+                      <ion-label class="ion-text-end ion-text-wrap">{{
+                        field.farm_lot_owner_given_name
+                      }}</ion-label>
+                    </ion-item>
+
+                    <ion-item class="ion-justify-content-between" lines="none">
+                      <ion-label class="ion-text-wrap">Farm Lot Owner Surname:</ion-label>
+                      <ion-label class="ion-text-end ion-text-wrap">{{
+                        field.farm_lot_owner_surname
+                      }}</ion-label>
+                    </ion-item>
+
+                    <ion-item class="ion-justify-content-between" lines="none">
+                      <ion-label class="ion-text-wrap">Farm Lot Owner Number:</ion-label>
+                      <ion-label class="ion-text-end">{{
+                        field.farm_lot_owner_number
+                      }}</ion-label>
+                    </ion-item>
+                  </div>
+                </ion-item-group>
+              </ion-list>
+            </ion-card-content>
+          </ion-card>
+
+          <ion-card>
+            <ion-card-content>
+              <ion-item-divider class="ion-padding-vertical">
+                <ion-label>{{ rcmRecommendations.length > 0 ? '' : '*FIELD HAS NO '}}RCM RECOMMENDATIONS</ion-label>
+              </ion-item-divider>
+              <table *ngIf="rcmRecommendations.length > 0" mat-table #sort="matSort" [dataSource]="recommendationDataSource" matSort class="mat-elevation-z8">
+                <ng-container matColumnDef="sowingDate">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header> Sowing Date </th>
+                  <td mat-cell *matCellDef="let recommendation"> 
+                    {{recommendation.sowingDate | date}}
+                    <div>
+                      <ion-text color="medium">
+                        <i>Generated on {{recommendation.dateGenerated | date}}</i>
+                      </ion-text>
+                    </div>
+                  </td>
+                </ng-container>
+
+                <ng-container matColumnDef="refId">
+                  <th mat-header-cell *matHeaderCellDef class="ion-text-center"> Reference Number </th>
+                  <td mat-cell *matCellDef="let recommendation" class="ion-text-center"> {{recommendation.refId}} {{recommendation.temporaryRefId ? '(' + recommendation.temporaryRefId + ')' : ''}}</td>
+                </ng-container>
+                
+                <ng-container matColumnDef="action">
+                  <th mat-header-cell *matHeaderCellDef class="ion-text-center"> Action </th>
+
+                  <td mat-cell *matCellDef="let recommendation" class="ion-text-center">
+                    <ion-row text-center>
+                      <ion-col>
+                        <ion-fab-button id="recommendation-btn" type="button" size="small"
+                          (click)="viewRecommendationTooltip.hide(); navigateToRecommendation(recommendation.refId)"
+                          #viewRecommendationTooltip="matTooltip" matTooltip="View Generated Recommendation" [disabled]="isOffline">
+                          <ion-icon name="document"></ion-icon>
+                        </ion-fab-button>
+                      </ion-col>
+                      <ion-col>
+                        <ion-fab-button id="recommendation-btn" type="button" size="small"
+                          (click)="downloadRecommendation(recommendation.pdfFile, recommendation.refId)"
+                          matTooltip="Download Recommendation" [disabled]="isOffline">
+                          <ion-icon name="download"></ion-icon>
+                        </ion-fab-button>
+                      </ion-col>
+                    </ion-row>
+                  </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="recommendationColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: recommendationColumns;"></tr>
+              </table>
+            </ion-card-content>
+          </ion-card>
+
+          <ion-card>
+            <ion-card-content>
+              <ion-fab vertical="top" horizontal="end" slot="fixed">
+                <ion-row class="ion-text-right">
+                  <ion-col>
+                    <div 
+                      [matTooltip]="isSyncButtonEnabled ? (isFarmerOffline ? 'Sync farmer data first' : 'No recommendation to be uploaded') : '' " 
+                      matTooltipPosition="before">
+                      <ion-button *ngIf="!isOffline && offlineFieldRecommendations.length > 0" type="button" [disabled]="isSyncButtonEnabled" (click)="syncRecommendation()">
+                        Sync Recommendation
+                      </ion-button>
+                    </div>
+                  </ion-col>
+                </ion-row>
+              </ion-fab>
+              <ion-item-divider class="ion-padding-vertical">
+                <ion-label>{{ offlineFieldRecommendations.length > 0 ? '' : '*FIELD HAS NO '}} RCM RECOMMENDATIONS <b>(Offline)</b></ion-label>
+              </ion-item-divider>
+              <table *ngIf="offlineFieldRecommendations.length > 0" mat-table #offlineSort="matSort" [dataSource]="recommendationOfflineDataSource" matSort
+                class="mat-elevation-z8">
+                <ng-container matColumnDef="sowingDate">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header> Sowing Date </th>
+                  <td mat-cell *matCellDef="let recommendation"> 
+                    {{recommendation.sowingDate | date}}
+                    <div>
+                      <ion-text color="medium">
+                        <i>Generated on {{recommendation.dateGenerated | date}}</i>
+                      </ion-text>
+                    </div>
+                  </td>
+                </ng-container>
+
+                <ng-container matColumnDef="temporaryRefId">
+                  <th mat-header-cell *matHeaderCellDef class="ion-text-center"> Temporary Reference Number </th>
+                  <td mat-cell *matCellDef="let recommendation" class="ion-text-center">
+                    {{recommendation.temporaryRefId}}
+                  </td>
+                </ng-container>
+
+                <ng-container matColumnDef="action">
+                  <th mat-header-cell *matHeaderCellDef class="ion-text-center"> Action </th>
+
+                  <td mat-cell *matCellDef="let recommendation" class="ion-text-center">
+                    <ion-row text-center>
+                      <ion-col>
+                        <ion-fab-button 
+                          id="recommendation-btn" 
+                          type="button" 
+                          size="small"
+                          (click)="viewRecommendationTooltip.hide(); navigateToRecommendation(recommendation.temporaryRefId)"
+                          #viewRecommendationTooltip="matTooltip" 
+                          matTooltip="View Generated Recommendation">
+                          <ion-icon name="document"></ion-icon>
+                        </ion-fab-button>
+                      </ion-col>
+                      <ion-col>
+                        <ion-fab-button 
+                          id="recommendation-btn" 
+                          type="button" 
+                          size="small"
+                          (click)="downloadRecommendation(recommendation.pdfFile, recommendation.temporaryRefId)"
+                          matTooltip="Download Recommendation">
+                          <ion-icon name="download"></ion-icon>
+                        </ion-fab-button>
+                      </ion-col>
+                    </ion-row>
+                  </td>
+                </ng-container>
+                <ng-container matColumnDef="uploaded">
+                  <th mat-header-cell *matHeaderCellDef class="ion-text-center">Uploaded</th>
+                  <td mat-cell *matCellDef="let recommendation" class="ion-text-center">
+                    <ion-icon size="large" *ngIf="recommendation.refId && !recommendation.isUploading"
+                      name="cloud-done-outline" color="success"></ion-icon>
+                    <ion-icon size="large"
+                      *ngIf="!recommendation.refId && !recommendation.isUploading && !recommendation.error"
+                      name="cloud-upload-outline"></ion-icon>
+                    <ion-icon size="large" *ngIf="recommendation.error && !recommendation.isUploading"
+                      name="alert-circle-outline" color="danger"></ion-icon>
+                    <ion-spinner *ngIf="recommendation.isUploading" name="crescent"></ion-spinner>
+                  </td>
+                </ng-container>
+                <tr mat-header-row *matHeaderRowDef="recommendationOfflineColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: recommendationOfflineColumns;"></tr>
+              </table>
+            </ion-card-content>
+          </ion-card>
+
+
+          <ion-card *ngIf="hasGpxFile && isVerified && (roleId !== PUBLIC_ACCESS)">
+            <ion-card-content>
+              <ion-row>
+                <ion-col>
+                  <ion-list>
+                    <ion-item-divider>
+                      <ion-label>FARM LOT GPX</ion-label>
+                    </ion-item-divider>
+                    <app-gpx-map [gpxModels]="gpxModels" [mapLatitude]="lat" [mapLongitude]="long"></app-gpx-map>
+                  </ion-list>
+                </ion-col>
+              </ion-row>
+
+              <ion-row>
+                <ion-col class="log-buttons">
+                  <ion-button type="button" (click)="downloadGpx()" expand="block">Download GPX File</ion-button>
+                </ion-col>
+              </ion-row>
+
+              <ion-row *ngIf="isDataAdmin()" class="ion-text-center">
+                <ion-col class="log-buttons">
+                  <app-file-upload buttonText="REPLACE GPX" [isMultiple]="false" componentId="farmerFiledUpload"
+                    (fileChange)="onFileChange($event)" [isExpand]="false"></app-file-upload>
+                </ion-col>
+                <ion-col class="log-buttons">
+                  <ion-button type="button" color="danger" (click)="confirmGpxDeletion()" expand="block">Delete GPX
+                  </ion-button>
+                </ion-col>
+              </ion-row>
+            </ion-card-content>
+          </ion-card>
+
+          <app-gpx-upload componentId="farmerGpxUpload" [fileListMetadata]="fileListMetadata"></app-gpx-upload>
+
+          <ion-row class="ion-justify-content-center" *ngIf="!hasGpxFile">
+            <ion-col>
+              <p *ngIf="isVerified">
+                This farm lot was manually verified on
+                <b *ngIf="checkIfValidDate(fieldData[0].verification_date)">{{
+                  fieldData[0]['verification_date'] | date
+                }}</b>
+                with a verified farm lot size of
+                <b>{{ fieldData[0]['verified_field_size'] }} ha</b> but has no
+                gpx file uploaded yet.
+              </p>
+            </ion-col>
+          </ion-row>
+
+          <ion-row class="ion-justify-content-center" *ngIf="isOffline && field.is_verified">
+            <ion-col>
+              <p>
+                This farm lot was verified on
+                <b *ngIf="checkIfValidDate(field.verification_date)">{{
+                  field.verification_date | date
+                }}</b>
+                with a verified farm lot size of
+                <b>{{ field.verified_field_size }} </b>ha.
+              </p>
+            </ion-col>
+          </ion-row>
+
+          <ion-row class="ion-text-center">
+            <ion-col size="12" size-sm *ngIf="!hasGpxFile && !isOffline">
+              <app-file-upload [roleId]="roleId" buttonText="Upload GPX" [isMultiple]="false" componentId="farmerFiledUpload"
+                (fileChange)="onFileChange($event)">
+              </app-file-upload>
+            </ion-col>
+            <ion-col size="12" size-sm>
+              <ion-button expand="full" (click)="checkFarmLotRecommendation()">Generate Recommendation</ion-button>
+            </ion-col>
+          </ion-row>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ng-template>
+</ion-content>

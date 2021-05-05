@@ -1,0 +1,48 @@
+.dashboard-header {
+  background-color: var(--ion-color-primary);
+  color: white;
+  padding-bottom: 60px;
+}
+
+.farmer-list {
+  background-color: #ffffff;
+  position: relative;
+  border-top-right-radius: 30px;
+  border-top-left-radius: 30px;
+  top: -40px;
+}
+
+.farmer-card {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.farmer-photo {
+  width: 100%;
+  max-width: 200px;
+  border-radius: 100%;
+  padding: 10px;
+  font-size: 4rem;
+}
+
+h1 {
+  font-size: 4rem;
+  font-weight: bold;
+}
+
+h1,
+h2,
+h4,
+h5 {
+  margin: 0;
+}
+
+small {
+  opacity: 0.8;
+}
+
+@media only screen and (min-width: 768px) {
+  .farmer-list {
+    top: 0;
+  }
+}

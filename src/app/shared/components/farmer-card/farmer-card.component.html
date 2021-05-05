@@ -1,0 +1,25 @@
+<ion-card class="farmer-card" button (click)="onFarmerCardClick()">
+    <ion-card-content>
+        <div class="avatar">
+          <ion-avatar *ngIf="farmerInfo.photo">
+            <img [src]="farmerInfo.photo">
+          </ion-avatar>
+          <ion-icon class="noAvatar" name="person-circle" *ngIf="!farmerInfo.photo"></ion-icon>
+        </div>
+        <ion-card-header>
+          <ion-card-title #farmerNameTooltip="matTooltip" [matTooltipShowDelay]="500" matTooltip="{{ farmerFullName | titlecase }}" matTooltipPosition="above"  class="text-ellipsis">{{ farmerFullName | titlecase }}</ion-card-title>
+          <ion-card-subtitle class="ion-text-center"> {{farmerInfo?.farmer_id}} </ion-card-subtitle>
+        </ion-card-header>
+        <ion-item #fieldCountTooltip="matTooltip" [matTooltipShowDelay]="500" matTooltip="No. of Fields" matTooltipPosition="left">
+          <ion-label>No. of farm lots</ion-label>
+          <ion-badge slot="end">{{farmerInfo?.field_count}}</ion-badge>
+        </ion-item>
+
+        <ion-item #dateRegisteredTooltipLabel="matTooltip" [matTooltipShowDelay]="500" matTooltip="Date registered" matTooltipPosition="left" [matTooltipDisabled]="disableDateRegisteredTooltip">
+          <ion-label>Date registered</ion-label>
+          <ion-badge #dateRegisteredTooltip="matTooltip" [matTooltipShowDelay]="500" (mouseenter)="disableDateRegisteredTooltip = true" (mouseleave)="disableDateRegisteredTooltip = false" matTooltip="{{farmerInfo.created_at | date:'MMM d, y, h:mm:ss a'}}" slot="end" 
+          >{{farmerInfo?.created_at | date:'MMM d, y'}}</ion-badge>
+        </ion-item>
+    </ion-card-content>
+</ion-card>
+

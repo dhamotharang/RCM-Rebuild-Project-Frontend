@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      Offline Farmer List
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="handleClose()">
+        <ion-icon name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <app-farmer-view-list
+    [isGridView]="isGridView"
+    [isListView]="isListView"
+    [farmerList]="farmerList"
+  >
+  </app-farmer-view-list>
+</ion-content>
+

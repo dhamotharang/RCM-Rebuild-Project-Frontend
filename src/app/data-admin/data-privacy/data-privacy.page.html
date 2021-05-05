@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-toolbar color="default">
+    <ion-buttons slot="start">
+      <ion-button [routerLink]="['/data-admin/farmer-management/farmer-list']">
+        <ion-icon name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <div
+      class="item item-divider item-assertive ion-padding bgheader ion-text-center"
+      style="white-space: normal;"
+    >
+      DATA PRIVACY
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row class="ion-justify-content-center">
+      <ion-col size-sm="12" size-md="12" size-lg="11" size-xl="10">
+        <ion-card>
+          <ion-card-content>
+            <ion-list>
+              <data-privacy
+                *ngFor="let farmerConsentForm of farmerConsentForms"
+                [label]="farmerConsentForm.language"
+                [file]="farmerConsentForm.file"
+                [languageId]="farmerConsentForm.languageId"
+                (onUpload)="onUpload($event)"
+                (onDownload)="onDownload($event)"
+              ></data-privacy>
+            </ion-list>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

@@ -1,0 +1,180 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <app-header></app-header>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content>
+  <ion-grid>
+    <ion-row class="ion-justify-content-center">
+      <ion-col size="10" size-lg="6" size-xl="4">
+        <div class="ion-padding ion-text-left">
+          <a routerLink="/">Go back to Rice Crop Manager Advisory Service</a>
+        </div>
+        <ion-card class="ion-padding">
+          <ion-card-content>
+            <h1 class="ion-padding-bottom">Contact Us</h1>
+            <ion-grid>
+              <ion-row>
+                <h2>Department of Agriculture</h2>
+              </ion-row>
+              <ion-row class="ion-padding-bottom">
+                <ion-text>
+                  (632) 273 2418<br />
+                  (632) 273 2474 / 0920 946 2474<br />
+                  Elliptical Road, Diliman, Quezon City, Philippines
+                </ion-text>
+              </ion-row>
+
+              <ion-row class="ion-padding-top">
+                <h2>
+                  For questions, just fill out the form below and we’ll get back
+                  to you as soon as possible.
+                </h2>
+              </ion-row>
+            </ion-grid>
+
+            <form [formGroup]="contactUsForm" class="ion-padding-top">
+              <mat-form-field>
+                <mat-label>
+                  <app-item-form-label label="Specify category" [required]="true"></app-item-form-label>
+                </mat-label>
+                <mat-select formControlName="category" (selectionChange)="onCategoryChange()">
+                  <mat-option [value]="categoryEnum.DATA_RETRIEVAL_AND_MODIFICATION">Data retrieval and modification</mat-option>
+                  <mat-option [value]="categoryEnum.SOFTWARE_RELATED_ISSUES">Software related issues</mat-option>
+                  <mat-option [value]="categoryEnum.RICE_CROP_NUTRIENT_MANAGEMENT_CONCERNS">Rice crop nutrient management concerns</mat-option>
+                  <mat-option [value]="categoryEnum.SUGGESTION_OR_COMMENT">Suggestions or comment</mat-option>
+                </mat-select>
+                <mat-error
+                  *ngIf="contactUsForm.get('category').invalid && contactUsForm.get('category').touched">
+                  Please select a category
+                </mat-error>
+              </mat-form-field>
+
+              <mat-form-field *ngIf="contactUsForm.get('category').value == categoryEnum.SOFTWARE_RELATED_ISSUES || contactUsForm.get('category').value == categoryEnum.SUGGESTION_OR_COMMENT">
+                <mat-label>
+                  <app-item-form-label label="Specify a sub category" [required]="true"></app-item-form-label>
+                </mat-label>
+                <mat-select formControlName="subCategory">
+                  <div *ngIf="contactUsForm.get('category').value == categoryEnum.SOFTWARE_RELATED_ISSUES">
+                    <mat-option [value]="softwareRelatedSubCategoryEnum.SERVICE_AVAILABILITY">Service availability</mat-option>
+                    <mat-option [value]="softwareRelatedSubCategoryEnum.BUG">Bugs</mat-option>
+                  </div>
+                  
+                  <div *ngIf="contactUsForm.get('category').value == categoryEnum.SUGGESTION_OR_COMMENT">
+                    <mat-option [value]="suggestionOrCommentSubCategoryEnum.APPLICATION_FEATURES">Application features</mat-option>
+                    <mat-option [value]="suggestionOrCommentSubCategoryEnum.RICE_CROP_NUTRIENT_MANAGEMENT_CONCERNS">Rice crop nutrient and management concerns</mat-option>
+                    <mat-option [value]="suggestionOrCommentSubCategoryEnum.OTHERS">Others</mat-option>
+                  </div>
+                </mat-select>
+                <mat-error *ngIf="contactUsForm.get('subCategory').invalid && contactUsForm.get('subCategory').touched">
+                  Please select a sub category
+                </mat-error>
+              </mat-form-field>
+
+              <ion-item>
+                <ion-label position="stacked">First Name <ion-text color="danger">*</ion-text></ion-label>
+                <ion-input formControlName="firstName" class="capitalizeText"></ion-input>
+              </ion-item>
+              <div *ngIf="contactUsForm.get('firstName').invalid && contactUsForm.get('firstName').touched">
+                <ion-text *ngIf="contactUsForm.get('firstName').errors.required" color="danger">Please enter your first
+                  name
+                </ion-text>
+              </div>
+              <ion-item>
+                <ion-label position="stacked">Last Name <ion-text color="danger">*</ion-text></ion-label>
+                <ion-input formControlName="lastName" class="capitalizeText"></ion-input>
+              </ion-item>
+              <div *ngIf="contactUsForm.get('lastName').invalid && contactUsForm.get('lastName').touched">
+                <ion-text *ngIf="contactUsForm.get('lastName').errors.required" color="danger">Please enter your last
+                  name
+                </ion-text>
+              </div>
+
+              <mat-form-field class="ion-margin-top">
+                <mat-label><app-item-form-label label="Your profession" [required]="true"></app-item-form-label></mat-label>
+                <mat-select formControlName="profession" (selectionChange)="onProfessionChange()">
+                  <mat-option [value]="professionEnum.AGRICULTURAL_TECHNICIAN">Agricultural Technician</mat-option>
+                  <mat-option [value]="professionEnum.FARMER">Farmer</mat-option>
+                  <mat-option [value]="professionEnum.FERTILIZER_DEALER_SELLER">Fertilizer Dealer / Seller</mat-option>
+                  <mat-option [value]="professionEnum.LOAN_OFFICER">Loan Officer</mat-option>
+                  <mat-option [value]="professionEnum.RESEARCHER">Researcher</mat-option>
+                  <mat-option [value]="professionEnum.UNIVERSITY_PROFESSOR_INSTRUCTOR">University Professor / Instructor
+                  </mat-option>
+                  <mat-option [value]="professionEnum.STUDENT">Student</mat-option>
+                  <mat-option [value]="professionEnum.OTHERS">Other, please specify:</mat-option>
+                </mat-select>
+                <mat-error *ngIf="contactUsForm.get('profession').invalid && contactUsForm.get('profession').touched">
+                  Please select your profession
+                </mat-error>
+              </mat-form-field>
+
+              <ion-item *ngIf="isOtherProfessionSelected">
+                <ion-label position="stacked">Other Profession</ion-label>
+                <ion-input formControlName="otherProfession" class="capitalizeText"></ion-input>
+              </ion-item>
+              <div *ngIf="contactUsForm.get('otherProfession').invalid && contactUsForm.get('otherProfession').touched && contactUsForm.get('profession').value === professionEnum.OTHERS">
+                <ion-text *ngIf="contactUsForm.get('otherProfession').errors.required" color="danger">Please specify
+                  your profession
+                </ion-text>
+              </div>
+
+              <ion-item>
+                <ion-label position="stacked">Email <ion-text color="danger">*</ion-text></ion-label>
+                <ion-input formControlName="email"></ion-input>
+              </ion-item>
+              <div *ngIf="contactUsForm.get('email').invalid && contactUsForm.get('email').touched">
+                <ion-text *ngIf="contactUsForm.get('email').errors.required" color="danger">Please enter your email
+                  address
+                </ion-text>
+                <ion-text *ngIf="contactUsForm.get('email').errors.pattern" color="danger">Please enter a valid email
+                  address</ion-text>
+              </div>
+
+              <ion-item class="ion-margin-bottom">
+                <ion-label position="stacked">Mobile Number <ion-text color="danger">*</ion-text></ion-label>
+                <ion-input type="text" formControlName="contactNumber"></ion-input>
+              </ion-item>
+              <div *ngIf="contactUsForm.get('contactNumber').invalid && contactUsForm.get('contactNumber').touched"
+                class="ion-margin-bottom">
+                <ion-text *ngIf="contactUsForm.get('contactNumber').errors.required" color="danger">Mobile Number is
+                  required</ion-text>
+                <ion-text *ngIf="!contactUsForm.get('contactNumber').errors.required && (contactUsForm.get('contactNumber').errors?.pattern || 
+                contactUsForm.get('contactNumber').errors['invalidMobileNumberPrefix'] ||
+                contactUsForm.get('contactNumber').errors['invalidMobileNumberLength'])" color="danger">Please provide
+                  a valid Mobile Number</ion-text>
+              </div>
+
+              <app-address-form-control [formGroup]="contactUsForm" [hideBarangay]="true" [address]="userAddress">
+              </app-address-form-control>
+              <ion-item>
+                <ion-label position="stacked">Message <ion-text color="danger">*</ion-text></ion-label>
+                <ion-textarea formControlName="message" maxlength="255" [(ngModel)]="messageTextNumber"></ion-textarea>
+              </ion-item>
+              <div class="ion-text-right">
+                <span>{{ messageTextNumber?.length > 0 ? messageTextNumber?.length : 0 }}/255</span>
+              </div>
+              <div *ngIf="contactUsForm.get('message').invalid && contactUsForm.get('message').touched">
+                <ion-text *ngIf="contactUsForm.get('message').errors.required" color="danger">Message is
+                  required</ion-text>
+              </div>
+
+              <ion-item>
+                <ion-label position="stacked">Attachment</ion-label>
+                <ion-input formControlName="attachment" type="file" (change)="onFileSelected($event)"
+                  [accept]="fileExtensions"></ion-input>
+              </ion-item>
+              <ion-item lines="none">
+                <ion-button slot="end" size="lg" color="primary" expand="block" (click)="onSubmit()">Submit</ion-button>
+              </ion-item>
+            </form>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

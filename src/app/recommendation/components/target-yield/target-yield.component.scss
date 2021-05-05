@@ -1,0 +1,44 @@
+.note {
+  padding: 0.5em 1em;
+  background: #fafafa;
+  color: black;
+  border: 2px solid #a0a0a0;
+  border-radius: 5px;
+}
+
+.warning {
+  background-color: var(--ion-color-warning);
+  color: black;
+}
+
+.success {
+  background-color: var(--ion-color-success);
+  border-radius: 6px;
+  color: black;
+}
+
+.danger {
+  background-color: var(--ion-color-danger);
+  color: white;
+}
+
+.form-error {
+  font-size: 0.75rem;
+}
+
+.mat-form-field-wrapper {
+  padding-bottom:12em;
+}
+
+.error-padding-bottom {
+  padding-top:.7em;
+}
+
+mat-form-field.ng-untouched.ng-pristine.ng-invalid.mat-form-field-invalid,
+mat-form-field.ng-pristine.ng-invalid.ng-star-inserted.mat-form-field-invalid.ng-touched {
+  padding-bottom: 30px;
+}
+
+ mat-form-field.ion-padding-top.mat-form-field.ng-tns-c11-1.mat-primary.mat-form-field-type-mat-input.mat-form-field-appearance-legacy.mat-form-field-can-float.mat-form-field-has-label.ng-star-inserted.ng-touched.mat-form-field-should-float.ng-dirty.ng-valid {
+  margin-top: 16px;
+}  

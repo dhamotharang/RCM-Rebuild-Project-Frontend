@@ -1,0 +1,480 @@
+{
+    "COMMON": {
+        "NAME": "Name",
+        "ANSWER": {
+            "NO": "No",
+            "YES": "Yes"
+        },
+        "OTHERS_PLEASE_SPECIFY": "Others, Please specify",
+        "UNIT": {
+            "HECTARES": "hectares",
+            "HA": "ha",
+            "SQUARE_METER": "square meter",
+            "KG_PER_HECTARE": "kg/ha",
+            "TON_PER_HECTARE": "t/ha",
+            "KG_PER_SACK": "kg/sack",
+            "BAGS_PER_HECTARE": "bags per hectare",
+            "HECTARE": "hectare",
+            "BAG": "bag",
+            "BAGS": "bags",
+            "KG": "kg"
+        },
+        "AND": "and",
+        "NEXT": "Next",
+        "EDIT": "Edit",
+        "EDIT_FORM": {
+            "HEADING": "Form Change",
+            "BODY": "Modifying this form will reset succeeding questions. Please confirm.",
+            "CANCEL_BUTTON": "Cancel"
+        },
+        "VALIDATION": {
+            "REQUIRED": "Please select an answer",
+            "REQUIRED_SECONDARY": "This field is required"
+        },
+        "LANGUAGE": "Language",
+        "MONTH": {
+            "JANUARY": "January",
+            "FEBRUARY": "February",
+            "MARCH": "March",
+            "APRIL": "April",
+            "MAY": "May",
+            "JUNE": "June",
+            "JULY": "July",
+            "AUGUST": "August",
+            "SEPTEMBER": "September",
+            "OCTOBER": "October",
+            "NOVEMBER": "November",
+            "DECEMBER": "December"
+        },
+        "WATER_SOURCE": {
+            "LABEL": "Water regime",
+            "IRRIGATED": "Irrigated",
+            "RAINFED": "Rainfed"
+        },
+        "SEED_SOURCE_ANSWER": {
+            "PURCHASE_CERTIFIED_SEED": "Purchased certified seeds with tag or provided by DA",
+            "QUALITY_SEED": "Purchased or exchanged seeds from other farmer using good quality seed or from a farm lot with proper rouging",
+            "FIRST_HARVEST_SEED": "Seeds from the first harvest of certified seeds with tag",
+            "HOME_SAVED_SEED": "Home-saved seeds or seeds used for several seasons"
+        },
+        "VARIETY_TYPE": {
+            "INBRED": "Inbred",
+            "HYBRID": "Hybrid"
+        },
+        "SEEDLING_AGE": {
+            "EARLY_SEEDLING_AGE": "10-14 days",
+            "MIDDLE_SEEDLING_AGE": "15-22 days",
+            "LATE_SEEDLING_AGE": "23 days or more"
+        },
+        "SEEDLING": "seedling",
+        "NUMBER_OF_SACKS": "Number of sacks",
+        "WEIGHT_OF_SACK": "Weight of sack (kg)",
+        "FRESH_WEIGHT": "fresh weight",
+        "DRY_WEIGHT": "dry weight",
+        "OF": "",
+        "SACKS_AT": "sacks at",
+        "CROP_ESTABLISHMENT": {
+            "MANUAL": "Manual Transplanting",
+            "MECHANICAL": "Mechanical Transplanting",
+            "WET": "Wet Seeding",
+            "DRY": "Dry Seeding"
+        },
+        "TARGET_YIELD": "Target yield",
+        "CROP_ESTABLISHMENT_SHORT_LABEL": {
+            "TRANSPLANTING": "days after transplanting",
+            "SOWING": "days after sowing",
+            "EMERGENCE": "days after emergence"
+        },
+        "CROP_ESTABLISHMENT_ACRONYM": {
+            "TRANSPLANTING":"DAT",
+            "SOWING":"DAS",
+            "EMERGENCE":"DAE"
+        },
+        "PRACTICE_SAFE_AWD": "Practice Safe AWD",
+        "SEED_BED": "Seedbed"
+    },
+    "FARM_LOT": {
+        "FARM_LOT_SIZE": "Farm lot size",
+        "FARM_LOT_DETAILS": "Farm lot details",
+        "USE_WHOLE_FARM_LOT_SIZE": "Use whole farm lot size",
+        "SELECT_FARM_LOT_SIZE": "Select farm lot size",
+        "DA_PROGRAM_QUESTION": "For which DA program/project does this interview of farmer belong?",
+        "PLEASE_SPECIFY_PROGRAM_OR_PROJECT": "Please specify program/project",
+        "FARM_DESCRIPTION_IN_UPCOMING_SEASON_QUESTION": "Which best describes your <span class=\"text-highlight\">{FARM_LOT_NAME}</span> farm this upcoming season?",
+        "DO_YOU_USE_PUMP_QUESTION": "Do you use a pump powered by gasoline, diesel, or electricity for irrigation?",
+        "DO_YOU_HAVE_ACCESS_TO_PUMP_QUESTION": "Do you have access to a pump for supplying water during a drought that risks loss of crop yield?",
+        "INPUT_SIZE": "Input size"
+    },
+    "TARGET_YIELD": {
+        "CROPS_PER_YEAR": {
+            "QUESTION": "How many times will you plant rice in <span class=\"text-highlight\">{{ getFarmLotName }}</span> farm lot in a year? <font color='red'>*</font>",
+            "ANSWER": {
+                "ONE": "One",
+                "TWO": "Two",
+                "THREE": "Three"
+            }
+        },
+        "CROP_ESTABLISHMENT": {
+            "QUESTION": "How will you establish the upcoming rice crop?"
+        },
+        "SOWING_DATE": {
+            "QUESTION": {
+                "TRANSPLANTING": "When is rice sown in the farm lot?",
+                "SEEDING": "When is rice sown in the seedbed?"
+            },
+            "VALIDATION": {
+                "REQUIRED": {
+                    "TRANSPLANTING": "Please choose sowing date",
+                    "SEEDING": "Please choose sowing date"
+                },
+                "INTERVIEW_NOT_MORE_THAN_EIGHT_DAYS_AFTER_SOWING_DATE": "To receive a recommendation, date of interview should not be more than 8 days after the sowing date in the farm lot."
+            }
+        },
+        "SEEDLING_AGE": {
+            "QUESTION": "What is the approximate seedling age at transplanting?",
+            "VALIDATION": {
+                "ONE": "To receive a recommendation, the date of interview should not be more than or equal to 5 days after transplanting in the farm lot."
+            }
+        },
+        "SEED_RATE": {
+            "QUESTION": "What seed rate will you use for your <span class=\"text-highlight\">{{ getFieldSizeHectare }}</span> hectare <span class=\"text-highlight\">{{ getFarmLotName }}</span> farm lot for the upcoming rice sown in <span class=\"text-highlight\">{{ sowingMonth }}</span>? <font color='red'>*</font> {{ seedRate }}",
+            "VALIDATION": {
+                "REQUIRED": "Please enter answer",
+                "MIN": "Please select a lower value.",
+                "MAX": "Please select a higher value."
+            },
+            "PLACEHOLDER": "Enter kilogram"
+        },
+        "VARIETY_TYPE": {
+            "QUESTION": "What variety will you grow for the upcoming season with sowing in <span class=\"text-highlight\">{{ sowingMonth }}</span>? <font color='red'>*</font>",
+            "VALIDATION": {
+                "REQUIRED": "Please select variety type"
+            }
+        },
+        "VARIETY_NAME": {
+            "QUESTION": "Name of Variety",
+            "VALIDATION": {
+                "REQUIRED": "Please select name of variety"
+            },
+            "SEARCH": "Search",
+            "NO_VARIETY_FOUND": "No Variety Found"
+        },
+        "SPECIFIED_VARIETY_NAME": {
+            "QUESTION": "Please specify variety",
+            "VALIDATION": {
+                "REQUIRED": "Please enter variety name"
+            }
+        },
+        "GROWTH_DURATION": {
+            "QUESTION": "What is the growth duration of the variety from sowing to harvest?",
+            "ANSWER": {
+                "TRANSPLANTING": {
+                    "EARLY_GROWTH_DURATION": "101-110 days",
+                    "MIDDLE_GROWTH_DURATION": "111-120 days",
+                    "LATE_GROWTH_DURATION": "121-130 days"
+                },
+                "SEEDING": {
+                    "EARLY_GROWTH_DURATION": "91-100 days",
+                    "MIDDLE_GROWTH_DURATION": "101-110 days",
+                    "LATE_GROWTH_DURATION": "111-120 days"
+                }
+            },
+            "VALIDATION": {
+                "REQUIRED": "Please select growth duration"
+            }
+        },
+        "NUMBER_AND_WEIGHT_OF_SACK": {
+            "QUESTION": "How many sacks of fresh, unmilled rice do you normally harvest from your <span class=\"text-highlight\">{{ getFieldSizeHectare }}</span> hectare <span class=\"text-highlight\">{{ getFarmLotName }}</span> farm lot during harvest in <span class=\"text-highlight\">{{ estimatedHarvestMonth }}</span> using <span class=\"text-highlight\">{{ getVarietyType }}</span> variety? Give your total harvest.",
+            "NOTE": "Note: Normal yield is the yield without extreme events such as floods, submergence, drought or pest attack that caused significant yield loss.",
+            "VALIDATION": {
+                "MIN": "Warning: Yield input must not be lower than 1 t/ha.",
+                "MAX": "Warning: Yield must not exceed {{ maxReportedYield }} t/ha."
+            },
+            "WARNING": "Your farm lot is already getting good yield. Increase in yield with the use of RCM could be very small or negligible."
+        },
+        "NUMBER_OF_SACKS": {
+            "VALIDATION": {
+                "REQUIRED": "Please enter number of sacks",
+                "MIN": "Number of sacks must be at least 1"
+            }
+        },
+        "WEIGHT_OF_SACK": {
+            "VALIDATION": {
+                "REQUIRED": "Please enter weight of sack",
+                "MIN": "Weight of sack must be greater than or equal to 25 kg.",
+                "MAX": "Weight of sack must be less than or equal to 85 kg."
+            }
+        },
+        "PREVIOUS_VARIETY_TYPE": {
+            "QUESTION": "What variety type did you grow in the last season with the same sowing time in <span class=\"text-highlight\">{{ sowingMonth }}</span>? <font color='red'>*</font>",
+            "VALIDATION": {
+                "REQUIRED": "Please select variety type"
+            }
+        },
+        "UPCOMING_SEED_SOURCE": {
+            "QUESTION": "What is the source of your rice seeds for the upcoming season with sowing in <span class=\"text-highlight\">{{ sowingMonth }}</span>? <font color='red'>*</font>"
+        },
+        "PREVIOUS_SEED_SOURCE": {
+            "QUESTION": "What was the seed source of the inbred variety to obtain <span class=\"text-highlight\">{{ noOfSacks }}</span> sacks during harvest in <span class=\"text-highlight\">{{ estimatedHarvestMonth }}</span>? <font color='red'>*</font>"
+        },
+        "WATER": {
+            "QUESTION": "Which best describes your rice farm lot in recent years with sowing in <span class=\"text-highlight\">{{ sowingMonth }}</span>? <font color='red'>*</font>",
+            "ANSWER": {
+                "ADEQUATE_WATER": "Adequate water supply during rice growth; no yield loss from drought or submergence stress",
+                "SUBMERGENCE_STRESS": "Submergence stress during rice growth resulted in yield loss",
+                "SHORTAGE_OF_WATER": "Shortage of water during rice growth resulted in yield loss"
+            }
+        },
+        "INTRO": "RCM determines fertilizer requirements based on set target yield. Target yield is a function of farm lot location, sowing date, variety, typical yield of the farmer, water source and status, and seed source.",
+        "OUTPUT": {
+            "THE_TARGET_YIELD_FOR_YOUR": "The target yield for your",
+            "FARM_LOT_IS": "farm lot is",
+            "MOISTURE_CONTENT_14": "at 14% moisture content"
+        },
+        "VALIDATION": {
+            "REQUIRED": "Please select growth duration"
+        }
+    },
+    "FERTILIZER_RATES": {
+        "RICE_CROP": {
+            "QUESTION": "What was grown in the last three months before the upcoming rice sown in <span class=\"text-highlight\">{{ sowingMonth }}</span>? <font color='red'>*</font>",
+            "ANSWER": {
+                "RICE": "Rice",
+                "CORN": "Corn",
+                "LEGUME": "Legume (such as mungbean, cowpea)",
+                "VEGETABLE_OR_MELON": "Vegetable or melon",
+                "BELL_PEPPER_OR_EGGPLANT": "Bell pepper or eggplant",
+                "TOMATO": "Tomato",
+                "TOBACCO": "Tobacco",
+                "NO_CROP": "No Crop"
+            }
+        },
+        "HARVEST_TYPE": {
+            "QUESTION": "How was rice harvested in the immediate previous season?",
+            "ANSWER": {
+                "MANUAL_HARVEST": "Manual Harvest",
+                "REAPER": "Reaper",
+                "COMBINE_HARVEST": "Combine Harvest"
+            }
+        },
+        "NUMBER_AND_WEIGHT_OF_SACKS_GROUP": {
+            "QUESTION": "How many sacks of fresh, unmilled rice did you harvest from your <span class=\"text-highlight\">{{ selectedFarmSize }}</span> hectare <span class=\"text-highlight\">{{ farmLotName }}</span> farm lot in the immediate previous season? Give your total harvest. <font color='red>*</font>",
+            "VALIDATION": {
+                "MIN": "Warning: Yield input must not be lower than 1 t/ha.",
+                "MAX": "Warning: Yield must not exceed 11 t/ha."
+            }
+        },
+        "NUMBER_OF_SACKS": {
+            "QUESTION": "Number of sack",
+            "VALIDATION": {
+                "MIN": "Number of sacks must be at least 1."
+            }
+        },
+        "WEIGHT_OF_SACK": {
+            "VALIDATION": {
+                "MIN_AND_MAX": "Weight of sack should be between 25 to 85 kilograms"
+            }
+        },
+        "WILL_APPLY_ORGANIC_FERTILIZER": {
+            "QUESTION": "In this upcoming season, will you apply organic fertilizer?",
+            "ANSWER": {
+                "YES": "Yes",
+                "NO": "No"
+            }
+        },
+        "ORGANIC_FERTILIZER_BAG_COUNT": {
+            "QUESTION": "How much organic fertilizer will you apply to your <span class=\"text-highlight\">{{ selectedFarmSize }}</span> hectare farm lot? <font color='red'>*</font>",
+            "VALIDATION": {
+                "MIN_AND_MAX": "Warning: Total number of bags should not be more than 50 per hectare and weight per bag should be 10 to 70 kg."
+            }
+        },
+        "TOTAL_NUMBER_OF_BAGS": {
+            "QUESTION": "Total number of bags"
+        },
+        "TYPICAL_WEIGHT_OF_BAG": {
+            "QUESTION": "Typical weight of bag (kg)"
+        },
+        "INTRO": "RCM determines fertilizer requirements based on crop needs and adjusted with inputs from other sources of nutrients such as irrigation, crop residues and other organic inputs.",
+        "OUTPUT_SUMMARY_INTRO": {
+            "TARGET_YIELD_FRESH_WEIGHT": "Target yield (fresh weight)",
+            "TARGET_YIELD_AT_14_MOISTURE": "Target yield at 14% moisture content:",
+            "RICE_CROP_PER_YEAR": "Number of rice crops grown in the farm lot in a year:"
+        },
+        "OUTPUT_SUMMARY": "NPK requirements for the target yield:"
+    },
+    "TIMING_AND_SPLITTING": {
+        "INTRO": "Proper timing and splitting of fertilizer during critical growth stage ensures good number of tillers and panicles. It also improves fertilizer use efficiency.",
+        "OUTPUT_SUMMARY_INTRO": {
+            "CROP_ESTABLISHMENT_METHOD": "Crop establishment method",
+            "SOWING_DATE_IN_SEEDBED": "Sowing date in seedbed",
+            "SOWING_DATE_IN_FARM_LOT": "Sowing date in farm lot",
+            "APPROXIMATE_SEEDLING_AGE": "Approximate seedling age",
+            "VARIETY_TYPE": "Variety type"
+        },
+        "NSOURCE": {
+            "QUESTION": "Choose your preferred single Nitrogen-containing fertilizer for topdressing."
+        },
+        "GROWTH_STAGES": {
+            "LABEL": "Growth Stages",
+            "EARLY": "Early",
+            "ACTIVE_TILLERING": "Active tillering",
+            "PANICLE_INITIATION": "Panicle initiation",
+            "HEADING": "Heading",
+            "HARVEST": "Harvest"
+        },
+        "SEEDLING_AGE_OUTPUT_TABLE_LABEL": "",
+        "FERTILIZER_AMOUNT_FOR_SELECTED_FARM_SIZE": "Fertilizer amount for",
+        "TABLE_HEADING": "Timing and splitting of fertilizer application for your rice crop"
+    },
+    "OTHER_CROP_MANAGEMENT": {
+        "INSECTICIDE_APPLICATION": {
+            "QUESTION": "Do you apply insecticide within 30"
+        },
+        "SYNCRONIZATION": {
+            "QUESTION": "Will you synchronize your {{ synchronizingQuestionLabel }} within 2 weeks before to 2 weeks after that of your neighboring farm lots?"
+        },
+        "WEED_CONTROL": {
+            "QUESTION": "How will you control weeds in the upcoming season? (Check all that applies.)",
+            "ANSWER": {
+                "PRE_EMERGENCE": "Pre-emergence herbicide",
+                "POST_EMERGENCE": "Post-emergence herbicide",
+                "HAND_WEEDING": "Hand weeding",
+                "WATER_MANAGEMENT": "Water management"
+            }
+        },
+        "OBSERVATION": {
+            "QUESTION": "Do you observe any of the following in your rice farm lot? Select all that apply.",
+            "ANSWER": {
+                "PROFUSE_GROWTH": "Profuse growth of water lettuce in seasons with sowing in {{ oneMonthBeforeSowing }} {{ sowingYear }} to {{ oneMonthAfterSowing }} {{ sowingYear }}.",
+                "AN_OILY_FILM": "An oily film on water or wet soil surface in seasons with sowing in {{ oneMonthBeforeSowing }} {{ sowingYear }} to {{ oneMonthAfterSowing }} {{ sowingYear }}.",
+                "STANDING_WATER": "Standing water in the farm lot for 3 weeks or more before land preparation in this season with planned sowing in {{ sowingMonth }} {{ sowingYear }}.",
+                "DUSTY_BROWN_SPOTS": "Dusty brown spots on upper leaves of rice at 2 to 4 weeks after transplanting in seasons with sowing in {{ oneMonthBeforeSowing }} {{ sowingYear }} to {{ oneMonthAfterSowing }} {{ sowingYear }}.",
+                "NONE": "None of the above observed."
+            }
+        }
+    },
+    "SMS_AND_DIALECT": {
+        "RECEIVE_SMS": {
+            "QUESTION": "Do you want <span class=\"text-highlight\">{{ farmerNameDisplay }}</span> to receive sms notification through <span class=\"text-highlight\">{{ farmerMobileNumber }}</span>? <font color='red'>*</font>"
+        },
+        "DIALECT": {
+            "QUESTION": "Please select the preferred dialect for the recommendation page."
+        },
+        "WILL_TRANSPLANTING_OCCUR": {
+            "QUESTION": "Will transplanting occur on <span class=\"text-highlight\">{{ transPlantingLowerMonth }} {{ transplantingLowerDate }}</span> to <span class=\"text-highlight\">{{ transPlantingUpperMonth }} {{ transplantingUpperDate }}</span>? <font color='red'>*</font>"
+        }
+    },
+    "RECOMMENDATION_SUMMARY": {
+        "FARM_LOT_NAME": "Farmer Lot Name",
+        "FARM_LOT_LOCATION": "Farmer Lot Location",
+        "FARMER_NAME": "Farmer's Name",
+        "DATE_GENERATED": "Date Generated",
+        "WATER_REGIME": "Water Regime",
+        "CROP_ESTABLISHMENT": "Crop Establishment",
+        "VARIETY": "Variety",
+        "SOWING_DATE": "Sowing Date",
+        "NOTE": "*Note: Use this recommendation for sowing in",
+        "WITH_PUMP": "with use of pump",
+        "NO_PUMP": "with no use of pump"
+    },
+    "RECOMMENDATION_ALERT_MESSAGES": {
+        "SAVE_SUCCESS_MESSAGE": "Save recommendation successful!",
+        "SAVE_FAIL_MESSAGE": "Failed to save recommendation! Please try again.",
+        "UPDATE_SUCCESS_MESSAGE": "Update recommendation successful!",
+        "UPDATE_FAIL_MESSAGE": "Failed to update recommendation! Please try again."
+    },
+    "BUTTON": {
+        "GENERATE_RECOMMENDATION": "Generate Recommendation",
+        "VIEW_RECOMMENDATION": "View Recommendation",
+        "DOWNLOAD_AS_PDF": "Download as PDF",
+        "SAVE": "Save",
+        "UPDATE": "Update",
+        "RECOMMENDATION_IS_SAVED_TOOLTIP":"Recommendation is already saved",
+        "SAVE_RECOMMENDATION_FIRST_TOOLTIP": "Please save the recommendation first",
+        "UPDATE_RECOMMENDATION_FIRST_TOOLTIP": "Please update the recommendation first"
+    },
+    "NUMBER_AND_WEIGHT_OF_SACK": {
+        "QUESTION": "How many sacks of fresh, unmilled rice do you normally harvest from your <span class=\"text-highlight\">{{ getFieldSizeHectare }}</span> hectare <span class=\"text-highlight\">{{ getFarmLotName }}</span> farm lot during harvest in <span class=\"text-highlight\">{{ estimatedHarvestMonth }}</span> using <span class=\"text-highlight\">{{ getVarietyType }}</span> variety? Give your total harvest.",
+        "NOTE": "Note: Normal yield is the yield without extreme events such as floods, submergence, drought or pest attack that caused significant yield loss.",
+        "VALIDATION": {
+            "MIN": "Warning: Yield input must not be lower than 1 t/ha.",
+            "MAX": "Warning: Yield must not exceed {{ maxReportedYield }} t/ha."
+        },
+        "WARNING": "Your farm lot is already getting good yield. Increase in yield with the use of RCM could be very small or negligible."
+    },
+    "NUMBER_OF_SACKS": {
+        "VALIDATION": {
+            "REQUIRED": "Please enter number of sacks",
+            "MIN": "Number of sacks must be at least 1"
+        }
+    },
+    "WEIGHT_OF_SACK": {
+        "VALIDATION": {
+            "REQUIRED": "Please enter weight of sack",
+            "MIN": "Weight of sack must be greater than or equal to 25 kg.",
+            "MAX": "Weight of sack must be less than or equal to 85 kg."
+        }
+    },
+    "PREVIOUS_VARIETY_TYPE": {
+        "QUESTION": "What variety type did you grow in the last season with the same sowing time in <span class=\"text-highlight\">{{ sowingMonth }}</span>? <font color='red'>*</font>",
+        "VALIDATION": {
+            "REQUIRED": "Please select variety type"
+        }
+    },
+    "UPCOMING_SEED_SOURCE": {
+        "QUESTION": "What is the source of your rice seeds for the upcoming season with sowing in <span class=\"text-highlight\">{{ sowingMonth }}</span>? <font color='red'>*</font>"
+    },
+    "PREVIOUS_SEED_SOURCE": {
+        "QUESTION": "What was the seed source of the inbred variety to obtain <span class=\"text-highlight\">{{ noOfSacks }}</span> sacks during harvest in <span class=\"text-highlight\">{{ estimatedHarvestMonth }}</span>? <font color='red'>*</font>"
+    },
+    "WATER": {
+        "QUESTION": "Which best describes your rice farm lot in recent years with sowing in <span class=\"text-highlight\">{{ sowingMonth }}</span>? <font color='red'>*</font>",
+        "ANSWER": {
+            "ADEQUATE_WATER": "Adequate water supply during rice growth; no yield loss from drought or submergence stress",
+            "SUBMERGENCE_STRESS": "Submergence stress during rice growth resulted in yield loss",
+            "SHORTAGE_OF_WATER": "Shortage of water during rice growth resulted in yield loss"
+        }
+    },
+    "INTRO": "RCM determines fertilizer requirements based on set target yield. Target yield is a function of farm lot location, sowing date, variety, typical yield of the farmer, water source and status, and seed source.",
+    "OUTPUT": {
+        "THE_TARGET_YIELD_FOR_YOUR": "The target yield for your",
+        "HECTARE": "hectare",
+        "FARM_LOT_IS": "farm lot is",
+        "SACKS_AT": "sacks at",
+        "TON_PER_HA_FRESH_WEIGHT": "tons per hectare (fresh weight)",
+        "TON_PER_HA_DRY_WEIGHT": "tons per hectare at 14% moisture content (dry weight)"
+    },
+    "FARMING_PRACTICES": {
+        "HECTARE_FARM_LOT": "hectare farm lot.",
+        "PEST_MANAGEMENT_HEADER": "Do not apply insecticide within 30",
+        "PEST_MANAGEMENT_BODY": "Plants compensate to early damage caused by defoliators; no spray also conserves beneficial organisms.",
+        "WEED_MANAGEMENT": "Hand weed before application of fertilizer.",
+        "ALTERNATE_IRRIGATION_HEADER": "Use controlled irrigation.",
+        "ALTERNATE_IRRIGATION_BODY": "When the pump is used, irrigate to 3-5 cm water depth; allow water to decrease down to 15 cm below the soil surface before the next irrigation; ensure good management of weeds when water level is decreased; keep the soil flooded during heading and flowering.",
+        "QUALITY_MANAGEMENT": {
+            "USE_SEED_OLDER_THAN_39_DAYS_1": "Use",
+            "USE_SEED_OLDER_THAN_39_DAYS_2": "to",
+            "USE_SEED_OLDER_THAN_39_DAYS_3": "kg of certified or good quality seeds with good snail control after sowing for",
+            "USE_QUALITY_SEEDS_GOOD_SNAIL_CONTROL": "Use certified or good quality seeds with good snail control after sowing for",
+            "USE_QUALITY_SEEDS": "Use certified or good quality seeds for"
+        },
+        "SEEDLING_DAYS_HEADER": "Use 21 days old seedlings with good snail control.",
+        "SEEDLING_DAYS_BODY": "Younger seedling can increase plant vigor and yield.",
+        "WATER_MANAGEMENT": "Keep flood water below 5 cm depth.",
+        "ZINC_MANAGEMENT_HEADER": "Apply zinc to seedbed.",
+        "ZINC_MANAGEMENT_BODY": "Broadcast 1 kg zinc sulfate per 40 kg of seed within 10 days after sowing.",
+        "IRRIGATION_MANAGEMENT": "Irrigate your field at flowering when there is no standing water on field.",
+        "DELAY_FERTILIZER_HEADER": "When field has overflow of water or drought at active tillering:",
+        "DELAY_FERTILIZER": {
+            "COMBINE_ALL_1": "If overflow of water or drought ends by", 
+            "COMBINE_ALL_2": "then combine all fertilizer for active tillering and panicle initiation into one application after the overflow of water or drought.",
+            "FOR_ACTIVE_AND_PANICLE_1": "If overflow of water or drought ends by", 
+            "FOR_ACTIVE_AND_PANICLE_2": "apply fertilizer for active tillering after the overflow of water or drought. Apply the fertilizer for panicle initiation within",
+            "FOR_ACTIVE_AND_PANICLE_3": "to",
+            "FOR_ACTIVE_TILLERING_1": "If overflow of water or drought ends by",
+            "FOR_ACTIVE_TILLERING_2": ", apply fertilizer for active tillering after the overflow of water or drought.",
+            "APPLY_FERTILIZER_FOR_PANICLE_INITIATION_1": "If overflow of water or drought extends beyond", 
+            "APPLY_FERTILIZER_FOR_PANICLE_INITIATION_2": ", eliminate application for active tillering. Only apply fertilizer for panicle initiation."
+        }
+    }
+}

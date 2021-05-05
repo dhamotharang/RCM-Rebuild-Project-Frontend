@@ -1,0 +1,6 @@
+<ion-text color="medium">
+  <div>{{label}} <ion-text color="danger" *ngIf="required">*</ion-text></div>
+  <ion-text *ngIf="errorMessage" color="danger">
+    <small>{{errorMessageFormatted}}</small>
+  </ion-text>
+</ion-text>

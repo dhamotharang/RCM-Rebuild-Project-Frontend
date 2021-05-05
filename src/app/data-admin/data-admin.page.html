@@ -1,0 +1,260 @@
+<ion-header mode="ios">
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start" class="ion-hide-md-down">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <div
+      class="item item-divider item-assertive ion-padding bgheader ion-text-center"
+      style="white-space: normal"
+    >
+      <ion-row class="ion-justify-content-evenly">
+        <ion-col class="ion-hide-md-down">
+          <ion-row class="ion-justify-content-end">
+            <div>
+              <ion-icon
+                name="search-circle"
+                size="large"
+                (click)="openFilterModal()"
+              ></ion-icon>
+              <ion-icon
+                name="person-circle"
+                size="large"
+                class="ion-margin-start ion-margin-end"
+                (click)="userProfileMobileMenu($event)"
+              ></ion-icon>
+              <ion-icon
+                name="caret-down-circle"
+                size="large"
+                (click)="mainMobileMenu($event)"
+              ></ion-icon>
+            </div>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <app-header page="Dashboard"></app-header>
+            </ion-col>
+          </ion-row>
+        </ion-col>
+        <ion-col
+          size="6"
+          class="ion-hide-md-up ion-text-left ion-no-padding"
+          [routerLink]="['/data-admin/farmer-management/farmer-list']"
+          [queryParams]="farmersPageQueryParams"
+        >
+          <img class="app-icon rcm-icon rcm-icon-mobile" src="assets/icons/rcmph-icon.png" />
+          <div class="rcm-icon-version" [innerHTML]="version"></div>
+        </ion-col>
+        <ion-col
+          size="6"
+          class="ion-hide-md-up ion-text-right ion-align-self-end"
+        >
+          <ion-icon
+            name="search-circle"
+            size="large"
+            (click)="openFilterModal()"
+          ></ion-icon>
+          <ion-icon
+            name="person-circle"
+            size="large"
+            class="ion-margin-start ion-margin-end"
+            (click)="userProfileMobileMenu($event)"
+          ></ion-icon>
+          <ion-icon
+            name="caret-down-circle"
+            size="large"
+            (click)="mainMobileMenu($event)"
+          ></ion-icon>
+        </ion-col>
+      </ion-row>
+    </div>
+    <ion-buttons
+      slot="end"
+      class="ion-padding-end"
+      *ngIf="offlineStorage.isOfflineIconVisible"
+    >
+      <ion-icon name="close" class="offline-icon-cross"></ion-icon>
+      <ion-icon name="cellular" class="offline-icon-signal"></ion-icon>
+      <span class="offline-label">Offline</span>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-split-pane contentId="menu-content">
+    <!--  our side menu  -->
+    <ion-menu contentId="menu-content">
+      <ion-content>
+        <ion-row> </ion-row>
+        <ion-row
+          class="ion-justify-content-center ion-align-items-end"
+          style="height: 210px"
+        >
+          <div
+            class="user-dp"
+            [ngStyle]="{'background-image': 'url(' + loggedInUser.profilePhotoUrl + ')'}"
+          ></div>
+        </ion-row>
+        <ion-row class="ion-justify-content-center">
+          <ion-text color="primary">
+            <h3>
+              {{ loggedInUser.firstName | titlecase }} {{ loggedInUser.lastName
+              | titlecase }}
+            </h3>
+          </ion-text>
+        </ion-row>
+        <ion-row class="ion-justify-content-center">
+          <ion-text> {{ loggedInUser.operatorId }} </ion-text>
+        </ion-row>
+        <ion-row class="ion-justify-content-center">
+          <ion-text> Access level: {{ accessLevelText }} </ion-text>
+        </ion-row>
+        <ion-list>
+          <ion-item
+            [color]="path === '/data-admin/dashboard' || path === '/data-admin/farmer-management/farmer-list' ? 'primary' : ''"
+            [routerLink]="['/data-admin/farmer-management/farmer-list']"
+          >
+            <ion-icon name="list" slot="start"></ion-icon>
+            <ion-label>Dashboard</ion-label>
+          </ion-item>
+
+          <ion-item
+            [color]="path === '/data-admin/farmers/add-farmer' || path === '/data-admin/farmer-management/add-farmer' ? 'primary' : ''"
+            (click)="dataPrivacy(false)"
+            button
+          >
+            <ion-icon name="person-add" slot="start"></ion-icon>
+            <ion-label>Add Farmer</ion-label>
+          </ion-item>
+
+          <ion-item *ngIf="!authService.isPublicUser"
+            [color]="path === '/data-admin/gpx-upload' ? 'primary' : ''"
+            [routerLink]="['/data-admin/gpx-upload']"
+          >
+            <ion-icon name="map" slot="start"></ion-icon>
+            <ion-label>GPX File Upload</ion-label>
+          </ion-item>
+
+          <ion-item
+            *ngIf="authService.isRegionalDataAdmin || authService.isDataAdmin"
+            [color]="path === '/data-admin/admin' ? 'primary' : ''"
+            [routerLink]="['/data-admin/admin']"
+          >
+            <ion-icon name="analytics" slot="start"></ion-icon>
+            <ion-label>Data Admin Page</ion-label>
+          </ion-item>
+
+          <ion-item
+            (click)="dataPrivacyPage()"
+            [color]="path === '/data-admin/data-privacy' ? 'primary' : ''"
+            button
+          >
+            <ion-icon name="lock-closed" slot="start"></ion-icon>
+            <ion-label>Data Privacy</ion-label>
+          </ion-item>
+
+          <ion-item
+            [color]="path === '/data-admin/offline-management' ? 'primary' : ''"
+            [routerLink]="['/data-admin/offline-management']"
+          >
+            <ion-icon name="cloud-download" slot="start"></ion-icon>
+            <ion-label>Offline Download</ion-label>
+          </ion-item>
+          <ion-item
+            [color]="path === '/data-admin/settings' ? 'primary' : ''"
+            [routerLink]="['/data-admin/settings']"
+          >
+            <ion-icon name="cog" slot="start"></ion-icon>
+            <ion-label>Settings</ion-label>
+          </ion-item>
+        </ion-list>
+
+        <div class="ion-padding" *ngIf="!dataHistories; else hasList">
+          <section>Loading data history <ion-spinner></ion-spinner></section>
+        </div>
+
+        <ng-template #hasList>
+          <section
+            *ngIf="hasList && (dataHistories == null || dataHistories.length == 0); else hasData"
+          ></section>
+        </ng-template>
+
+        <ng-template #hasData>
+          <ion-list>
+            <ion-list-header> Data History: </ion-list-header>
+
+            <ion-item *ngFor="let data of dataHistories">
+              <ion-label class="ion-text-wrap">
+                <h2>ID: {{ data?.ff_id }}</h2>
+                <h3>
+                  {{ dataHistoryTypeText[data?.type] }} {{
+                  dataHistoryModuleText[data?.module] }}
+                </h3>
+                <h3 *ngIf="data?.type === 2">Data changes:</h3>
+                <ion-text
+                  color="primary"
+                  *ngFor="let recipient of data.old_data | keyvalue"
+                >
+                  <h6>{{recipient.key}} : {{ getValue(recipient) }}</h6>
+                </ion-text>
+                <p>{{ data?.created_at | date:'medium' }}</p>
+              </ion-label>
+            </ion-item>
+          </ion-list>
+        </ng-template>
+      </ion-content>
+    </ion-menu>
+
+    <!-- the main content -->
+    <ion-router-outlet id="menu-content">
+      <ion-tabs>
+        <ion-tab-bar
+          slot="bottom"
+          class="ion-hide-md-up ion-no-border"
+          color="dark"
+        >
+          <ion-tab-button
+            [routerLink]="['/data-admin/farmer-management/farmer-list']"
+            [queryParams]="farmersPageQueryParams"
+            class="dashboard-route-mobile"
+          >
+            <ion-icon
+              name="speedometer"
+              size="large"
+              [color]="path === '/data-admin/dashboard' || path === '/data-admin/farmer-management/farmer-list'   || path === '/data-admin/farmer-management' ? 'light' : 'medium'"
+            ></ion-icon>
+          </ion-tab-button>
+
+          <ion-tab-button
+            href="javascript: void(0)"
+            (click)="dataPrivacy(false)"
+          >
+            <ion-icon
+              name="person-add"
+              size="large"
+              [color]="path === '/data-admin/farmers/add-farmer' || path === '/data-admin/farmer-management/add-farmer' ? 'light' : 'medium'"
+            ></ion-icon>
+          </ion-tab-button>
+
+          <ion-tab-button
+            [routerLink]="['/data-admin/gpx-upload']"
+            class="gpx-upload-route-mobile"
+          >
+            <ion-icon
+              name="map"
+              size="large"
+              [color]="path === '/data-admin/gpx-upload' ? 'light' : 'medium'"
+            ></ion-icon>
+          </ion-tab-button>
+
+          <ion-tab-button (click)="dataPrivacyPage()">
+            <ion-icon
+              name="shield"
+              size="large"
+              color="medium"
+              [color]="path === '/data-admin/data-privacy' ? 'light' : 'medium'"
+            ></ion-icon>
+          </ion-tab-button>
+        </ion-tab-bar>
+      </ion-tabs>
+    </ion-router-outlet>
+  </ion-split-pane>
+</ion-content>

@@ -1,0 +1,12 @@
+<ion-list lines="none">
+  <ion-item>
+    <ion-avatar slot="start">
+      <img [src]="avatar">
+    </ion-avatar>
+    <ion-label>
+      <h2>{{ name }}</h2>
+      <p> {{ accessLevelText }} </p>
+      <p [hidden]="true">Edit your profile here</p>
+    </ion-label>
+  </ion-item>
+</ion-list>

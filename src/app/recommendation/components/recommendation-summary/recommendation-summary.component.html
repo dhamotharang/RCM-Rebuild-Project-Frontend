@@ -1,0 +1,161 @@
+<div class="ion-padding">
+  <ion-grid>
+    <ion-row *ngIf="recommendationReferenceId">
+      <ion-col>
+        <p>
+          <b>Reference ID: {{ recommendationReferenceId }}</b>
+        </p>
+      </ion-col>
+    </ion-row>
+    <ion-row *ngIf="recommendationModel?.temporaryReferenceId">
+      <ion-col>
+        <p>
+          <b>Temporary Reference ID: {{ recommendationModel?.temporaryReferenceId }}</b>
+        </p>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <p>
+          {{ 'RECOMMENDATION_SUMMARY.FARMER_NAME' | customDialectTranslation: dialectSelected | async }}:
+          {{ farmerNameDisplay }}
+        </p>
+        <p>
+          {{ 'RECOMMENDATION_SUMMARY.FARM_LOT_NAME' | customDialectTranslation: dialectSelected | async }}:
+          {{ fieldInfoRecommendation?.farmLotName }}
+        </p>
+        <p>
+          {{ 'RECOMMENDATION_SUMMARY.FARM_LOT_LOCATION' | customDialectTranslation: dialectSelected | async }}:
+          {{ fieldInfoRecommendation?.farmLotAddress }}
+        </p>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <p>
+          {{ 'RECOMMENDATION_SUMMARY.DATE_GENERATED' | customDialectTranslation: dialectSelected | async }}:
+          {{
+            'COMMON.MONTH.' + (dateGenerated | date: 'MMMM' | uppercase)
+            | customDialectTranslation: dialectSelected | async
+          }}
+          {{ dateGenerated | date: 'dd, yyyy' }}
+        </p>
+        <p>
+          {{ 'RECOMMENDATION_SUMMARY.WATER_REGIME' | customDialectTranslation: dialectSelected | async }}:
+          {{ 'COMMON.WATER_SOURCE.' + (waterRegime | uppercase) | customDialectTranslation: dialectSelected | async
+          }}, {{ 'RECOMMENDATION_SUMMARY.' + waterPump | customDialectTranslation: dialectSelected | async }}
+        </p>
+        <p>
+          {{ 'RECOMMENDATION_SUMMARY.CROP_ESTABLISHMENT' | customDialectTranslation: dialectSelected | async }}:
+          {{ 'COMMON.CROP_ESTABLISHMENT.' + cropEstablishment | customDialectTranslation: dialectSelected | async }}
+        </p>
+        <p>
+          {{ 'RECOMMENDATION_SUMMARY.VARIETY' | customDialectTranslation: dialectSelected | async }}:
+          {{ targetYield?.varietyNameLabel }}
+        </p>
+        <p>
+          {{ 'RECOMMENDATION_SUMMARY.SOWING_DATE' | customDialectTranslation: dialectSelected | async }}:
+          {{
+            'COMMON.MONTH.' +
+              (targetYield?.sowingDate | date: 'MMMM' | uppercase) | customDialectTranslation: dialectSelected | async
+          }}
+          {{ targetYield?.sowingDate | date: 'dd, yyyy' }}
+        </p>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <p>
+          <b
+            >{{ 'RECOMMENDATION_SUMMARY.NOTE' | customDialectTranslation: dialectSelected | async }}
+            {{
+              'COMMON.MONTH.' +
+                (targetYield?.sowingDate | date: 'MMMM' | uppercase) | customDialectTranslation: dialectSelected | async
+            }}
+            {{ targetYield?.sowingDate | date: 'yyyy' }}
+          </b>
+        </p>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-row>
+    <ion-col>
+      <app-target-yield-output
+        [targetYield]="targetYield"
+        [fieldInfoRecommendation]="fieldInfoRecommendation"
+        [dialectSelected]="dialectSelected"
+      >
+      </app-target-yield-output>
+    </ion-col>
+  </ion-row>
+
+  <ion-row>
+    <app-other-crop-management-output
+      [farmingPractices]="farmingPractices"
+      [cropEstablishment]="cropEstablishShortLabel"
+      [activeTilleringHighDisplay]="activeTilleringHighDisplay"
+      [panicleInitiationLowDisplay]="panicleInitiationLowDay"
+      [panicleInitiationHighDisplay]="panicleInitiationHighDay"
+      [selectedFarmsize]="fieldInfoRecommendation?.selectedFarmSize"
+      [dialectSelected]="dialectSelected"
+    >
+    </app-other-crop-management-output>
+  </ion-row>
+
+  <ion-row>
+    <ion-col class="ion-text-center">
+      <app-fertilizer-resources-output
+        [fieldInfoRecommendation]="fieldInfoRecommendation"
+        [fertilizerRecommendationModel]="fertilizerRecommendationModel"
+        [dialectSelected]="dialectSelected"
+      >
+      </app-fertilizer-resources-output>
+    </ion-col>
+  </ion-row>
+
+  <ion-row
+    *ngIf="targetYield && fertilizerRecommendationModel && farmingPractices && dialectSelected"
+  >
+    <ion-col class="ion-text-center">
+      <app-recommendation-timeline
+        [targetYield]="targetYield"
+        [fertilizerRecommendationModel]="fertilizerRecommendationModel"
+        [farmingPractices]="farmingPractices"
+        [dialectSelected]="dialectSelected"
+        (composeTimeline)="getTimeline($event)"
+      >
+      </app-recommendation-timeline>
+    </ion-col>
+  </ion-row>
+
+  <ion-row class="ion-padding-top ion-text-center">
+    <ion-col *ngIf="!recommendationModel">
+      <ion-button
+        expand="full"
+        (click)="onSaveRecommendation()"
+        [disabled]="wasTheRecommendationSaved"
+      >
+        {{ isRecommendationForUpdate ? ('BUTTON.UPDATE' | translate) : ('BUTTON.SAVE' | translate) }}
+      </ion-button>
+    </ion-col>
+    <ion-col>
+      <div
+        [matTooltip]="!wasTheRecommendationSaved && !recommendationModel ? 
+          (isRecommendationForUpdate ? 
+            ('BUTTON.UPDATE_RECOMMENDATION_FIRST_TOOLTIP' | translate) : 
+            ('BUTTON.SAVE_RECOMMENDATION_FIRST_TOOLTIP' | translate)
+          ) : ''"
+        matTooltipPosition="above"
+        >
+        <ion-button
+          [disabled]="!wasTheRecommendationSaved && !recommendationModel"
+          expand="{{ recommendationModel ? '' : 'full' }}"
+          (click)="startDownloadAsPdf()"
+        >
+          {{ 'BUTTON.DOWNLOAD_AS_PDF' | translate }}
+        </ion-button>
+      </div>
+    </ion-col>
+  </ion-row>
+</div>

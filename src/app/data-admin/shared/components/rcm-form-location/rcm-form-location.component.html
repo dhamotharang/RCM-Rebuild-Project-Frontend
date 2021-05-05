@@ -1,0 +1,17 @@
+<app-ph-location-form
+  style="display: block; width: 100%;"
+  [barangayHidden]="barangayHidden"
+  [formGroup]="formGroup" 
+  [disabled]="disabled"
+  [disableValidation]="disableValidation"
+  [locationFormModel]="locationFormModel" 
+  [regions]="regions"
+  [provinces]="provinces"
+  [municipalities]="municipalities"
+  [barangays]="barangays"
+  [regionDisabled]="useAuthorization && (!authService.isAdmin && !authService.isNational)"
+  [provinceDisabled]="useAuthorization && (!authService.isAdmin && !authService.isNational && !authService.isRegionalDataAdmin && !authService.isRegional)"
+  [municipalityDisabled]="useAuthorization && (!authService.isAdmin && !authService.isNational && !authService.isRegionalDataAdmin && !authService.isRegional && !authService.isProvincial)"
+  [barangayDisabled]="useAuthorization && (!authService.isAdmin && !authService.isNational && !authService.isRegionalDataAdmin && !authService.isRegional && !authService.isProvincial && !authService.isMunicipal)"
+  (onSelectionChange)="locationChange($event)">
+</app-ph-location-form>

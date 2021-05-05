@@ -1,0 +1,2 @@
+export const MAX_ALLOWABLE_SEEDRATE = 300;
+export const MIN_ALLOWABLE_SEEDRATE = 15;

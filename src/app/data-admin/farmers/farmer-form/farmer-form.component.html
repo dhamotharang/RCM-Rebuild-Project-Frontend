@@ -1,0 +1,803 @@
+<form [formGroup]="addFarmerForm" (ngSubmit)="onSubmit()">
+  <ion-grid>
+    <ion-row class="ion-justify-content-center">
+      <ion-col size-lg="9">
+        <ion-card>
+          <ion-card-content style="padding: 2em;">
+            <ion-item-group>
+              <ion-item>
+                <ion-grid>
+                  <ion-row
+                    class="ion-justify-content-center ion-align-items-center"
+                  >
+                    <ion-img
+                      class="image"
+                      [src]="selectedPhoto"
+                      *ngIf="selectedPhoto"
+                      style="height: 200px; width: 200px;"
+                    ></ion-img>
+
+                    <ion-icon
+                      style="font-size: 150px;"
+                      *ngIf="!selectedPhoto"
+                      name="person-circle"
+                    >
+                    </ion-icon>
+                  </ion-row>
+                  <ion-row
+                    class="ion-justify-content-center ion-align-items-center"
+                  >
+                    <div class="fileUpload">
+                      <ion-button class="ion-text-wrap" expand="block">
+                        {{ selectedPhoto ? 'Replace' : 'Upload' }} Farmer Photo
+                      </ion-button>
+                      <input
+                        id="farmerPhotoUploadButton"
+                        type="file"
+                        class="upload"
+                        (change)="onFileSelected($event)"
+                        formControlName="photo"
+                        accept="image/*"
+                      />
+                    </div>
+                  </ion-row>
+                  <ion-row>
+                    <ion-text>
+                      <h2>
+                        Data Privacy Agreement
+                        <ion-text color="danger"> *</ion-text>
+                      </h2>
+                      <h3>(accepts image files only: jpeg, jpg, png)</h3>
+                      <ion-img
+                        class="image"
+                        [src]="dataPrivacyImg"
+                        *ngIf="dataPrivacyImg"
+                        style="height: 100px; width: 100px;"
+                      ></ion-img>
+
+                      <ion-icon
+                        style="font-size: 100px;"
+                        *ngIf="!dataPrivacyImg"
+                        name="document"
+                      >
+                      </ion-icon>
+
+                      <div
+                        *ngIf="showPrivacyConsentErrorMessage"
+                        class="text-danger"
+                      >
+                        Please upload farmer's data privacy consent photo!
+                      </div>
+
+                      <div class="fileUpload" *ngIf="!edit || adminUser">
+                        <ion-button class="ion-text-wrap">
+                          {{ dataPrivacyImg ? 'Replace' : 'Upload' }} Data
+                          Privacy
+                        </ion-button>
+                        <input
+                          id="dataPrivacyUploadButton"
+                          type="file"
+                          class="upload"
+                          (change)="onDataPrivacySelected($event)"
+                          formControlName="dataPrivacy"
+                          accept="image/*"
+                        />
+                      </div>
+                    </ion-text>
+                  </ion-row>
+                </ion-grid>
+              </ion-item>
+            </ion-item-group>
+
+            <div>
+              <ion-row class="ion-justify-content-center">
+                <ion-col size-lg="12">
+                  <ion-item>
+                    <ion-label position="stacked"
+                      >Is farmer already registered in RSBSA?
+                      <ion-text color="danger"> *</ion-text>
+                    </ion-label>
+                    <ion-select
+                      formControlName="rsbsa"
+                      (ionChange)="onRSBSAChange($event)"
+                    >
+                      <ion-select-option value="1">Yes</ion-select-option>
+                      <ion-select-option value="2">No</ion-select-option>
+                    </ion-select>
+                  </ion-item>
+                  <div
+                    *ngIf="
+                      (addFarmerForm.get('rsbsa').invalid &&
+                        addFarmerForm.get('rsbsa').touched) ||
+                      (addFarmerForm.get('rsbsa').invalid && isFormSubmitted)
+                    "
+                    class="text-danger"
+                  >
+                    Please select one of the following!
+                  </div>
+                </ion-col>
+              </ion-row>
+
+              <ion-row class="ion-justify-content-center" *ngIf="rsbsaVal">
+                <ion-col size-lg="12">
+                  <ion-item>
+                    <ion-label position="stacked"
+                      >RSBSA Reference ID
+                      <ion-text color="danger"> *</ion-text>
+                    </ion-label>
+                    <ion-input formControlName="rsbsaRefId"> </ion-input>
+                  </ion-item>
+                  <div
+                    *ngIf="
+                      (addFarmerForm.get('rsbsaRefId').invalid &&
+                        addFarmerForm.get('rsbsaRefId').touched) ||
+                      (addFarmerForm.get('rsbsaRefId').invalid &&
+                        isFormSubmitted)
+                    "
+                    class="text-danger"
+                  >
+                    Please enter your RSBSA Ref ID!
+                  </div>
+                </ion-col>
+              </ion-row>
+
+              <ion-row class="ion-justify-content-center">
+                <ion-col size-lg="12">
+                  <ion-item>
+                    <ion-label position="stacked"
+                      >First Name
+                      <ion-text color="danger"> *</ion-text>
+                    </ion-label>
+                    <ion-input
+                      type="text"
+                      formControlName="firstName"
+                      style="text-transform: capitalize;"
+                    ></ion-input>
+                  </ion-item>
+                  <div
+                    *ngIf="
+                      addFarmerForm.get('firstName').errors &&
+                      addFarmerForm.get('firstName').errors.required &&
+                      (addFarmerForm.get('firstName').touched ||
+                        isFormSubmitted)
+                    "
+                    class="text-danger"
+                  >
+                    Please enter your first name!
+                  </div>
+                  <div
+                    *ngIf="
+                      addFarmerForm.get('firstName').errors &&
+                      addFarmerForm.get('firstName').errors.pattern &&
+                      (addFarmerForm.get('firstName').touched ||
+                        isFormSubmitted)
+                    "
+                    class="text-danger"
+                  >
+                    Invalid characters!
+                  </div>
+                </ion-col>
+              </ion-row>
+
+              <ion-row class="ion-justify-content-center">
+                <ion-col size-lg="12">
+                  <ion-item>
+                    <ion-label position="stacked"
+                      >Middle Name
+                      <ion-text color="danger"> *</ion-text>
+                    </ion-label>
+                    <ion-input
+                      type="text"
+                      formControlName="middleName"
+                      style="text-transform: capitalize;"
+                    ></ion-input>
+                  </ion-item>
+                  <div
+                    *ngIf="
+                      addFarmerForm.get('middleName').errors &&
+                      addFarmerForm.get('middleName').errors.required &&
+                      (addFarmerForm.get('middleName').touched ||
+                        isFormSubmitted)
+                    "
+                    class="text-danger"
+                  >
+                    Please enter your middle name!
+                  </div>
+                  <div
+                    *ngIf="
+                      addFarmerForm.get('middleName').errors &&
+                      addFarmerForm.get('middleName').errors.pattern &&
+                      (addFarmerForm.get('middleName').touched ||
+                        isFormSubmitted)
+                    "
+                    class="text-danger"
+                  >
+                    Invalid characters!
+                  </div>
+                </ion-col>
+              </ion-row>
+
+              <ion-row class="ion-justify-content-center">
+                <ion-col size-lg="12">
+                  <ion-item>
+                    <ion-label position="stacked"
+                      >Last Name
+                      <ion-text color="danger"> *</ion-text>
+                    </ion-label>
+                    <ion-input
+                      type="text"
+                      formControlName="lastName"
+                      style="text-transform: capitalize;"
+                    ></ion-input>
+                  </ion-item>
+                  <div
+                    *ngIf="
+                      addFarmerForm.get('lastName').errors &&
+                      addFarmerForm.get('lastName').errors.required &&
+                      (addFarmerForm.get('lastName').touched || isFormSubmitted)
+                    "
+                    class="text-danger"
+                  >
+                    Please enter your last name!
+                  </div>
+                  <div
+                    *ngIf="
+                      addFarmerForm.get('lastName').errors &&
+                      addFarmerForm.get('lastName').errors.pattern &&
+                      (addFarmerForm.get('lastName').touched || isFormSubmitted)
+                    "
+                    class="text-danger"
+                  >
+                    Invalid characters!
+                  </div>
+                </ion-col>
+              </ion-row>
+
+              <hr />
+
+              <ion-row class="ion-justify-content-center">
+                <ion-col size-lg="12">
+                  <mat-form-field>
+                    <mat-label>Suffix</mat-label>
+                    <mat-select
+                      panelClass="phone-owner-panel"
+                      formControlName="suffix"
+                    >
+                      <mat-option value="">---</mat-option>
+                      <mat-option value="Jr">Jr.</mat-option>
+                      <mat-option value="Sr">Sr.</mat-option>
+                      <mat-option value="II">II</mat-option>
+                      <mat-option value="III">III</mat-option>
+                      <mat-option value="IV">IV</mat-option>
+                      <mat-option value="V">V</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </ion-col>
+              </ion-row>
+            </div>
+
+            <ion-row class="ion-justify-content-center">
+              <ion-col size-lg="12">
+                <mat-form-field>
+                  <mat-label
+                    [ngClass]="{
+                      'text-danger':
+                        addFarmerForm.controls.birthDate.invalid &&
+                        addFarmerForm.controls.birthDate.touched
+                    }"
+                  >
+                    Birthdate
+                    <ion-text color="danger"> *</ion-text>
+                  </mat-label>
+                  <mat-datepicker #picker></mat-datepicker>
+                  <input
+                    (click)="picker.open()"
+                    readonly
+                    matInput
+                    [min]="minDate"
+                    [max]="maxDate"
+                    formControlName="birthDate"
+                    [matDatepicker]="picker"
+                  />
+                </mat-form-field>
+              </ion-col>
+            </ion-row>
+            <ion-row class="ion-justify-content-center">
+              <ion-col size-lg="12">
+                <div
+                  *ngIf="
+                    (addFarmerForm.get('birthDate').invalid &&
+                      addFarmerForm.get('birthDate').touched) ||
+                    (addFarmerForm.get('birthDate').invalid && isFormSubmitted)
+                  "
+                  class="text-danger"
+                >
+                  <div
+                    *ngIf="addFarmerForm.get('birthDate').errors['required']"
+                  >
+                    Please specify your Birth Date!
+                  </div>
+                  <div
+                    *ngIf="
+                      addFarmerForm.get('birthDate').errors[
+                        'forbiddenBirthDate'
+                      ]
+                    "
+                  >
+                    Sorry your age is not valid!
+                  </div>
+                </div>
+              </ion-col>
+            </ion-row>
+
+            <ion-row class="ion-justify-content-center">
+              <ion-col size-lg="12">
+                <ion-item>
+                  <ion-label position="stacked"
+                    >Sex
+                    <ion-text color="danger"> *</ion-text>
+                  </ion-label>
+                  <ion-select formControlName="gender">
+                    <ion-select-option value="1">Male</ion-select-option>
+                    <ion-select-option value="2">Female</ion-select-option>
+                  </ion-select>
+                </ion-item>
+                <div
+                  *ngIf="
+                    (addFarmerForm.get('gender').invalid &&
+                      addFarmerForm.get('gender').touched) ||
+                    (addFarmerForm.get('gender').invalid && isFormSubmitted)
+                  "
+                  class="text-danger"
+                >
+                  Please select one of the following!
+                </div>
+              </ion-col>
+            </ion-row>
+            <hr />
+
+            <div>
+              <app-rcm-form-location
+                [formGroup]="addFarmerForm"
+                [useAuthorization]="farmer?.id > 0 && edit"
+                [address]="farmer?.address"
+                [disabled]="disabled"
+                [isFarmerForm]="true"
+              >
+              </app-rcm-form-location>
+            </div>
+            <hr />
+
+            <div>
+              <ion-row class="ion-justify-content-center">
+                <ion-col size-lg="12">
+                  <ion-item>
+                    <ion-label position="stacked"
+                      >Primary Mobile phone number
+                      <ion-text color="danger"> *</ion-text>
+                    </ion-label>
+                    <ion-input
+                      type="text"
+                      formControlName="primaryMobileNo"
+                      placeholder="example: 09993334444"
+                    >
+                    </ion-input>
+                  </ion-item>
+                  <div
+                    *ngIf="
+                      (addFarmerForm.get('primaryMobileNo').invalid &&
+                        addFarmerForm.get('primaryMobileNo').touched) ||
+                      (addFarmerForm.get('primaryMobileNo').invalid &&
+                        isFormSubmitted)
+                    "
+                    class="text-danger"
+                  >
+                    <div
+                      *ngIf="
+                        addFarmerForm.get('primaryMobileNo').errors['required']
+                      "
+                    >
+                      Please enter your primary mobile phone number!
+                    </div>
+                    <div
+                      *ngIf="
+                        addFarmerForm.get('primaryMobileNo').errors[
+                          'pattern'
+                        ] ||
+                        addFarmerForm.get('primaryMobileNo').errors[
+                          'invalidMobileNumberLength'
+                        ]
+                      "
+                    >
+                      Invalid mobile phone number!
+                    </div>
+                    <div
+                      *ngIf="
+                        addFarmerForm.get('primaryMobileNo').errors[
+                          'invalidMobileNumberPrefix'
+                        ]
+                      "
+                    >
+                      Mobile phone number should start with 0!
+                    </div>
+                  </div>
+                </ion-col>
+              </ion-row>
+
+              <hr />
+
+              <ion-row class="ion-justify-content-center">
+                <ion-col size-lg="12">
+                  <mat-form-field>
+                    <mat-label
+                      >Phone Owner<ion-text color="danger"> *</ion-text>
+                    </mat-label>
+                    <mat-select
+                      panelClass="phone-owner-panel"
+                      *ngIf="phoneOwner"
+                      formControlName="primaryPhoneOwner"
+                      (selectionChange)="onPhoneOwnerChange($event)"
+                    >
+                      <mat-option
+                        *ngFor="let owner of phoneOwner"
+                        [value]="owner.key"
+                      >
+                        {{ owner.name }}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                  <div
+                    *ngIf="
+                      (addFarmerForm.get('primaryPhoneOwner').invalid &&
+                        addFarmerForm.get('primaryPhoneOwner').touched) ||
+                      (addFarmerForm.get('primaryPhoneOwner').invalid && 
+                        isFormSubmitted)
+                    "
+                    class="text-danger"
+                  >
+                    Please specify the primary phone owner!
+                  </div>
+                </ion-col>
+              </ion-row>
+
+              <ion-row
+                class="ion-justify-content-center"
+                *ngIf="selectedPhoneOwner == 6"
+              >
+                <ion-col size-lg="12">
+                  <ion-item>
+                    <ion-label position="stacked"
+                      >Other phone owner's name</ion-label
+                    >
+                    <ion-input
+                      type="text"
+                      formControlName="otherPhoneOwnerName"
+                    >
+                    </ion-input>
+                  </ion-item>
+                  <div
+                    *ngIf="
+                      (addFarmerForm.get('otherPhoneOwnerName').invalid &&
+                        addFarmerForm.get('otherPhoneOwnerName').touched) ||
+                      (addFarmerForm.get('otherPhoneOwnerName').invalid &&
+                        isFormSubmitted) ||
+                      addFarmerForm.get('otherPhoneOwnerName') == null
+                    "
+                    class="text-danger"
+                  >
+                    Please specify the name of the other phone owner!
+                  </div>
+                </ion-col>
+              </ion-row>
+
+              <ion-row class="ion-justify-content-center">
+                <ion-col size-lg="12">
+                  <ion-item>
+                    <ion-label position="stacked">Alternative Mobile</ion-label>
+                    <ion-input
+                      type="text"
+                      formControlName="alternativeMobileNo"
+                      placeholder="example: 09993334444"
+                      (ionChange)="onAlternativeMobileNoChange($event)"
+                    >
+                    </ion-input>
+                  </ion-item>
+                  <div
+                    *ngIf="
+                      (addFarmerForm.get('alternativeMobileNo').invalid &&
+                        addFarmerForm.get('alternativeMobileNo').touched) ||
+                      (addFarmerForm.get('alternativeMobileNo').invalid &&
+                        isFormSubmitted)
+                    "
+                    class="text-danger"
+                  >
+                    <div
+                      *ngIf="
+                        addFarmerForm.get('alternativeMobileNo').errors[
+                          'required'
+                        ]
+                      "
+                    >
+                      Please enter your alternative mobile phone number!
+                    </div>
+                    <div
+                      *ngIf="
+                        addFarmerForm.get('alternativeMobileNo').errors[
+                          'pattern'
+                        ] ||
+                        addFarmerForm.get('alternativeMobileNo').errors[
+                          'invalidMobileNumberLength'
+                        ]
+                      "
+                    >
+                      Invalid mobile phone number!
+                    </div>
+                    <div
+                      *ngIf="
+                        addFarmerForm.get('alternativeMobileNo').errors[
+                          'invalidMobileNumberPrefix'
+                        ]
+                      "
+                    >
+                      Mobile phone number should start with 0!
+                    </div>
+                  </div>
+                </ion-col>
+              </ion-row>
+
+              <hr />
+
+              <ion-row
+                class="ion-justify-content-center"
+                *ngIf="
+                  !!addFarmerForm.value.alternativeMobileNo &&
+                  !addFarmerForm.get('alternativeMobileNo').invalid
+                "
+              >
+                <ion-col size-lg="12">
+                  <mat-form-field>
+                    <mat-label
+                      >Alternative Phone Owner<ion-text color="danger">
+                        *</ion-text
+                      >
+                    </mat-label>
+                    <mat-select
+                      panelClass="phone-owner-panel"
+                      *ngIf="phoneOwner"
+                      formControlName="alternativePhoneOwner"
+                      (selectionChange)="onAltPhoneOwnerChange($event)"
+                    >
+                      <mat-option
+                        *ngFor="let owner of phoneOwner"
+                        [value]="owner.key"
+                      >
+                        {{ owner.name }}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                  <div
+                    *ngIf="
+                      (addFarmerForm.get('alternativePhoneOwner').invalid &&
+                        addFarmerForm.get('alternativePhoneOwner').touched) ||
+                      (addFarmerForm.get('alternativePhoneOwner').invalid &&
+                        isFormSubmitted)
+                    "
+                    class="text-danger"
+                  >
+                    Please specify the alternative phone owner!
+                  </div>
+                </ion-col>
+              </ion-row>
+            </div>
+
+            <ion-row
+              class="ion-justify-content-center"
+              *ngIf="
+                addFarmerForm.value.alternativePhoneOwner == 6 &&
+                !!addFarmerForm.value.alternativeMobileNo &&
+                !addFarmerForm.get('alternativeMobileNo').invalid 
+              "
+            >
+              <ion-col size-lg="12">
+                <ion-item>
+                  <ion-label position="stacked"
+                    >Other alternative phone owner's name</ion-label
+                  >
+                  <ion-input
+                    type="text"
+                    formControlName="altOtherPhoneOwnerName"
+                  >
+                  </ion-input>
+                </ion-item>
+                <div
+                  *ngIf="
+                    (addFarmerForm.get('altOtherPhoneOwnerName').invalid &&
+                      addFarmerForm.get('altOtherPhoneOwnerName').touched) ||
+                    (addFarmerForm.get('altOtherPhoneOwnerName').invalid &&
+                      isFormSubmitted) ||
+                    addFarmerForm.get('altOtherPhoneOwnerName') == null
+                  "
+                  class="text-danger"
+                >
+                  Please specify the name of the alternative phone owner!
+                </div>
+              </ion-col>
+            </ion-row>
+
+            <ion-row
+              class="ion-justify-content-center ion-align-items-center"
+              formGroupName="farmerTypeFormGroup"
+            >
+              <ion-col size-lg="12">
+                <ion-item>
+                  <ion-label position="stacked" style="margin-bottom: 25px;">
+                    What type of farmer are you? (can select multiple answers)
+                    <ion-text color="danger"> *</ion-text>
+                  </ion-label>
+                </ion-item>
+                <ion-item>
+                  <ion-checkbox
+                    formControlName="localFarmerTechnician"
+                    (ionChange)="onFarmerTypeChange($event)"
+                    [value]="FARMER_TYPE_VALUE.LOCAL_FARMER_TECHNICIAN"
+                    [disabled]="disabled"
+                  ></ion-checkbox>
+                  <ion-label class="ion-padding-start ion-text-wrap">
+                    <h5>Local Farmer Technician (LFT)</h5>
+                  </ion-label>
+                </ion-item>
+                <ion-item>
+                  <ion-checkbox
+                    formControlName="farmerLedExtensionist"
+                    (ionChange)="onFarmerTypeChange($event)"
+                    [value]="FARMER_TYPE_VALUE.FARMER_LED_EXTENSIONIST"
+                    [disabled]="disabled"
+                  ></ion-checkbox>
+                  <ion-label class="ion-padding-start ion-text-wrap">
+                    <h5>Farmer-led Extensionist (FLE)</h5>
+                  </ion-label>
+                </ion-item>
+                <ion-item>
+                  <ion-checkbox
+                    formControlName="technoDemoFarmer"
+                    (ionChange)="onFarmerTypeChange($event)"
+                    [value]="FARMER_TYPE_VALUE.TECHNO_DEMO_FARMER_COOPERATOR"
+                    [disabled]="disabled"
+                  ></ion-checkbox>
+                  <ion-label class="ion-padding-start ion-text-wrap">
+                    <h5>Techno Demo farmer-cooperator</h5>
+                  </ion-label>
+                </ion-item>
+                <ion-item>
+                  <ion-checkbox
+                    formControlName="seedGrower"
+                    (ionChange)="onFarmerTypeChange($event)"
+                    [value]="FARMER_TYPE_VALUE.SEED_GROWER"
+                    [disabled]="disabled"
+                  ></ion-checkbox>
+                  <ion-label class="ion-padding-start ion-text-wrap">
+                    <h5>Seed grower</h5>
+                  </ion-label>
+                </ion-item>
+                <ion-item>
+                  <ion-checkbox
+                    formControlName="typicalFarmer"
+                    (ionChange)="onFarmerTypeChange($event)"
+                    [value]="FARMER_TYPE_VALUE.TYPICAL_FARMER"
+                    [disabled]="disabled"
+                  ></ion-checkbox>
+                  <ion-label class="ion-padding-start ion-text-wrap">
+                    <h5>Typical farmer</h5>
+                  </ion-label>
+                </ion-item>
+                <ion-item>
+                  <ion-checkbox
+                    formControlName="otherFarmerType"
+                    (ionChange)="onOtherFarmerTypeChange($event)"
+                    [value]="FARMER_TYPE_VALUE.OTHER_FARMER_TYPE"
+                    [disabled]="disabled"
+                  ></ion-checkbox>
+                  <ion-label class="ion-padding-start ion-text-wrap">
+                    <h5>Others, please specify:</h5>
+                  </ion-label>
+                </ion-item>
+                <div
+                  *ngIf="
+                    (addFarmerForm.get('farmerTypeFormGroup').errors &&
+                      addFarmerForm.get('farmerTypeFormGroup').dirty) ||
+                    (addFarmerForm.get('farmerTypeFormGroup').invalid &&
+                      isFormSubmitted)
+                  "
+                  class="text-danger"
+                >
+                  Please select an answer
+                </div>
+              </ion-col>
+            </ion-row>
+
+            <ion-row
+              class="ion-justify-content-center"
+              *ngIf="shouldDisplayOtherFarmerType"
+            >
+              <ion-col size-lg="12">
+                <ion-item>
+                  <ion-label position="stacked">
+                    Other farmer type
+                    <ion-text color="danger"> *</ion-text>
+                  </ion-label>
+                  <ion-input type="text" formControlName="otherFarmerTypeName">
+                  </ion-input>
+                </ion-item>
+                <div
+                  *ngIf="
+                    (addFarmerForm.get('otherFarmerTypeName').invalid &&
+                      addFarmerForm.get('otherFarmerTypeName').touched) ||
+                    (addFarmerForm.get('otherFarmerTypeName').invalid &&
+                      isFormSubmitted)
+                  "
+                  class="text-danger"
+                >
+                  Please specify other farmer type name!
+                </div>
+              </ion-col>
+            </ion-row>
+
+            <hr />
+            <ion-row class="ion-justify-content-center">
+              <ion-col size-lg="12">
+                <ion-item>
+                  <ion-label position="stacked">Farmer's Association</ion-label>
+                  <ion-input type="text" formControlName="farmersAssociation">
+                  </ion-input>
+                </ion-item>
+                <div
+                  *ngIf="
+                    (addFarmerForm.get('farmersAssociation').invalid &&
+                      addFarmerForm.get('farmersAssociation').touched) ||
+                    (addFarmerForm.get('farmersAssociation').invalid &&
+                      isFormSubmitted)
+                  "
+                  class="text-danger"
+                >
+                  Please specify the farmers association!
+                </div>
+              </ion-col>
+            </ion-row>
+
+            <div class="ion-padding">
+              <ion-row>
+                <ion-col col-6 class="log-buttons">
+                  <ion-button
+                    color="success"
+                    size-lg="large"
+                    expand="block"
+                    type="submit"
+                    [disabled]="isClicked"
+                  >
+                    {{ submitLabel }}</ion-button
+                  >
+                </ion-col>
+                <ion-col col-6 class="log-buttons" *ngIf="!edit">
+                  <app-ghost-button
+                    size-lg="large"
+                    expand="block"
+                    (onClick)="onClear()"
+                    >Clear</app-ghost-button
+                  >
+                </ion-col>
+                <ion-col col-6 class="log-buttons" *ngIf="edit">
+                  <app-ghost-button
+                    size-lg="large"
+                    expand="block"
+                    (onClick)="onFormCancel.emit()"
+                    >Cancel</app-ghost-button
+                  >
+                </ion-col>
+              </ion-row>
+            </div>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</form>

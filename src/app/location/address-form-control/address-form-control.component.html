@@ -1,0 +1,10 @@
+  <app-address-form *ngIf="formGroupReady"
+    [formGroup]="formGroup"
+    [data]="locationData"
+    [mode]="mode"
+    [barangayHidden]="hideBarangay"
+    [allBarangayOptionEnabled]="allBarangayOptionEnabled"
+    (onRegionChange)="onRegionChanged($event)"
+    (onProvinceChange)="onProvinceChange($event)"
+    (onMunicipalityChange)="onMunicipalityChange($event)"
+    (onBarangayChange)="onBarangayChange($event)"></app-address-form>

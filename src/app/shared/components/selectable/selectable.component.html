@@ -1,0 +1,54 @@
+<div class="selectable-flex-column">
+  <div class="modal-header">
+    <h4>{{ headerName ? headerName : 'Select Item' }}</h4>
+    <ion-button color="light" (click)="handleClose()">
+      <ion-icon name="close"></ion-icon>
+    </ion-button>
+  </div>
+  <ion-item>
+    <ion-input
+      placeholder="Search"
+      (ionChange)="onSearchInputChange($event)"
+    ></ion-input>
+    <ion-icon name="search" slot="start"></ion-icon>
+  </ion-item>
+  <ion-content [scrollEvents]="true">
+    <ion-list class="selectable-overflow-auto">
+      <ion-item *ngFor="let selectableItem of items">
+        <ion-label
+          >{{ selectableItem.last_name | titlecase }},
+          {{ selectableItem.first_name | titlecase }}</ion-label
+        >
+        <ion-checkbox
+          [(ngModel)]="selectableItem.selected"
+          slot="end"
+        ></ion-checkbox>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+
+  <ion-footer>
+    <ion-toolbar class="ion-text-center">
+      <ion-row>
+        <ion-col size="4">
+          <ion-button fill="clear" (click)="clearSelectedItems()"
+            >Clear</ion-button
+          >
+        </ion-col>
+        <ion-col size="4">
+          <ion-button fill="clear" (click)="selectAllItems()"
+            >Select All</ion-button
+          >
+        </ion-col>
+        <ion-col size="4">
+          <ion-button
+            fill="clear"
+            (click)="confirmItems()"
+            [disabled]="!allowConfirmSelection"
+            >Confirm</ion-button
+          >
+        </ion-col>
+      </ion-row>
+    </ion-toolbar>
+  </ion-footer>
+</div>

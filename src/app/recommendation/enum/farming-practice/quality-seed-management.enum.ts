@@ -1,0 +1,12 @@
+export enum QualitySeedManagement {
+    BASE64IMG = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAMAAAC7IEhfAAABGlBMVEUAAAAAAAABAQEAAAABAQEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAQEAAAABAQEAAAAAAAAAAAAAAAAAAAAAAAAHBwfr6+sBAQH19fXw8PDu7u7s7Ozz8/MTExPx8fEXFxf29vbq6uoJCQkPDw+6urpwcHCTk5NBQUHh4eHFxcVISEg3NzeCgoIwMDDo6Oj4+Ph1dXWlpaX////Nzc2ampqqqqqKiorIyMjQ0NBVVVUsLCzm5uZ6enonJyc8PDxbW1uvr6+2trZPT09hYWEiIiLW1tYcHBygoKAKCgpnZ2eysrKGhoZ/f3/BwcH7+/va2tq9vb2VlZXb29vUvCtCAAAAIXRSTlMAd+E99soaBAqOIm0S6LJXRyyVnoM3uNf8ww5QXq5hT/7Ddj3xAAACn0lEQVQ4y4WUaVPiQBCGAUFEFEVXLXTdrXQyPZkEAgm33Fe4wRBQPPb//42lQmIRBHk+pp7qd6an0x4XZ3eSYgaOPQc5gs5nSQycHRRvIF9hDQjcHFIvzCUjQi0H596f8k9D0NORQ6onJ9K592Sfd3wLZplyKwjPRinjcU/+Lz+MPyhyFkQWRgXfxQ4teAWdOqOc7cUzOm1mIfzdu4ZSmkfbQ26iocyeB4lv5hXkGeNsyFvdyNSTAvs3gN9uLwQpRhyPFd+T4lRURpSm57B5zpMQaLrgeHJGE9v1csuoycjH5/Dw1bxbH4gj3vFoefo6k0rv/Tniqnq64LP76TMKfbHN0MmlKiwqqvQ8JMSqX3bClUEzo7acYJpsx0tmM6XJdkdJMWuXhFSF8raHb0NRzbzPzULVaUH8aaaELPHcXB16/U0oNspSO9fCbpVyDiytQdR64ZAyXN9EeB6P9Rmk1InMuC9QrsF10Kp5N10FrerJS3htLxZmb2l5DiSdg/XMPUCXIcda40wNss38Z0vmXPCq8z6RQpqgrqX0txdpWtrMtY+k+NYT9xfUJ9ISJ1pn2W3whNsChTzEopYZM6qUNHL5vlax2+c25WEPLPESBgR5Us/VeG4XrPKh2NNtLihJl8pOPTd01J1M7d/Fn9UJUsrt9JIdwzA9a7zwwpDbCcG25PMeeWxuxeTueiirnUR0Y0f4s0h2Bs86ite9dvIy2eE1c+Jj0LPJNbwK2yby1bEU2VoZJ2F/VxDc/ROGWSl2/33p+Uv6VzwipdVUwYzYntsMZMs6RcsTsPnSF/3h4J4FBLk6Q+Sw2OgbCoRO96++q0RqVETSMiDijXp+4s+dmSc0I8Kl5wD3YXNUaYBvFXuIQG9QSBwoaM8niLGt6/4H7iOglvuVUQMAAAAASUVORK5CYII=",
+    HEADER = "",
+    USE_SEED_OLDER_THAN_39_DAYS = "Use @qualitySeedsLowerLimit to @qualitySeedsUpperLimit kg of certified or good quality seeds with good snail control " +
+    "after sowing for @fieldSize hectare farm lot.",
+
+    USE_QUALITY_SEEDS_GOOD_SNAIL_CONTROL = "Use certified or good quality seeds with good snail control " +
+    "after sowing for @fieldSize hectare farm lot.",
+
+    USE_QUALITY_SEEDS = "Use certified or good quality seeds " +
+    "for @fieldSize hectare farm lot.",
+}

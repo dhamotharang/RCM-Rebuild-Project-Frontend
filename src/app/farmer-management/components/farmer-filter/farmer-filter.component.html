@@ -1,0 +1,123 @@
+<div>
+  <ion-row>
+    <ion-col>
+      <ion-card>
+        <ion-row class="ion-justify-content-start ion-align-items-center">
+          <ion-col size="auto">
+            <ion-icon
+              class="input-search-icon"
+              name="search-outline"
+            ></ion-icon>
+          </ion-col>
+          <ion-col>
+            <ion-input
+              [formControl]="searchFormControl"
+              placeholder="Search by farmer name, farmer id, gpx id or recommendation id (refid:<ref_id>)"
+            ></ion-input>
+          </ion-col>
+        </ion-row>
+      </ion-card>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col *ngIf="!isOfflineModeEnabled">
+      <ion-item>
+        <ion-checkbox
+          slot="start"
+          [ngModel]="farmerFilter.interviewedByMe"
+          (ngModelChange)="interviewedByMeChanged($event)"
+        ></ion-checkbox>
+        <ion-label>Interviewed By Me</ion-label>
+      </ion-item>
+    </ion-col>
+    <ion-col>
+      <ion-item>
+        <ion-checkbox
+          slot="start"
+          [ngModel]="farmerFilter.verifiedField"
+          (ngModelChange)="verifiedFieldChanged($event)"
+        ></ion-checkbox>
+        <ion-label>Verified Field</ion-label>
+      </ion-item>
+    </ion-col>
+    <ion-col>
+      <ion-item>
+        <ion-checkbox
+          slot="start"
+          [ngModel]="farmerFilter.notVerifiedField"
+          (ngModelChange)="notVerifiedFieldChanged($event)"
+        ></ion-checkbox>
+        <ion-label>Not Verified Field</ion-label>
+      </ion-item>
+    </ion-col>
+    <ion-col *ngIf="!isOfflineModeEnabled">
+      <ion-item>
+        <ion-checkbox
+          slot="start"
+          [ngModel]="farmerFilter.idGenerated"
+          (ngModelChange)="idGeneratedChanged($event)"
+        ></ion-checkbox>
+        <ion-label>ID Generated</ion-label>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+  <ion-row *ngIf="!isOfflineModeEnabled">
+    <app-ghost-button
+      size="small"
+      [color]="advancedFilterVisible ? 'primary' : 'medium'"
+      fill="clear"
+      (click)="advancedFilterVisible = !advancedFilterVisible"
+    >
+      <ion-icon *ngIf="!advancedFilterVisible" name="add-outline"></ion-icon>
+      <ion-icon *ngIf="advancedFilterVisible" name="remove-outline"></ion-icon>
+      Advanced Filters</app-ghost-button
+    >
+  </ion-row>
+  <div *ngIf="advancedFilterVisible">
+    <ion-row
+      class="ion-padding-start ion-padding-end ion-justify-content-between ion-align-items-center"
+    >
+      <ion-text color="medium">Location</ion-text>
+      <app-ghost-button
+        color="primary"
+        (click)="clearLocation()"
+        >Clear</app-ghost-button
+      >
+    </ion-row>
+    <ion-row>
+      <app-address-form-control
+        [address]="locationFilter"
+        [allBarangayOptionEnabled]="true"
+        (locationChanged)="onLocationChanged($event)"
+      ></app-address-form-control>
+    </ion-row>
+
+    <ion-row
+      class="ion-padding-start ion-padding-end ion-justify-content-between ion-align-items-center"
+    >
+      <ion-text color="medium">Interview Date</ion-text>
+      <app-ghost-button
+        color="primary"
+        (click)="clearInterviewDates()"
+        >Clear</app-ghost-button
+      >
+    </ion-row>
+    <ion-row>
+      <ion-col size="6">
+        <app-datepicker
+          label="From"
+          [(date)]="farmerFilter.interviewDateFrom"
+          [max]="farmerFilter.interviewDateTo"
+        ></app-datepicker>
+      </ion-col>
+      <ion-col size="6">
+        <app-datepicker
+          label="To"
+          [(date)]="farmerFilter.interviewDateTo"
+          [min]="farmerFilter.interviewDateFrom"
+          [max]="today"
+        ></app-datepicker>
+      </ion-col>
+    </ion-row>
+  </div>
+</div>

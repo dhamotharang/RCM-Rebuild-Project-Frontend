@@ -1,0 +1,18 @@
+<ion-item>
+  <ion-label position="stacked">{{ label }}</ion-label>
+  <ion-input
+    readonly
+    [value]="date | date"
+    (click)="datePicker.open()"
+  ></ion-input>
+</ion-item>
+
+<input
+  #dateInput
+  style="visibility: hidden; width: 0"
+  [matDatepicker]="datePicker"
+  (dateChange)="onDateChange($event)"
+  [min]="min"
+  [max]="max"
+/>
+<mat-datepicker #datePicker></mat-datepicker>

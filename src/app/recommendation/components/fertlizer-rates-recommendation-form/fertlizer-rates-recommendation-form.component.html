@@ -1,0 +1,606 @@
+<div class="ion-padding">
+  <ion-card>
+    <ion-card-content>
+      <ion-grid>
+        <ion-row class="output-summary-intro">
+          {{ 'FERTILIZER_RATES.INTRO' | translate }}
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+  <ion-card>
+    <ion-card-content>
+      <div class="output-summary-intro">
+        <div class="ion-text-center">
+          {{
+            'FERTILIZER_RATES.OUTPUT_SUMMARY_INTRO.TARGET_YIELD_FRESH_WEIGHT'
+              | customDialectTranslation: dialectSelected | async
+          }}
+          <ion-text color="primary">{{
+            targetYield?.targetYieldSackCount
+          }}</ion-text>
+          {{ 'COMMON.SACKS_AT' | customDialectTranslation: dialectSelected | async }}
+          <ion-text color="primary">{{
+            targetYield?.targetYieldKgPerSack
+          }}</ion-text>
+          {{ 'COMMON.UNIT.KG_PER_SACK' | customDialectTranslation: dialectSelected | async }},
+          <ion-text color="primary">{{
+            targetYield?.freshWeightOutput
+          }}</ion-text>
+          {{ 'COMMON.UNIT.TON_PER_HECTARE' | customDialectTranslation: dialectSelected | async }}
+        </div>
+        <div class="ion-text-center">
+          {{
+            'FERTILIZER_RATES.OUTPUT_SUMMARY_INTRO.TARGET_YIELD_AT_14_MOISTURE'
+              | customDialectTranslation: dialectSelected | async
+          }}
+          <ion-text color="primary">{{
+            targetYield?.dryWeightOutput
+          }}</ion-text>
+          {{ 'COMMON.UNIT.TON_PER_HECTARE' | customDialectTranslation: dialectSelected | async }}
+        </div>
+        <div class="ion-text-center">
+          {{ 'COMMON.WATER_SOURCE.LABEL' | customDialectTranslation: dialectSelected | async }}:
+          <ion-text color="primary">
+            {{
+              'COMMON.WATER_SOURCE.' +
+                (fieldFormValue?.waterSource | irrigationLabel)
+                | uppercase
+                | customDialectTranslation: dialectSelected | async
+            }}, {{ 'RECOMMENDATION_SUMMARY.' + waterPump | customDialectTranslation: dialectSelected | async }}
+          </ion-text>
+        </div>
+        <div class="ion-text-center">
+          {{
+            'FERTILIZER_RATES.OUTPUT_SUMMARY_INTRO.RICE_CROP_PER_YEAR'
+              | customDialectTranslation: dialectSelected | async
+          }}
+          <ion-text color="primary">{{
+            targetYield?.timesPlantInAYear
+          }}</ion-text>
+        </div>
+      </div>
+    </ion-card-content>
+  </ion-card>
+  <form [formGroup]="fertilizerRatesForm" (ngSubmit)="onFormSubmit()">
+    <ion-list>
+      <ion-radio-group
+        formControlName="selectedCrop"
+        (ionChange)="onSelectedCropChange($event)"
+        [hidden]="!shouldShowCropQuestion"
+      >
+        <ion-list-header>
+          <ion-label
+            [innerHTML]="
+              'FERTILIZER_RATES.RICE_CROP.QUESTION'
+                | translate
+                  : {
+                      sowingMonth:
+                        'COMMON.MONTH.' +
+                          (targetYield?.sowingDate | date: 'MMMM' | uppercase)
+                        | translate
+                    }
+            "
+          >
+          </ion-label>
+        </ion-list-header>
+        <ion-item>
+          <ion-label>{{
+            'FERTILIZER_RATES.RICE_CROP.ANSWER.RICE' | translate
+          }}</ion-label>
+          <ion-radio
+            slot="start"
+            [value]="CROP_VALUE.RICE"
+            [disabled]="isFormDisabled"
+          ></ion-radio>
+        </ion-item>
+        <ion-item>
+          <ion-label>{{
+            'FERTILIZER_RATES.RICE_CROP.ANSWER.CORN' | translate
+          }}</ion-label>
+          <ion-radio
+            slot="start"
+            [value]="CROP_VALUE.CORN"
+            [disabled]="isFormDisabled"
+          ></ion-radio>
+        </ion-item>
+        <ion-item>
+          <ion-label>{{
+            'FERTILIZER_RATES.RICE_CROP.ANSWER.LEGUME' | translate
+          }}</ion-label>
+          <ion-radio
+            slot="start"
+            [value]="CROP_VALUE.LEGUME"
+            [disabled]="isFormDisabled"
+          ></ion-radio>
+        </ion-item>
+        <ion-item>
+          <ion-label>{{
+            'FERTILIZER_RATES.RICE_CROP.ANSWER.VEGETABLE_OR_MELON' | translate
+          }}</ion-label>
+          <ion-radio
+            slot="start"
+            [value]="CROP_VALUE.VEGETABLE_OR_MELON"
+            [disabled]="isFormDisabled"
+          ></ion-radio>
+        </ion-item>
+
+        <ion-item *ngIf="shouldShowBellPepperOption">
+          <ion-label>{{
+            'FERTILIZER_RATES.RICE_CROP.ANSWER.BELL_PEPPER_OR_EGGPLANT'
+              | translate
+          }}</ion-label>
+          <ion-radio
+            slot="start"
+            [value]="CROP_VALUE.BELL_PEPPER_OR_EGGPLANT"
+            [disabled]="isFormDisabled"
+          ></ion-radio>
+        </ion-item>
+
+        <ion-item *ngIf="shouldShowTomatoOption">
+          <ion-label>{{
+            'FERTILIZER_RATES.RICE_CROP.ANSWER.TOMATO' | translate
+          }}</ion-label>
+          <ion-radio
+            slot="start"
+            [value]="CROP_VALUE.TOMATO"
+            [disabled]="isFormDisabled"
+          ></ion-radio>
+        </ion-item>
+
+        <ion-item *ngIf="shouldShowTobaccoOption">
+          <ion-label>{{
+            'FERTILIZER_RATES.RICE_CROP.ANSWER.TOBACCO' | translate
+          }}</ion-label>
+          <ion-radio
+            slot="start"
+            [value]="CROP_VALUE.TOBACCO"
+            [disabled]="isFormDisabled"
+          ></ion-radio>
+        </ion-item>
+        <ion-item>
+          <ion-label>{{
+            'FERTILIZER_RATES.RICE_CROP.ANSWER.NO_CROP' | translate
+          }}</ion-label>
+          <ion-radio
+            slot="start"
+            [value]="CROP_VALUE.NO_CROP"
+            [disabled]="isFormDisabled"
+          ></ion-radio>
+        </ion-item>
+      </ion-radio-group>
+      <ion-item
+        lines="none"
+        *ngIf="
+          fertilizerRatesForm.get('selectedCrop').touched &&
+          fertilizerRatesForm.get('selectedCrop').invalid
+        "
+      >
+        <mat-error class="form-error">
+          {{ 'COMMON.VALIDATION.REQUIRED' | translate }}
+        </mat-error>
+      </ion-item>
+    </ion-list>
+
+    <ion-list *ngIf="previousCropIsRice">
+      <ion-radio-group
+        formControlName="harvestType"
+        (ionChange)="onHarvestTypeChange($event)"
+      >
+        <ion-list-header>
+          <ion-label>
+            {{ 'FERTILIZER_RATES.HARVEST_TYPE.QUESTION' | translate }}
+            <ion-text color="danger">*</ion-text>
+          </ion-label>
+        </ion-list-header>
+        <ion-item>
+          <ion-label>{{
+            'FERTILIZER_RATES.HARVEST_TYPE.ANSWER.MANUAL_HARVEST' | translate
+          }}</ion-label>
+          <ion-radio
+            slot="start"
+            [value]="HARVEST_TYPE.MANUAL"
+            [disabled]="isFormDisabled"
+          ></ion-radio>
+        </ion-item>
+        <ion-item>
+          <ion-label>{{
+            'FERTILIZER_RATES.HARVEST_TYPE.ANSWER.REAPER' | translate
+          }}</ion-label>
+          <ion-radio
+            slot="start"
+            [value]="HARVEST_TYPE.REAPER"
+            [disabled]="isFormDisabled"
+          ></ion-radio>
+        </ion-item>
+        <ion-item>
+          <ion-label>{{
+            'FERTILIZER_RATES.HARVEST_TYPE.ANSWER.COMBINE_HARVEST' | translate
+          }}</ion-label>
+          <ion-radio
+            slot="start"
+            [value]="HARVEST_TYPE.COMBINE"
+            [disabled]="isFormDisabled"
+          ></ion-radio>
+        </ion-item>
+      </ion-radio-group>
+      <ion-item
+        lines="none"
+        *ngIf="
+          fertilizerRatesForm.get('harvestType').touched &&
+          fertilizerRatesForm.get('harvestType').invalid
+        "
+      >
+        <mat-error class="form-error">
+          {{ 'COMMON.VALIDATION.REQUIRED' | translate }}
+        </mat-error>
+      </ion-item>
+    </ion-list>
+
+    <ion-list
+      *ngIf="previousCropIsRice"
+      formGroupName="numberAndWeightOfSacksGroup"
+    >
+      <ion-list-header>
+        <ion-label
+          [innerHTML]="
+            'FERTILIZER_RATES.NUMBER_AND_WEIGHT_OF_SACKS_GROUP.QUESTION'
+              | translate
+                : {
+                    selectedFarmSize: fieldFormValue?.selectedFarmSize,
+                    farmLotName: fieldFormValue?.farmLotName
+                  }
+          "
+        >
+        </ion-label>
+      </ion-list-header>
+      <ion-item>
+        <ion-label position="floating">
+          <ion-text color="medium">{{
+            'COMMON.NUMBER_OF_SACKS' | translate
+          }}</ion-text>
+          <ion-text color="danger">*</ion-text>
+        </ion-label>
+        <ion-input
+          type="number"
+          formControlName="immediateHarvestSackCount"
+          (ionChange)="onNumberAndWeightOfSacksAnswerChange($event)"
+          [disabled]="isFormDisabled"
+        ></ion-input>
+      </ion-item>
+
+      <ion-item
+        lines="none"
+        *ngIf="
+          fertilizerRatesForm.controls.numberAndWeightOfSacksGroup.get(
+            'immediateHarvestSackCount'
+          ).touched &&
+          fertilizerRatesForm.controls.numberAndWeightOfSacksGroup.get(
+            'immediateHarvestSackCount'
+          ).invalid
+        "
+      >
+        <mat-error
+          class="form-error"
+          *ngIf="
+            fertilizerRatesForm.controls.numberAndWeightOfSacksGroup.get(
+              'immediateHarvestSackCount'
+            ).errors.required
+          "
+        >
+          {{ 'COMMON.VALIDATION.REQUIRED_SECONDARY' | translate }}
+        </mat-error>
+        <mat-error
+          class="form-error"
+          *ngIf="
+            fertilizerRatesForm.controls.numberAndWeightOfSacksGroup.get(
+              'immediateHarvestSackCount'
+            ).errors.min
+          "
+        >
+          {{ 'FERTILIZER_RATES.NUMBER_OF_SACKS.VALIDATION.MIN' | translate }}
+        </mat-error>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">
+          <ion-text color="medium">{{
+            'COMMON.WEIGHT_OF_SACK' | translate
+          }}</ion-text>
+          <ion-text color="danger">*</ion-text>
+        </ion-label>
+        <ion-input
+          type="number"
+          formControlName="immediateHarvestKgPerSack"
+          (ionChange)="onNumberAndWeightOfSacksAnswerChange($event)"
+          [disabled]="isFormDisabled"
+        ></ion-input>
+      </ion-item>
+
+      <ion-item
+        lines="none"
+        *ngIf="
+          fertilizerRatesForm.controls.numberAndWeightOfSacksGroup.get(
+            'immediateHarvestKgPerSack'
+          ).touched &&
+          fertilizerRatesForm.controls.numberAndWeightOfSacksGroup.get(
+            'immediateHarvestKgPerSack'
+          ).invalid
+        "
+      >
+        <mat-error
+          class="form-error"
+          *ngIf="
+            fertilizerRatesForm.controls.numberAndWeightOfSacksGroup.get(
+              'immediateHarvestKgPerSack'
+            ).errors.required
+          "
+        >
+          {{ 'COMMON.VALIDATION.REQUIRED_SECONDARY' | translate }}
+        </mat-error>
+        <mat-error
+          class="form-error"
+          *ngIf="
+            fertilizerRatesForm.controls.numberAndWeightOfSacksGroup.get(
+              'immediateHarvestKgPerSack'
+            ).errors.min ||
+            fertilizerRatesForm.controls.numberAndWeightOfSacksGroup.get(
+              'immediateHarvestKgPerSack'
+            ).errors.max
+          "
+        >
+          {{
+            'FERTILIZER_RATES.WEIGHT_OF_SACK.VALIDATION.MIN_AND_MAX' | translate
+          }}
+        </mat-error>
+      </ion-item>
+    </ion-list>
+
+    <div
+      *ngIf="previousFreshWeight"
+      style="font-weight: bold; padding-left: 5px;"
+    >
+      <div style="display: inline-block;">
+        <ion-text>{{ previousFreshWeight | number }}</ion-text>
+        {{ 'COMMON.UNIT.TON_PER_HECTARE' | translate }}
+        {{ 'COMMON.OF' | translate }} {{ 'COMMON.FRESH_WEIGHT' | translate }}
+      </div>
+    </div>
+
+    <div
+      *ngIf="
+        fertilizerRatesForm.controls.numberAndWeightOfSacksGroup.errors !== null
+      "
+    >
+      <ion-row class="ion-justify-content-center">
+        <ion-col>
+          <app-error
+            *ngIf="
+              fertilizerRatesForm.controls.numberAndWeightOfSacksGroup.errors
+                .reportedYieldMin
+            "
+            [errorMessage]="
+              'FERTILIZER_RATES.NUMBER_AND_WEIGHT_OF_SACKS_GROUP.VALIDATION.MIN'
+                | translate
+            "
+          ></app-error>
+          <app-error
+            *ngIf="
+              fertilizerRatesForm.controls.numberAndWeightOfSacksGroup.errors
+                .reportedYieldMax
+            "
+            [errorMessage]="
+              'FERTILIZER_RATES.NUMBER_AND_WEIGHT_OF_SACKS_GROUP.VALIDATION.MAX'
+                | translate
+            "
+          ></app-error>
+        </ion-col>
+      </ion-row>
+    </div>
+
+    <ion-list>
+      <ion-radio-group
+        formControlName="willApplyOrganicFertilizer"
+        (ionChange)="onWillApplyOrganicFertilizerAnswerChange($event)"
+      >
+        <ion-list-header>
+          <ion-label>
+            {{
+              'FERTILIZER_RATES.WILL_APPLY_ORGANIC_FERTILIZER.QUESTION'
+                | translate
+            }}
+            <ion-text color="danger">*</ion-text>
+          </ion-label>
+        </ion-list-header>
+
+        <ion-item>
+          <ion-label>
+            {{
+              'FERTILIZER_RATES.WILL_APPLY_ORGANIC_FERTILIZER.ANSWER.YES'
+                | translate
+            }}</ion-label
+          >
+          <ion-radio
+            slot="start"
+            [value]="ANSWER.YES"
+            [disabled]="isFormDisabled"
+          ></ion-radio>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>
+            {{
+              'FERTILIZER_RATES.WILL_APPLY_ORGANIC_FERTILIZER.ANSWER.NO'
+                | translate
+            }}</ion-label
+          >
+          <ion-radio
+            slot="start"
+            [value]="ANSWER.NO"
+            [disabled]="isFormDisabled"
+          ></ion-radio>
+        </ion-item>
+      </ion-radio-group>
+
+      <ion-item
+        lines="none"
+        *ngIf="
+          fertilizerRatesForm.get('willApplyOrganicFertilizer').touched &&
+          fertilizerRatesForm.get('willApplyOrganicFertilizer').invalid
+        "
+      >
+        <mat-error class="form-error">
+          {{ 'COMMON.VALIDATION.REQUIRED' | translate }}
+        </mat-error>
+      </ion-item>
+    </ion-list>
+
+    <ion-list *ngIf="shouldShowFertlizerQuantityField">
+      <ion-list-header>
+        <ion-label
+          [innerHTML]="
+            'FERTILIZER_RATES.ORGANIC_FERTILIZER_BAG_COUNT.QUESTION'
+              | translate
+                : {
+                    selectedFarmSize: fieldFormValue?.selectedFarmSize
+                  }
+          "
+        >
+        </ion-label>
+      </ion-list-header>
+      <ion-item>
+        <ion-label position="floating">
+          <ion-text color="medium">{{
+            'FERTILIZER_RATES.TOTAL_NUMBER_OF_BAGS.QUESTION' | translate
+          }}</ion-text>
+          <ion-text color="danger">*</ion-text>
+        </ion-label>
+        <ion-input
+          type="number"
+          formControlName="organicFertlizerBagCount"
+          (ionChange)="onOrganicFertlizerBagCountAnswerChange($event)"
+          [disabled]="isFormDisabled"
+        ></ion-input>
+      </ion-item>
+      <ion-item
+        lines="none"
+        *ngIf="
+          fertilizerRatesForm.get('organicFertlizerBagCount').touched &&
+          fertilizerRatesForm.get('organicFertlizerBagCount').invalid &&
+          fertilizerRatesForm.get('organicFertlizerBagCount').errors.required
+        "
+      >
+        <mat-error class="form-error">
+          {{ 'COMMON.VALIDATION.REQUIRED_SECONDARY' | translate }}
+        </mat-error>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">
+          <ion-text color="medium">{{
+            'FERTILIZER_RATES.TYPICAL_WEIGHT_OF_BAG.QUESTION' | translate
+          }}</ion-text>
+          <ion-text color="danger">*</ion-text>
+        </ion-label>
+        <ion-input
+          type="number"
+          formControlName="organicFertlizerKgPerBag"
+          (ionChange)="onOrganicFertlizerKgPerBagAnswerChange($event)"
+          [disabled]="isFormDisabled"
+        ></ion-input>
+      </ion-item>
+
+      <ion-item
+        lines="none"
+        *ngIf="
+          fertilizerRatesForm.get('organicFertlizerKgPerBag').touched &&
+          fertilizerRatesForm.get('organicFertlizerKgPerBag').invalid &&
+          fertilizerRatesForm.get('organicFertlizerKgPerBag').errors.required
+        "
+      >
+        <mat-error class="form-error">
+          {{ 'COMMON.VALIDATION.REQUIRED_SECONDARY' | translate }}
+        </mat-error>
+      </ion-item>
+
+      <div
+        *ngIf="numberOfFertilizerBagsPerHectare"
+        style="font-weight: bold; padding-left: 5px;"
+      >
+        <div style="display: inline-block;">
+          <ion-text>{{ numberOfFertilizerBagsPerHectare | number }}</ion-text>
+          {{ 'COMMON.UNIT.BAGS_PER_HECTARE' | translate }}
+        </div>
+      </div>
+      <app-error
+        *ngIf="
+          fertilizerRatesForm.get('organicFertlizerBagCount').touched &&
+          fertilizerRatesForm.get('organicFertlizerKgPerBag').touched &&
+          ((fertilizerRatesForm.get('organicFertlizerBagCount').invalid &&
+            fertilizerRatesForm.get('organicFertlizerBagCount').errors.max) ||
+            (fertilizerRatesForm.get('organicFertlizerKgPerBag').invalid &&
+              (fertilizerRatesForm.get('organicFertlizerKgPerBag').errors.min ||
+                fertilizerRatesForm.get('organicFertlizerKgPerBag').errors
+                  .max)))
+        "
+        [errorMessage]="
+          'FERTILIZER_RATES.ORGANIC_FERTILIZER_BAG_COUNT.VALIDATION.MIN_AND_MAX'
+            | translate
+        "
+      ></app-error>
+    </ion-list>
+
+    <div *ngIf="npkRateOutput.showNPKRate || recommendationModel">
+      <ion-card>
+        <ion-card-content>
+          <div class="ion-text-center output-summary">
+            <p>{{ 'FERTILIZER_RATES.OUTPUT_SUMMARY' | customDialectTranslation: dialectSelected | async }}</p>
+            <p>
+              N:
+              <ion-text color="primary">{{
+                npkRateOutput.totalNRate
+              }}</ion-text>
+              {{ 'COMMON.UNIT.KG_PER_HECTARE' | customDialectTranslation: dialectSelected | async }}
+            </p>
+            <p>
+              P<sub>2</sub>O<sub>5</sub>:
+              <ion-text color="primary">{{
+                npkRateOutput.totalPRate
+              }}</ion-text>
+              {{ 'COMMON.UNIT.KG_PER_HECTARE' | customDialectTranslation: dialectSelected | async }}
+            </p>
+            <p>
+              K<sub>2</sub>O:
+              <ion-text color="primary">{{
+                npkRateOutput.totalKRate
+              }}</ion-text>
+              {{ 'COMMON.UNIT.KG_PER_HECTARE' | customDialectTranslation: dialectSelected | async }}
+            </p>
+          </div>
+        </ion-card-content>
+      </ion-card>
+    </div>
+
+    <div>
+      <ion-button color="primary" type="submit">
+        {{ 'COMMON.NEXT' | translate }}</ion-button
+      >
+
+      <ion-button
+        color="primary"
+        type="button"
+        (click)="editForm()"
+        [hidden]="!isFormDisabled || recommendationModel"
+        *ngIf="wasTheRecommendationSaved === false"
+      >
+        {{ 'COMMON.EDIT' | translate }}
+      </ion-button>
+      <ion-button
+        color="medium"
+        type="button"
+        *ngIf="wasTheRecommendationSaved === true"
+        [matTooltip]="'BUTTON.RECOMMENDATION_IS_SAVED_TOOLTIP' | translate"
+      >
+        {{ 'COMMON.EDIT' | translate }}
+      </ion-button>
+    </div>
+  </form>
+</div>

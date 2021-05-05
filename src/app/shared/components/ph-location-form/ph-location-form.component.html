@@ -1,0 +1,44 @@
+<div [formGroup]="formGroup">
+    <mat-form-field>
+      <mat-label>Region<ion-text color="danger">*</ion-text></mat-label>
+      <mat-select formControlName="region" (selectionChange)="onRegionChange($event.value)">
+        <mat-option *ngFor="let region of regions" [value]="region.value">
+          {{region.label}}
+        </mat-option>
+      </mat-select>
+
+    <mat-error *ngIf="(regionControl.invalid && regionControl.touched) || regionControl.invalid">Please select your region!</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Province<ion-text color="danger">*</ion-text></mat-label>
+        <mat-select formControlName="province" (selectionChange)="onProvinceChange($event.value)" [value]="5">
+          <mat-option *ngFor="let province of provinces" [value]="province.value">
+            {{province.label}}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="(provinceControl.invalid && provinceControl.touched) || provinceControl.invalid">Please select your province!
+        </mat-error>
+    </mat-form-field>
+  <mat-form-field>
+      <mat-label>Municipality <ion-text color="danger">*</ion-text></mat-label>
+      <mat-select formControlName="municipality" (selectionChange)="onMunicipalityChange($event.value)">
+        <mat-option *ngFor="let municipality of municipalities" [value]="municipality.value">
+          {{municipality.label}}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="(municipalityControl.invalid && municipalityControl.touched) || municipalityControl.invalid">Please select your municipality!
+      </mat-error>
+  </mat-form-field>
+
+  <mat-form-field *ngIf="!barangayHidden">
+      <mat-label>Barangay<ion-text color="danger">*</ion-text></mat-label>
+      <mat-select formControlName="barangay" (selectionChange)="onBarangayChange($event.value)">
+        <mat-option *ngFor="let barangay of barangays" [value]="barangay.value">
+          {{barangay.label}}
+        </mat-option>
+      </mat-select>
+      <mat-error>Please select your barangay!
+      </mat-error>
+  </mat-form-field>
+</div>
+

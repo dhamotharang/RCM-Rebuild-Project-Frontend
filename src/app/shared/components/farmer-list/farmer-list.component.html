@@ -1,0 +1,110 @@
+<ion-card>
+  <ion-card-content>
+    <ion-row>
+      <ion-col>
+        <ion-searchbar [formControl]="searchFormControl" placeholder="Search by farmer name, farmer id, field id or gpx id"></ion-searchbar>
+      </ion-col>
+      <ion-col size="auto" *ngIf="showExternalFilter && roleId !== PUBLIC">
+        <ion-fab-button (click)="externalFilter.emit()">
+          <ion-icon src="assets/icon/filter.svg"></ion-icon>
+        </ion-fab-button>
+      </ion-col>
+    </ion-row>
+    <ion-row class="ion-text-left" *ngIf="withFilters || withCheckFilters">
+      <ion-col class="ion-item-start" class="filters-applied-margin">
+          <ion-badge color="primary">
+            <ion-icon name="filter"></ion-icon>
+            Filters Applied</ion-badge>
+      </ion-col>
+      <ion-col size="auto">
+        <ion-button color="default" class="clear-filters-margin" fill="outline" (click)="clearFilters.emit()" type="button">
+          Clear Filters</ion-button>
+      </ion-col>
+    </ion-row>
+
+    <ion-row class="filter-output" *ngIf="withFilters || (withFilters && filterData.fromDate)">
+      <ion-col>
+        <ion-row *ngIf="withFilters">
+          <ion-col size="auto" *ngIf="filterData.region_id">
+            <ion-label >
+              <span class="filter-key">Region:</span> <span class="filter-value"> {{filterData.region | uppercase }}</span>
+            </ion-label>
+          </ion-col>
+          <ion-col size="auto" *ngIf="filterData.province_id">
+            <ion-label>
+              <span class="filter-key">Province:</span> <span class="filter-value"> {{filterData.province | uppercase }}</span>
+            </ion-label>
+          </ion-col>
+          <ion-col size="auto" *ngIf="filterData.municipality_id">
+            <ion-label>
+              <span class="filter-key">Municipality:</span> <span class="filter-value"> {{filterData.municipality | uppercase }}</span>
+            </ion-label>
+          </ion-col>
+          <ion-col size="auto" *ngIf="filterData.barangay_id">
+            <ion-label class="filter-text">
+              <span class="filter-key">Barangay:</span> <span class="filter-value"> {{filterData?.barangay | uppercase }}</span>
+            </ion-label>
+          </ion-col>
+        </ion-row>
+    
+        <ion-row *ngIf="withFilters && filterData.fromDate">
+          <ion-col size="auto" *ngIf="filterData.fromDate">
+            <ion-label>
+              <span class="filter-key">From:</span> <span class="filter-value"> {{filterData.fromDate | uppercase }}</span>
+            </ion-label>
+          </ion-col>
+          <ion-col size="auto">
+            <ion-label>
+              <span class="filter-key">To:</span> <span class="filter-value"> {{filterData.toDate | uppercase }}</span>
+            </ion-label>
+          </ion-col>
+        </ion-row>
+      </ion-col>
+    </ion-row>
+
+    <ion-row *ngIf="filters">
+      <ion-col size="auto" *ngFor="let filter of filters">
+        <ion-item *ngIf="(filter.isDisplayed ? true : !isOffline) && shouldShowInterviewedByMeFilter(roleId, filter.key)">
+          <ion-label>{{ filter.name }}</ion-label>
+          <ion-checkbox [ngModel]="filter.active" (ngModelChange)="filter.active = $event; checkedFilter.emit(filters)"
+            color="primary" slot="start"></ion-checkbox>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="12" class="ion-padding" *ngIf="showLoader">
+        <ion-row class="ion-justify-content-center ion-align-items-center">
+          <ion-col size="auto">
+            <span *ngIf="!isDownload">Loading farmer list</span>
+            <span *ngIf="isDownload">Downloading farmer list</span>
+          </ion-col>
+          <ion-col size="auto">
+            <ion-spinner></ion-spinner>
+          </ion-col>
+        </ion-row>
+      </ion-col>
+
+      <ng-template #hasList>
+        <section *ngIf="hasList && (farmerList == null || farmerList.length == 0)">
+          No farmer list to show.
+        </section>
+      </ng-template>
+
+      <ion-col size="12">
+        <ion-row *ngIf="!showLoader">
+          <ion-col size="12" size-sm="6" size-lg="6" size-xl="4" *ngFor="let farmer of farmerList">
+            <app-farmer-card [farmerInfo]="farmer" button (select)="selectFarmer.emit($event)">
+            </app-farmer-card>
+          </ion-col>
+        </ion-row>
+      </ion-col>
+    </ion-row>
+    <ion-row *ngIf="pageInfo">
+      <ion-col>
+        <mat-paginator [length]="pageInfo.length" [pageSize]="pageInfo.pageSize" [pageIndex]="pageInfo.pageIndex"
+          (page)="page.emit($event)" [pageSizeOptions]="listOfItemsPerPage" (page)="page.emit($event)">
+        </mat-paginator>
+      </ion-col>
+    </ion-row>
+  </ion-card-content>
+</ion-card>

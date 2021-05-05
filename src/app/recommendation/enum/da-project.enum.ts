@@ -1,0 +1,7 @@
+export enum DaProject {
+    RCM_LARGE_SCALE = 1,
+    RICE_MODEL_FARM = 3,
+    INTENSIVE_HYBRIDIZATION_PROGRAM = 4,
+    RCM_RESEARCH = 8,
+    OTHERS = 5
+}

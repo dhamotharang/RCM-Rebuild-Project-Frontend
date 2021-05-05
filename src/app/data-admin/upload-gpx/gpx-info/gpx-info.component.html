@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-toolbar color="default">
+    <ion-buttons slot="start">
+      <ion-button (click)="backClicked()">
+        <ion-icon name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <div class="item item-divider item-assertive ion-padding bgheader ion-text-center" style="white-space: normal;">
+      GPX Information
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="ion-padding divLoading" *ngIf="loadingInfo; else hasList">
+    <section>
+      Loading information <ion-spinner></ion-spinner>
+    </section>
+  </div>
+
+  <ng-template #hasList>
+    <ion-grid>
+      <ion-row class="ion-justify-content-center">
+        <ion-col size="12">
+          <app-gpx-map [gpxModels]="gpxModels" [mapLatitude]="lat" [mapLongitude]="long"></app-gpx-map>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ng-template>
+
+</ion-content>

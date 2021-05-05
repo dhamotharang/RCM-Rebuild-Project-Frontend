@@ -1,0 +1,24 @@
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col>{{ 'Log ID' | uppercase }}</ion-col>
+      <ion-col>{{ 'Service Name' | uppercase }}</ion-col>
+      <ion-col>{{ 'Operation' | uppercase }}</ion-col>
+      <ion-col>{{ 'Error' | uppercase }}</ion-col>
+      <ion-col>{{ 'Date' | uppercase }}</ion-col>
+      <ion-col>{{ 'User Id' | uppercase }}</ion-col>
+    </ion-row>
+    <div *ngIf="logs">
+        <ion-row *ngFor="let log of logs">
+          <ion-col>{{ log.id }}</ion-col>
+          <ion-col>{{ log.service }}</ion-col>
+          <ion-col>{{ log.method }}</ion-col>
+          <ion-col>
+            <div class="error" [innerHTML]="log.error"></div>
+          </ion-col>
+          <ion-col>{{ log.date }}</ion-col>
+          <ion-col>{{ log.name }} - User ID{{ log.user_id }}</ion-col>
+        </ion-row>
+    </div>
+  </ion-grid>
+</ion-content>

@@ -1,0 +1,37 @@
+<ion-content>
+  <ion-row class="ion-justify-content-center">
+    <ion-col size="12" size-lg="6">
+      <ion-card>
+        <ion-card-header>
+          <ion-toolbar>
+            <ion-buttons slot="start">
+              <ion-button (click)="backClicked()">
+                  <ion-icon name="arrow-back"></ion-icon>
+                </ion-button>
+            </ion-buttons>
+            <ion-buttons slot="primary">
+              <ion-button (click)="syncOfflineFarmerAndField()">
+                <ion-icon name="cloud-upload" size="large" *ngIf="!editFarmerInfo"></ion-icon>
+              </ion-button>
+            </ion-buttons>
+
+            <ion-title>{{editFarmerInfo ? 'Edit' : 'View'}} Farmer's Information </ion-title>
+          </ion-toolbar>
+        </ion-card-header>
+        <app-farmer-form 
+          #farmerFormInstance 
+          [submitBtnLabel]="submitBtnLabel" 
+          [adminUser]="adminUser"
+          [loggedInUserGao]="loggedInUserGao" 
+          [editFarmerInfo]="editFarmerInfo" 
+          [farmer]="farmerInfo" 
+          [farmerFieldList]="farmerFields" 
+          (formSubmit)="onFarmerFormSubmit($event)"
+          (viewFarmerInfoClearBtn)="backClicked()"
+          (addFarmLot)="onAddFarmLot()"
+          (viewFarmLotList)="onViewFarmLotList()">
+        </app-farmer-form>
+      </ion-card>
+    </ion-col>
+  </ion-row>
+</ion-content>

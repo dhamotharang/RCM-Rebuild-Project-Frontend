@@ -1,0 +1,109 @@
+<ion-content>
+  <ion-row class="ion-justify-content-center">
+    <ion-button (click)="uploadFarmers()"
+      >Upload Offline Farmer Data</ion-button
+    >
+
+  </ion-row>
+
+  <ion-row class="ion-justify-content-center">
+    <ion-col size="6">
+      <table style="width: 100%">
+        <thead>
+          <tr>
+            <td>Farmer</td>
+            <td>Status</td>
+            <td>Upload Status</td>
+            <td *ngIf="isUploadFarmersClicked">Action</td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let farmer of farmerList">
+            <td>{{ farmer.first_name }} {{ farmer.last_name }}</td>
+            <td>
+              <ion-row class="ion-margin-bottom ion-align-items-center">
+                <span class="ion-margin-end">Farmer: </span>
+                <ion-icon
+                  *ngIf="farmer.id"
+                  style="font-size: 2em"
+                  name="checkmark-circle-outline"
+                  color="success"
+                ></ion-icon>
+                <ion-icon
+                  *ngIf="!farmer.id"
+                  title="Not uploaded"
+                  style="font-size: 2em"
+                  name="alert-circle-outline"
+                  color="medium"
+                ></ion-icon>
+              </ion-row>
+              <ion-row>Fields:</ion-row>
+              <ion-row class="ion-margin-bottom">
+                <ion-badge
+                  color="medium"
+                  *ngIf="!farmer.fields || farmer.fields.length === 0"
+                  >No Fields</ion-badge
+                >
+                <ion-badge
+                  class="ion-margin-right"
+                  [color]="field.id ? 'success' : 'medium'"
+                  *ngFor="let field of farmer.fields"
+                  >{{ field.field_name }}</ion-badge
+                >
+              </ion-row>
+
+              <ion-row>Recommendations:</ion-row>
+              <ion-row class="ion-margin-bottom">
+                <ion-badge
+                  color="medium"
+                  *ngIf="farmerFieldsHasNoRecommendations(farmer.fields)"
+                  >No Recommendations</ion-badge
+                >
+                <div *ngFor="let field of farmer.fields">
+                  <span
+                    *ngIf="!farmerFieldsHasNoRecommendations(farmer.fields)"
+                  >
+                    <ion-badge
+                      [color]="recommendation.refId ? 'success' : 'medium'"
+                      *ngFor="let recommendation of field.recommendations"
+                      >{{ recommendation.refId ? recommendation.refId : recommendation.temporaryRefId }}</ion-badge
+                    >
+                  </span>
+                </div>
+              </ion-row>
+            </td>
+            <td>
+              <ion-row class="ion-justify-content-center">
+                <ion-spinner
+                  *ngIf="farmer.isUploading"
+                  name="crescent"
+                ></ion-spinner>
+                <ion-icon
+                  *ngIf="farmer.upload_failed || (isUploadFarmersClicked && checkRecommendationsWithRefId(farmer.fields))"
+                  title="Upload Failed"
+                  style="font-size: 2em"
+                  name="close-circle-outline"
+                  color="danger"
+                ></ion-icon>
+                <ion-icon
+                  *ngIf="farmer.upload_failed === false && farmer.uploaded"
+                  style="font-size: 2em"
+                  name="checkmark-circle-outline"
+                  color="success"
+                ></ion-icon>
+              </ion-row>
+            </td>
+            <td *ngIf="isUploadFarmersClicked">
+              <ion-button
+                color="danger"
+                *ngIf="farmer.upload_failed || checkRecommendationsWithRefId(farmer.fields)"
+                (click)="resetFarmerUpload(farmer)"
+                >Reset Upload</ion-button
+              >
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </ion-col>
+  </ion-row>
+</ion-content>

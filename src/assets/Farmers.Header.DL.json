@@ -1,0 +1,52 @@
+[
+    {
+        "key": "survey_date",
+        "value": "Survey Date",
+        "header_value": "Survey \nDate"
+    },
+    {
+        "key": "first_name",
+        "value": "Farmer's First Name",
+        "header_value": "Farmer's \nFirst Name"
+    },
+    {
+        "key": "last_name",
+        "value": "Farmer's Last Name",
+        "header_value": "Farmer's \nLast Name"
+    },
+    {
+        "key": "farmer_barangay",
+        "value": "Farmer's Barangay",
+        "header_value": "Farmer's \nBarangay"
+    },
+    {
+        "key": "contact_number",
+        "value": "Contact Number",
+        "header_value": "Contact \nNumber"
+    },
+    {
+        "key": "field_name",
+        "value": "Field Name",
+        "header_value": "Field Name"
+    },
+    {
+        "key": "d_field_size",
+        "value": "Declared Field Size",
+        "header_value": "Declared \nField \nSize"
+    },
+    {
+        "key": "gpx_id",
+        "value": "GPX Field ID",
+        "header_value": "GPX Field ID"
+    },
+    {
+        "key": "verified",
+        "value": "Verified?",
+        "header_value": "Verified?"
+    },
+    {
+        "key": "verified_field_size",
+        "value": "Verified Field Size",
+        "header_value": "Verified \nField \nSize"
+    }
+]

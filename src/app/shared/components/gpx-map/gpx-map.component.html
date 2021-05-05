@@ -1,0 +1,108 @@
+<ion-card>
+  <ion-card-header>
+    <ion-card-subtitle>Status: {{errors.length == 0 || errors['error'] == 0 ? 'Valid' : (errors['error'][0]['error_id'] == 9 ? '100% Overlap' : 'Invalid')}}</ion-card-subtitle>
+  </ion-card-header>
+  <ion-card-content *ngIf="(errors.length != 0 && errors['error'] != 0 && (errors['error'][0]['error_id'] == 9 || errors['error'][0]['error_id'] == 7))">
+    <p>Map preview of {{gpxId}}</p>
+    <p *ngIf="errors['error'][0]['error_id'] == 7">Computed overlap area: {{errors['error_overlap_data'][0]['area']['area_intersection']}} ha</p>
+    <ion-grid *ngIf="errors['error'][0]['error_id'] == 7">
+      <ion-row class="ion-text-center">
+        <ion-col class="col-title" size="6">Computed area (ha)</ion-col>
+        <ion-col class="col-title" size="6">Percentage overlap area</ion-col>
+      </ion-row>
+      <ion-row class="ion-text-center poly1-text">
+        <ion-col class="col" size="6">
+          {{errors['error_overlap_data'][0]['area']['area_poly1']}}
+        </ion-col>
+        <ion-col class="col" size="6">
+          {{errors['error_overlap_data'][0]['area']['diff_poly1']}} %
+        </ion-col>
+      </ion-row>
+      <ion-row class="ion-text-center poly2-text">
+        <ion-col class="col" size="6">
+          {{errors['error_overlap_data'][0]['area']['area_poly2']}}
+        </ion-col>
+        <ion-col class="col" size="6">
+          {{errors['error_overlap_data'][0]['area']['diff_poly2']}} %
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    <agm-map [zoom]="17" [latitude]="mapLatitude" [longitude]="mapLongitude" [mapTypeId]="mapType">
+      <agm-polygon *ngFor="let gpxItem of gpxModels" [paths]="gpxItem.paths" [fillColor]="gpxItem.fillColor" [strokeColor]="gpxItem.strokeColor"></agm-polygon>
+    </agm-map>
+    <ion-grid>
+      <ion-row class="ion-text-center">
+        <ion-col class="col-title" size="2">Status</ion-col>
+        <ion-col class="col-title" size="3">Farmer Name</ion-col>
+        <ion-col class="col-title" size="2">Farmer ID</ion-col>
+        <ion-col class="col-title" size="2">GPX ID</ion-col>
+        <ion-col class="col-title" size="3">Date Uploaded and Verified</ion-col>
+      </ion-row>
+      <ion-row class="ion-text-center poly1-text">
+        <ion-col class="col" size="2">
+          Overlap
+        </ion-col>
+        <ion-col class="col" size="3">
+          {{errors['error_overlap_data'][0]['overlap_farmer_name'] | titlecase}}
+        </ion-col>
+        <ion-col class="col" size="2">
+          {{errors['error_overlap_data'][0]['overlap_farmer_id']}}
+        </ion-col>
+        <ion-col class="col" size="2">
+          {{gpxModels[0]['gpxId']}}
+        </ion-col>
+        <ion-col class="col" size="3">
+          NA
+        </ion-col>
+      </ion-row>
+      <ion-row class="ion-text-center poly2-text">
+        <ion-col class="col" size="2">
+          Valid
+        </ion-col>
+        <ion-col class="col" size="3">
+          {{errors['error_overlap_data'][0]['farmer_name'] | titlecase}}
+        </ion-col>
+        <ion-col class="col" size="2">
+          {{errors['error_overlap_data'][0]['farmer_id']}}
+        </ion-col>
+        <ion-col class="col" size="2">
+          {{errors['error_overlap_data'][0]['gpx_id']}}
+        </ion-col>
+        <ion-col class="col" size="3">
+          {{errors['error_overlap_data'][0]['date_verified'] | date}}
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    <p *ngIf="errors['error'][0]['error_id'] == 9">Please confirm if {{errors['error_overlap_data'][0]['overlap_farmer_name'] | titlecase}} is now tilling this farm lot. Thanks!</p>
+  </ion-card-content>
+  <ion-card-content *ngIf="(errors == null || errors.length == 0 || errors['error'] == 0); else hasError">
+    <p>Map preview of {{gpxId}}</p>
+    <agm-map [zoom]="17" [latitude]="mapLatitude" [longitude]="mapLongitude" [mapTypeId]="mapType">
+      <agm-polygon *ngFor="let gpxItem of gpxModels" [paths]="gpxItem.paths" [fillColor]="gpxItem.fillColor" [strokeColor]="gpxItem.strokeColor"></agm-polygon>
+    </agm-map>
+    <p>Actual farm lot size (ha): <b>{{gpxModels[0]['computedArea']}}</b></p>
+  </ion-card-content>
+</ion-card>
+
+<ng-template #hasError>
+  <ion-grid>
+      <ion-row class="ion-justify-content-center">
+        <ion-col size="12" size-sm="9" size-xl="7">
+          <ion-card *ngFor="let error of errors['error']">
+            <ion-card-header>
+              <ion-card-subtitle>Error:</ion-card-subtitle>
+            </ion-card-header>
+            <ion-card-content>
+              <div>{{error.error}}</div>
+              <div class="ion-text-center" *ngIf="errors['error'][0]['error_id'] == 9">
+                <ion-button color="success" shape="round" (click)="confirmOverlap()">
+                  <ion-icon slot="start" name="thumbs-up"></ion-icon>
+                  Confirm
+                </ion-button>
+              </div>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+</ng-template>

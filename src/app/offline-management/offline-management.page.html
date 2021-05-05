@@ -1,0 +1,60 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Manage Offline Data</ion-title>
+    <div class="ion-padding" slot="end">
+      <ion-button (click)="clearOfflineData()" color="danger"
+        >Clear Offline Data</ion-button
+      >
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item-group>
+      <ion-item-divider>
+        <ion-label
+          >{{ hasFarmerAndFieldData ? 'Downloaded Data For Interview' :
+          'Interview Data' }}</ion-label
+        >
+      </ion-item-divider>
+      <div>
+        <ion-item *ngIf="hasFarmerAndFieldData">
+          <ion-label>Interview Data ({{ dateDownloaded | date }})</ion-label>
+          <ion-icon
+            color="primary"
+            name="checkmark-circle"
+            slot="end"
+          ></ion-icon>
+        </ion-item>
+        <div class="ion-padding">
+          <app-address-form-control
+            [formGroup]="downloadInterviewForm"
+            [hideBarangay]="true"
+            [address]="farmerDataLocation"
+            [mode]="addresssFormMode"
+            [disabled]="hasFarmerAndFieldData"
+          >
+          </app-address-form-control>
+          <ion-button
+            *ngIf="hasFarmerAndFieldData"
+            (click)="uploadNewFarmerAndFieldOfflineData()"
+            >Upload New Interview Data</ion-button
+          >
+          <ion-button color="secondary"
+            *ngIf="hasFarmerAndFieldData"
+            [routerLink]="['/data-admin/offline-management/farmer-upload']"
+            >Farmer Push</ion-button
+          >
+          <div *ngIf="!hasFarmerAndFieldData">
+            <ion-button
+              (click)="downloadFarmerAndFieldOfflineData()"
+              [disabled]="isDownloadingFarmerAndFieldData"
+              >Download Interview Data</ion-button
+            >
+          </div>
+        </div>
+      </div>
+    </ion-item-group>
+  </ion-list>
+</ion-content>

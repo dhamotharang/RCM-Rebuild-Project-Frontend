@@ -1,0 +1,218 @@
+<ion-list>
+  <ion-item *ngIf="farmingPractices?.isSprayInsecticideDisplayed">
+    <ion-thumbnail slot="start">
+      <ion-img src="assets/icon/crop-management/nospray.png"></ion-img>
+    </ion-thumbnail>
+    <ion-label class="ion-text-wrap">
+      <p>
+        <b>{{ 'FARMING_PRACTICES.PEST_MANAGEMENT_HEADER' | customDialectTranslation: dialectSelected | async }}
+          {{ 'COMMON.CROP_ESTABLISHMENT_ACRONYM.' + cropEstablishment | customDialectTranslation: dialectSelected | async }}</b>
+      </p>
+      <p>
+        {{ 'FARMING_PRACTICES.PEST_MANAGEMENT_BODY' | customDialectTranslation: dialectSelected | async }}
+      </p>
+    </ion-label>
+  </ion-item>
+
+  <ion-item *ngIf="farmingPractices?.isWeedManagementDisplayed">
+    <ion-thumbnail slot="start">
+      <ion-img src="assets/icon/crop-management/weed.png"></ion-img>
+    </ion-thumbnail>
+    <ion-label class="ion-text-wrap">
+      <p>
+        <b>{{ 'FARMING_PRACTICES.WEED_MANAGEMENT' | customDialectTranslation: dialectSelected | async }}</b>
+      </p>
+    </ion-label>
+  </ion-item>
+
+  <ion-item *ngIf="farmingPractices?.isControlIrrigationDisplayed">
+    <ion-thumbnail slot="start">
+      <ion-img src="assets/icon/crop-management/pcirrig2.png"></ion-img>
+    </ion-thumbnail>
+    <ion-label class="ion-text-wrap">
+      <p>
+        <b>{{ 'FARMING_PRACTICES.ALTERNATE_IRRIGATION_HEADER' | customDialectTranslation: dialectSelected | async }}</b>
+      </p>
+      <p>
+        {{ 'FARMING_PRACTICES.ALTERNATE_IRRIGATION_BODY' | customDialectTranslation: dialectSelected | async }}
+      </p>
+    </ion-label>
+  </ion-item>
+
+  <ion-item *ngIf="farmingPractices?.isQualitySeedsDisplayed">
+    <ion-thumbnail slot="start">
+      <ion-img src="assets/icon/crop-management/seeds.png"></ion-img>
+    </ion-thumbnail>
+    <ion-label class="ion-text-wrap">
+      <p *ngIf="farmingPractices?.qualitySeeds === qualitySeedsValue.USE_SEED_OLDER_THAN_39_DAYS">
+        <b
+          [innerHTML]="'FARMING_PRACTICES.QUALITY_MANAGEMENT.USE_SEED_OLDER_THAN_39_DAYS_1' | customDialectTranslation: dialectSelected | async"></b>
+        <b>
+          {{ qualitySeedsLowerLimit }}
+        </b>
+        <b
+          [innerHTML]="'FARMING_PRACTICES.QUALITY_MANAGEMENT.USE_SEED_OLDER_THAN_39_DAYS_2' | customDialectTranslation: dialectSelected | async"></b>
+        <b>
+          {{ qualitySeedsUpperLimit }}
+        </b>
+        <b
+          [innerHTML]="'FARMING_PRACTICES.QUALITY_MANAGEMENT.USE_SEED_OLDER_THAN_39_DAYS_3' | customDialectTranslation: dialectSelected | async"></b>
+        <b>
+          {{ selectedFarmsize }}
+        </b>
+        <b
+          [innerHTML]="'FARMING_PRACTICES.HECTARE_FARM_LOT' | customDialectTranslation: dialectSelected | async">
+        </b>
+      </p>
+      <p *ngIf="farmingPractices?.qualitySeeds === qualitySeedsValue.USE_QUALITY_SEEDS_GOOD_SNAIL_CONTROL">
+        <b
+          [innerHTML]="'FARMING_PRACTICES.QUALITY_MANAGEMENT.USE_QUALITY_SEEDS_GOOD_SNAIL_CONTROL' | customDialectTranslation: dialectSelected | async">
+        </b>
+        <b>
+          {{ selectedFarmsize }}
+        </b>
+        <b
+          [innerHTML]="'FARMING_PRACTICES.HECTARE_FARM_LOT' | customDialectTranslation: dialectSelected | async">
+        </b>
+      </p>
+      <p *ngIf="farmingPractices?.qualitySeeds === qualitySeedsValue.USE_QUALITY_SEEDS">
+        <b
+          [innerHTML]="'FARMING_PRACTICES.QUALITY_MANAGEMENT.USE_QUALITY_SEEDS' | customDialectTranslation: dialectSelected | async">
+        </b>
+        <b>
+          {{ selectedFarmsize }}
+        </b>
+        <b
+          [innerHTML]="'FARMING_PRACTICES.HECTARE_FARM_LOT' | customDialectTranslation: dialectSelected | async">
+        </b>
+      </p>
+    </ion-label>
+  </ion-item>
+
+  <ion-item *ngIf="farmingPractices?.isTwentyOneDaysDisplayed">
+    <ion-thumbnail slot="start">
+      <ion-img src="assets/icon/crop-management/21seed.png"></ion-img>
+    </ion-thumbnail>
+    <ion-label class="ion-text-wrap">
+      <p>
+        <b>{{ 'FARMING_PRACTICES.SEEDLING_DAYS_HEADER' | customDialectTranslation: dialectSelected | async }}</b>
+      </p>
+      <p>
+        {{ 'FARMING_PRACTICES.SEEDLING_DAYS_BODY' | customDialectTranslation: dialectSelected | async }}
+      </p>
+    </ion-label>
+  </ion-item>
+
+  <ion-item *ngIf="farmingPractices?.isWaterManagementDisplayed">
+    <ion-thumbnail slot="start">
+      <ion-img src="assets/icon/crop-management/keepFloodWater.png"></ion-img>
+    </ion-thumbnail>
+    <ion-label class="ion-text-wrap">
+      <p>
+        <b>{{ 'FARMING_PRACTICES.WATER_MANAGEMENT' | customDialectTranslation: dialectSelected | async }}</b>
+      </p>
+    </ion-label>
+  </ion-item>
+
+  <ion-item *ngIf="farmingPractices?.isZincDeficientDisplayed">
+    <ion-thumbnail slot="start">
+      <ion-img src="assets/icon/crop-management/zinc.png"></ion-img>
+    </ion-thumbnail>
+    <ion-label class="ion-text-wrap">
+      <p>
+        <b>{{ 'FARMING_PRACTICES.ZINC_MANAGEMENT_HEADER' | customDialectTranslation: dialectSelected | async }}</b>
+      </p>
+      <p>
+        {{ 'FARMING_PRACTICES.ZINC_MANAGEMENT_BODY' | customDialectTranslation: dialectSelected | async }}
+      </p>
+    </ion-label>
+  </ion-item>
+
+  <ion-item *ngIf="farmingPractices?.isIrrigateAtFloweringDisplayed">
+    <ion-thumbnail slot="start">
+      <ion-img src="assets/icon/crop-management/irrigate.png"></ion-img>
+    </ion-thumbnail>
+    <ion-label class="ion-text-wrap">
+      <p>
+        <b>{{ 'FARMING_PRACTICES.IRRIGATION_MANAGEMENT' | customDialectTranslation: dialectSelected | async }}</b>
+      </p>
+    </ion-label>
+  </ion-item>
+
+  <ion-item *ngIf="farmingPractices?.isDelayFertilizerApplicationDisplayed">
+    <ion-thumbnail slot="start"></ion-thumbnail>
+    <ion-label class="ion-text-wrap">
+      <p>
+        <b>{{ 'FARMING_PRACTICES.DELAY_FERTILIZER_HEADER' | customDialectTranslation: dialectSelected | async }}</b>
+      </p>
+      <p *ngIf="farmingPractices?.fertilizerDelayManagement === fertilizerDelay.COMBINE_ALL">
+        <ion-text 
+          [innerHTML]="'FARMING_PRACTICES.DELAY_FERTILIZER.COMBINE_ALL_1' | customDialectTranslation: dialectSelected | async">
+        </ion-text>
+        <ion-text>
+          {{ activeTilleringHighDisplay }}
+        </ion-text>
+        <ion-text 
+          [innerHTML]="'COMMON.CROP_ESTABLISHMENT_SHORT_LABEL.' + cropEstablishment | customDialectTranslation: dialectSelected | async">
+        </ion-text>
+        <ion-text 
+          [innerHTML]="'FARMING_PRACTICES.DELAY_FERTILIZER.COMBINE_ALL_2' | customDialectTranslation: dialectSelected | async">
+        </ion-text>
+      </p>
+      <p *ngIf="farmingPractices?.fertilizerDelayManagement === fertilizerDelay.FOR_ACTIVE_AND_PANICLE">
+        <ion-text 
+          [innerHTML]="'FARMING_PRACTICES.DELAY_FERTILIZER.FOR_ACTIVE_AND_PANICLE_1' | customDialectTranslation: dialectSelected | async">
+        </ion-text>
+        <ion-text>
+          {{ activeTilleringHighDisplay }}
+        </ion-text>
+        <ion-text 
+          [innerHTML]="'COMMON.CROP_ESTABLISHMENT_SHORT_LABEL.' + cropEstablishment | customDialectTranslation: dialectSelected | async">
+        </ion-text>
+        <ion-text 
+          [innerHTML]="'FARMING_PRACTICES.DELAY_FERTILIZER.FOR_ACTIVE_AND_PANICLE_2' | customDialectTranslation: dialectSelected | async">
+        </ion-text>
+        <ion-text>
+          {{ panicleInitiationLowDisplay }}
+        </ion-text>
+        <ion-text 
+          [innerHTML]="'FARMING_PRACTICES.DELAY_FERTILIZER.FOR_ACTIVE_AND_PANICLE_3' | customDialectTranslation: dialectSelected | async">
+        </ion-text>
+        <ion-text>
+          {{ panicleInitiationHighDisplay }}
+        </ion-text>
+        <ion-text 
+          [innerHTML]="'COMMON.CROP_ESTABLISHMENT_SHORT_LABEL.' + cropEstablishment | customDialectTranslation: dialectSelected | async">
+        </ion-text>
+      </p>
+      <p *ngIf="farmingPractices?.fertilizerDelayManagement === fertilizerDelay.FOR_ACTIVE_TILLERING">
+        <ion-text 
+          [innerHTML]="'FARMING_PRACTICES.DELAY_FERTILIZER.FOR_ACTIVE_TILLERING_1' | customDialectTranslation: dialectSelected | async">
+        </ion-text>
+        <ion-text>
+          {{ activeTilleringHighDisplay }}
+        </ion-text>
+        <ion-text 
+          [innerHTML]="'COMMON.CROP_ESTABLISHMENT_SHORT_LABEL.' + cropEstablishment | customDialectTranslation: dialectSelected | async">
+        </ion-text>
+        <ion-text 
+          [innerHTML]="'FARMING_PRACTICES.DELAY_FERTILIZER.FOR_ACTIVE_TILLERING_2' | customDialectTranslation: dialectSelected | async">
+        </ion-text>
+      </p>
+      <p>
+        <ion-text 
+          [innerHTML]="'FARMING_PRACTICES.DELAY_FERTILIZER.APPLY_FERTILIZER_FOR_PANICLE_INITIATION_1' | customDialectTranslation: dialectSelected | async">
+        </ion-text>
+        <ion-text>
+          {{ activeTilleringHighDisplay }}
+        </ion-text>
+        <ion-text 
+          [innerHTML]="'COMMON.CROP_ESTABLISHMENT_SHORT_LABEL.' + cropEstablishment | customDialectTranslation: dialectSelected | async">
+        </ion-text>
+        <ion-text 
+          [innerHTML]="'FARMING_PRACTICES.DELAY_FERTILIZER.APPLY_FERTILIZER_FOR_PANICLE_INITIATION_2' | customDialectTranslation: dialectSelected | async">
+        </ion-text>
+      </p>
+    </ion-label>
+  </ion-item>
+</ion-list>

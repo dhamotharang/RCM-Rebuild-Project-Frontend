@@ -1,0 +1,37 @@
+<ion-header translucent>
+  <ion-toolbar>
+    <ion-title>Preview Farmer ID</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="dismissModal()">Close</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content fullscreen>
+  <ion-grid>
+    <ion-row>
+      <ion-item-divider>
+        <ion-label>FRONT</ion-label>
+      </ion-item-divider>
+    </ion-row>
+    <ion-row class="ion-justify-content-center">
+      <app-farmer-identification [farmerInfo]="farmerInfo"></app-farmer-identification>
+    </ion-row>
+
+
+    <ion-row>
+      <ion-item-divider>
+        <ion-label>BACK</ion-label>
+      </ion-item-divider>
+    </ion-row>
+    <ion-row class="ion-justify-content-center">
+      <app-farmer-identification face="back" [loggedInUser]="loggedInUser" [farmerInfo]="farmerInfo"
+        [farmerFields]="farmerFields"></app-farmer-identification>
+    </ion-row>
+    <ion-row class="ion-text-center">
+      <ion-col>
+        <ion-button (click)="downloadAll()" [appDisable]="roleId">Download ID</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <a #downloadLink></a>
+</ion-content>
