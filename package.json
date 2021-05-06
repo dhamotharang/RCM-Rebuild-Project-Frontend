@@ -6,7 +6,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ionic serve",
-    "build": "ng build --configuration=dev",
+    "build": "node --max-old-space-size=4096 ./node_modules/@angular/cli/bin/ng build --configuration=dev",
     "test": "ng test",
     "test-headless": "ng test --watch=false --karma-config=karma-ci.conf.js",
     "lint": "ng lint",
