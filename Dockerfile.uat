@@ -1,28 +1,11 @@
-
-FROM node:10.16.3-jessie-slim AS builder
-
-
+### STAGE 1: Build ###
+FROM node:12.7-alpine AS build
 WORKDIR /app
+COPY package.json package-lock.json ./
+RUN npm install
 COPY . .
-
-ARG BUILD_SPRINT=''
-ARG BUILD_TIMESTAMP=''
-
-RUN sed -i "s/build_sprint/${BUILD_SPRINT}/g" src/app/config.json
-RUN sed -i "s/build_timestamp/${BUILD_TIMESTAMP}/g" src/app/config.json
-
-#RUN npm install 
-#    npm run build || true
-
-#RUN npm install
-#RUN npm run build 
-
-RUN npm install npm run build || true
-
-#RUN npm install || true
-
-FROM nginx:1.17.4-alpine
-
-
-COPY --from=builder /app/ /usr/share/nginx/html/
+RUN npm run build
+### STAGE 2: Run ###
+FROM nginx:1.17.1-alpine
 COPY prod.conf /etc/nginx/conf.d/default.conf
+COPY --from=build /app/www/ /usr/share/nginx/html
