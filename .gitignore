@@ -24,11 +24,11 @@ npm-debug.log*
 /.versions
 /.vscode
 /coverage
-/dist
+
 /node_modules
 /platforms
 /plugins
-/www
+
 /android
 /.project
 /output
